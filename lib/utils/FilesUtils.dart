@@ -7,7 +7,7 @@ const String publicSansReg= "PublicSansSansRegular";
 const String publicSansExtraBold= "PublicSansExtraBold";
 const String publicSansBold= "PublicSansBold";
 
-void debugPrint(String msg){
+void debugLogs(String msg){
   if (kDebugMode) {
     print(msg);
   }
