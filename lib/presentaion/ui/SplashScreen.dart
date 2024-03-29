@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:loansettle/utils/FilesUtils.dart';
+import 'package:loansettle/values/res/Resources.dart';
 
 class MainSplashScreen extends StatefulWidget {
   const MainSplashScreen({super.key});
