@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   sealed_flutter_bloc: ^8.0.2
   flutter_bloc: ^8.1.5
+  flutter_html: ^2.2.1
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +73,9 @@ flutter:
 
   assets:
     - assets/images/loansettelment.png
+    - assets/images/walk_throught_scree_One.png
+    - assets/images/walk_throught_screen_three.png
+    - assets/images/walk_throught_screen_two.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
