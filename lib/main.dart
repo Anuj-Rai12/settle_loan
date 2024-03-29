@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loansettle/presentaion/ui/AppGoToScreen.dart';
+import 'package:loansettle/presentaion/ui/LoginScreen.dart';
 import 'package:loansettle/presentaion/ui/SplashScreen.dart';
 
 Future<void> main() async {
@@ -8,20 +9,19 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp( MaterialApp(
-      title: "Settle Loan",
-      debugShowCheckedModeBanner: false,
-      home: const AnnotatedRegion<SystemUiOverlayStyle>(
+  runApp(MaterialApp(
+    title: "Settle Loan",
+    debugShowCheckedModeBanner: false,
+    home: const AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
             statusBarColor: Colors.white,
             statusBarIconBrightness: Brightness.dark),
-        child: MainSplashScreen()
-      ),
+        child: MainSplashScreen()),
     routes: {
-      "/goTOScreen": (context)=> const AppGoToScreen()
+      "/goTOScreen": (context) => const AppGoToScreen(),
+      "/loginScreen": (context) => const LoginScreen()
     },
-  )
-  );
+  ));
 }
 
 class MyApp extends StatelessWidget {
