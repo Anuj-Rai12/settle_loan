@@ -45,7 +45,8 @@ class _AppGoToScreenState extends State<AppGoToScreen> {
                   child: TextButton(
                       onPressed: () {
                         // Go To Next Screen
-                        Navigator.pushNamedAndRemoveUntil(context, "/loginScreen", (route) => false);
+                       // Navigator.pushNamedAndRemoveUntil(context, "/loginScreen", (route) => false);
+                        context.goToNextScreenPopUp("/homeScreen");
                       },
                       child: const Text("Skip To Continue",
                           style: TextStyle(
@@ -95,8 +96,7 @@ class _AppGoToScreenState extends State<AppGoToScreen> {
                       debugLogs("text button clicked ${_pageNotifier.value}");
                       _pageNotifier.value = _pageNotifier.value + 1;
                       if (_currentBtn.value == "Get Started") {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, "/loginScreen", (route) => false);
+                        context.goToNextScreenPopUp("/homeScreen");
                         return;
                       }
                       setState(() {

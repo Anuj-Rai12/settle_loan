@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:loansettle/utils/FilesUtils.dart';
 import 'package:loansettle/values/res/Resources.dart';
 
 class MainSplashScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _MainSplashScreenState extends State<MainSplashScreen> {
     SchedulerBinding.instance.addPostFrameCallback((time) {
       Future.delayed(const Duration(seconds: 2), () {
         //showButton();
-        Navigator.pushNamedAndRemoveUntil(context, "/goTOScreen",(route)=> false);
+       context.goToNextScreenPopUp("/loginScreen");
       //  Navigator.pop(context);
       });
     });

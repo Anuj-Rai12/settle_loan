@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loansettle/presentaion/ui/AppGoToScreen.dart';
+import 'package:loansettle/presentaion/ui/HomeScreen.dart';
 import 'package:loansettle/presentaion/ui/LoginScreen.dart';
+import 'package:loansettle/presentaion/ui/SplashScreen.dart';
 import 'package:loansettle/values/color/Colors.dart';
 
 Future<void> main() async {
@@ -38,10 +40,11 @@ Future<void> main() async {
         value: SystemUiOverlayStyle(
             statusBarColor: Colors.white,
             statusBarIconBrightness: Brightness.dark),
-        child: LoginScreen()),
+        child: MainSplashScreen()),
     routes: {
       "/goTOScreen": (context) => const AppGoToScreen(),
-      "/loginScreen": (context) => const LoginScreen()
+      "/loginScreen": (context) => const LoginScreen(),
+      "/homeScreen" :(context)=> const HomeScreen()
     },
   ));
 }

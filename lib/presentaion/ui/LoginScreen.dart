@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: TextButton(
                 onPressed: () {
                   debugLogs("text button clicked");
-                  //Navigator.pushNamed(context, '/HomeScreen');
+                  context.goToNextScreenPopUp("/goTOScreen");
                 },
                 style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(
