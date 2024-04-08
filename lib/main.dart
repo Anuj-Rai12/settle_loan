@@ -2,21 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loansettle/presentaion/ui/AppGoToScreen.dart';
 import 'package:loansettle/presentaion/ui/LoginScreen.dart';
-import 'package:loansettle/presentaion/ui/SplashScreen.dart';
+import 'package:loansettle/values/color/Colors.dart';
 
 Future<void> main() async {
+  MaterialColor myCustomColor = const MaterialColor(
+    buttonColor,
+    <int, Color>{
+      50: Color(buttonColor),
+      100: Color(buttonColor),
+      200: Color(buttonColor),
+      300: Color(buttonColor),
+      400: Color(buttonColor),
+      500: Color(buttonColor),
+      600: Color(buttonColor),
+      700: Color(buttonColor),
+      800: Color(buttonColor),
+      900: Color(buttonColor),
+    },
+  );
+
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(MaterialApp(
+  runApp(
+   MaterialApp(
+    theme: ThemeData(
+      primarySwatch: myCustomColor,
+      brightness: Brightness.light,
+      hintColor: const Color(editTextBg),
+    ),
     title: "Settle Loan",
     debugShowCheckedModeBanner: false,
     home: const AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
             statusBarColor: Colors.white,
             statusBarIconBrightness: Brightness.dark),
-        child: MainSplashScreen()),
+        child: LoginScreen()),
     routes: {
       "/goTOScreen": (context) => const AppGoToScreen(),
       "/loginScreen": (context) => const LoginScreen()
