@@ -1,3 +1,5 @@
+import '../../values/res/Resources.dart';
+
 class ImportantContactInformation {
   String title;
   String name;
@@ -17,13 +19,13 @@ class ImportantContactInformation {
         title: "Your Financial Adviser",
         email: "xyz@gmail.com",
         phoneNumber: "+914321567899",
-        src: "assets/images/delete_me.png",
+        src: profilePic,
         name: "Anuj Rai"),
     ImportantContactInformation(
         title: "Your Lawyer",
         email: "xyz@gmail.com",
         phoneNumber: "+914321567899",
-        src: "assets/images/delete_me.png",
+        src: profilePic,
         name: "Rahul")
   ];
 }
