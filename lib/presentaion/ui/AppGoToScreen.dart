@@ -96,7 +96,7 @@ class _AppGoToScreenState extends State<AppGoToScreen> {
                       debugLogs("text button clicked ${_pageNotifier.value}");
                       _pageNotifier.value = _pageNotifier.value + 1;
                       if (_currentBtn.value == "Get Started") {
-                        context.goToNextScreenPopUp("/homeScreen");
+                        context.goToNextScreenPopUp("/MainActivity");
                         return;
                       }
                       setState(() {

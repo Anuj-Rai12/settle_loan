@@ -128,6 +128,7 @@ Drawer homeNavigationDrawer(BuildContext context) {
           },
         ),
         Container(
+          padding: const EdgeInsets.only(bottom: 80),
           margin: const EdgeInsets.only(top: 10),
           child: const Align(
             alignment: FractionalOffset.bottomCenter,
