@@ -40,7 +40,7 @@ Future<void> main() async {
         value: SystemUiOverlayStyle(
             statusBarColor: Colors.white,
             statusBarIconBrightness: Brightness.dark),
-        child: MainSplashScreen()),
+        child: HomeScreen()),
     routes: {
       "/goTOScreen": (context) => const AppGoToScreen(),
       "/loginScreen": (context) => const LoginScreen(),

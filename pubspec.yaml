@@ -38,6 +38,7 @@ dependencies:
   sealed_flutter_bloc: ^8.0.2
   flutter_bloc: ^8.1.5
   flutter_html: ^2.2.1
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,7 @@ flutter:
     - assets/images/walk_throught_scree_One.png
     - assets/images/walk_throught_screen_three.png
     - assets/images/walk_throught_screen_two.png
+    - assets/images/delete_me.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

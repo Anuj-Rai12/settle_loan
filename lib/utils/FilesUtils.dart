@@ -7,6 +7,8 @@ void debugLogs(String msg) {
   }
 }
 
+const String Rupess_Symbol="₹";
+
 extension navigation on BuildContext {
   void goToNextScreen(String loc) {
     Navigator.pushNamed(this, loc);
