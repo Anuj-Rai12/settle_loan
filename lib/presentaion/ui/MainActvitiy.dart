@@ -162,7 +162,7 @@ class _MainActivityState extends State<MainActivity> {
                         Icons.help_outline_outlined,
                         color: Color(editTextColor),
                       ),
-                Text("Resource",
+                Text("Resources",
                     style: TextStyle(
                         fontFamily: publicSansReg,
                         fontSize: 11,

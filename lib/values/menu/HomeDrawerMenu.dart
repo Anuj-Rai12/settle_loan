@@ -57,7 +57,9 @@ Drawer homeNavigationDrawer(BuildContext context) {
           title: const Text("DashBoard"),
           leading: const Icon(Icons.home),
           focusColor: const Color(editTextBg),
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+          },
         ),
         ListTile(
           title: const Text("Credit Builder"),
@@ -66,7 +68,7 @@ Drawer homeNavigationDrawer(BuildContext context) {
           onTap: () {},
         ),
         ListTile(
-          title: const Text("AnyTime Layer"),
+          title: const Text("Anytime Lawyer"),
           leading: const Icon(Icons.person),
           focusColor: const Color(editTextBg),
           onTap: () {},
@@ -89,7 +91,7 @@ Drawer homeNavigationDrawer(BuildContext context) {
         ),
         ListTile(
           title: const Text("Negotiation Status"),
-          leading: const Icon(Icons.change_circle),
+          leading: const Icon(Icons.handshake_outlined),
           focusColor: const Color(editTextBg),
           onTap: () {
             Navigator.pop(context);
