@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
           //Forget Password
           GestureDetector(
               onTap: () {
-                debugLogs("print Clicked");
+                context.goToNextScreen("/forgetPassword");
               },
               child: Container(
                   alignment: AlignmentDirectional.centerStart,
@@ -131,30 +131,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Colors.white),
                   textAlign: TextAlign.center,
                 )),
-          ),
-          //New User Information
-          Container(
-            margin:
-                const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
-            child: TextButton(
-                onPressed: () {
-                  debugLogs("text button clicked");
-                  //Navigator.pushNamed(context, '/HomeScreen');
-                },
-                style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    minimumSize: const Size(double.infinity, 55),
-                    backgroundColor: Colors.white),
-                child: const Text(
-                  "New User Sign Up",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: publicSansBold,
-                      color: Color(textColor)),
-                  textAlign: TextAlign.center,
-                )),
           )
+          //New User Information
         ],
       ),
     ));
