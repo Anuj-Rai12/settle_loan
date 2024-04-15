@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:loansettle/presentaion/ui/AppGoToScreen.dart';
 import 'package:loansettle/presentaion/ui/ComplaintAgainstRecoveryAgent.dart';
 import 'package:loansettle/presentaion/ui/ContactUsScreen.dart';
+import 'package:loansettle/presentaion/ui/EscalationScreen.dart';
 import 'package:loansettle/presentaion/ui/ForgetPasswordScreen.dart';
 import 'package:loansettle/presentaion/ui/HomeScreen.dart';
 import 'package:loansettle/presentaion/ui/IntimationDocument.dart';
@@ -57,6 +58,7 @@ Future<void> main() async {
       "/contactUs" :(context)=> const ContactUsScreen(),
       "/complaintAgainstOfficer" :(context)=> const ComplaintAgainstRecoveryAgent(),
       "/intimationDoc" :(context)=> const  IntimationDocument(),
+      "/escalation" :(context)=> const  EscalationScreen(),
     },
   ));
 }
