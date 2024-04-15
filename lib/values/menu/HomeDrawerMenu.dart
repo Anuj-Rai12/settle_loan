@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loansettle/utils/FilesUtils.dart';
 import '../color/Colors.dart';
 import '../fonts/Fonts.dart';
 import '../res/Resources.dart';
@@ -118,7 +119,7 @@ Drawer homeNavigationDrawer(BuildContext context) {
           leading: const Icon(Icons.support_agent),
           focusColor: const Color(editTextBg),
           onTap: () {
-            Navigator.pop(context);
+            context.goToNextScreen("/contactUs");
           },
         ),
         ListTile(
