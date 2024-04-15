@@ -80,6 +80,7 @@ Drawer homeNavigationDrawer(BuildContext context) {
           focusColor: const Color(editTextBg),
           onTap: () {
             Navigator.pop(context);
+            context.goToNextScreen("/intimationDoc");
           },
         ),
         ListTile(

@@ -5,6 +5,7 @@ import 'package:loansettle/presentaion/ui/ComplaintAgainstRecoveryAgent.dart';
 import 'package:loansettle/presentaion/ui/ContactUsScreen.dart';
 import 'package:loansettle/presentaion/ui/ForgetPasswordScreen.dart';
 import 'package:loansettle/presentaion/ui/HomeScreen.dart';
+import 'package:loansettle/presentaion/ui/IntimationDocument.dart';
 import 'package:loansettle/presentaion/ui/LoginScreen.dart';
 import 'package:loansettle/presentaion/ui/MainActvitiy.dart';
 import 'package:loansettle/presentaion/ui/MylawyerScreen.dart';
@@ -55,6 +56,7 @@ Future<void> main() async {
       "/MainActivity" :(context)=> const MainActivity(),
       "/contactUs" :(context)=> const ContactUsScreen(),
       "/complaintAgainstOfficer" :(context)=> const ComplaintAgainstRecoveryAgent(),
+      "/intimationDoc" :(context)=> const  IntimationDocument(),
     },
   ));
 }
