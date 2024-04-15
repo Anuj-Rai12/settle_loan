@@ -84,10 +84,11 @@ Drawer homeNavigationDrawer(BuildContext context) {
         ),
         ListTile(
           title: const Text("Complaint Against Recovery"),
-          leading: const Icon(Icons.close),
+          leading: const Icon(Icons.details),
           focusColor: const Color(editTextBg),
           onTap: () {
             Navigator.pop(context);
+            context.goToNextScreen("/complaintAgainstOfficer");
           },
         ),
         ListTile(

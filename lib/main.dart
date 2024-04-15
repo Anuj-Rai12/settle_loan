@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loansettle/presentaion/ui/AppGoToScreen.dart';
+import 'package:loansettle/presentaion/ui/ComplaintAgainstRecoveryAgent.dart';
 import 'package:loansettle/presentaion/ui/ContactUsScreen.dart';
 import 'package:loansettle/presentaion/ui/ForgetPasswordScreen.dart';
 import 'package:loansettle/presentaion/ui/HomeScreen.dart';
@@ -53,6 +54,7 @@ Future<void> main() async {
       "/myLawyerScreen" :(context)=> const MyLawyerScreen(),
       "/MainActivity" :(context)=> const MainActivity(),
       "/contactUs" :(context)=> const ContactUsScreen(),
+      "/complaintAgainstOfficer" :(context)=> const ComplaintAgainstRecoveryAgent(),
     },
   ));
 }

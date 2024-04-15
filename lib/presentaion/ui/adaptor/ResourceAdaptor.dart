@@ -57,7 +57,7 @@ listOfResourceAdaptor(List<TipsAndResource> arr, BuildContext context) {
                           ),
                         ),
                       ),
-                      const Icon(Icons.arrow_forward_ios,
+                      const Icon(Icons.navigate_next_sharp,
                           color: Color(textColor))
                     ],
                   ),
