@@ -40,10 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.notifications, color: Colors.black),
             onPressed: () {
-              const SnackBar(
-                behavior: SnackBarBehavior.floating,
-                content: Text(
-                    "No Notification Yet")
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  content: Text("No Notification Yet"),
+                ),
               );
             },
           )
