@@ -81,6 +81,7 @@ flutter:
     - assets/images/documentTwo.png
     - assets/images/documentOne.png
     - assets/images/anytimelaywer.png
+    - assets/images/bankState.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
