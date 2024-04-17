@@ -7,3 +7,4 @@ const String walkThroughScreenThree = "assets/images/walk_throught_screen_two.pn
 const String profilePic = "assets/images/delete_me.png";
 const String document1 = "assets/images/documentOne.png";
 const String document2 = "assets/images/documentTwo.png";
+const String anytimeLawyerIMG = "assets/images/anytimelaywer.png";

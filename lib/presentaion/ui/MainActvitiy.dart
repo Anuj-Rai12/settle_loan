@@ -39,7 +39,7 @@ class _MainActivityState extends State<MainActivity> {
       bottomNavigationBar: buildMyNavBar(context),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.goToNextScreen("/myLawyerScreen");
+          context.goToNextScreen("/anyTimeLawyer");
         },
         elevation: 0,
         child: const Icon(Icons.person_2_outlined),

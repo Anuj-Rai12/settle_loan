@@ -80,6 +80,7 @@ flutter:
     - assets/images/delete_me.png
     - assets/images/documentTwo.png
     - assets/images/documentOne.png
+    - assets/images/anytimelaywer.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

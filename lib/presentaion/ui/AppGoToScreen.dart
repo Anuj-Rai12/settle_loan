@@ -35,92 +35,96 @@ class _AppGoToScreenState extends State<AppGoToScreen> {
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.white,
-          body: Column(
+          body: Wrap(
+            alignment: WrapAlignment.spaceAround,
             children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: Container(
-                  margin: const EdgeInsets.only(
-                      left: 0, right: 5, top: 16, bottom: 16),
-                  child: TextButton(
-                      onPressed: () {
-                        // Go To Next Screen
-                       // Navigator.pushNamedAndRemoveUntil(context, "/loginScreen", (route) => false);
-                        context.goToNextScreenPopUp("/homeScreen");
-                      },
-                      child: const Text("Skip To Continue",
-                          style: TextStyle(
-                              fontSize: 16, fontFamily: publicSansReg))),
-                ),
-              ),
-              SizedBox(
-                height: 550,
-                child: Expanded(
-                  child: PageView.builder(
-                    itemBuilder: (context, index) {
-                      debugLogs("current index $index");
-                      return _list[index];
-                    },
-                    controller: _pageController,
-                    itemCount: _list.length,
-                    onPageChanged: (index) {
-                      debugLogs("TESTING THE CURRENT INDEX $index");
-                      setState(() {
-                        _curr = index;
-                        if (index == _list.length - 1) {
-                          _currentBtn.value = "Get Started";
-                        } else {
-                          _currentBtn.value = "Next";
-                        }
-                      });
-                      _pageNotifier.value = index;
-                    },
+              Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                          left: 0, right: 5, top: 16, bottom: 16),
+                      child: TextButton(
+                          onPressed: () {
+                            // Go To Next Screen
+                            // Navigator.pushNamedAndRemoveUntil(context, "/loginScreen", (route) => false);
+                            context.goToNextScreenPopUp("/homeScreen");
+                          },
+                          child: const Text("Skip To Continue",
+                              style: TextStyle(
+                                  fontSize: 16, fontFamily: publicSansReg))),
+                    ),
                   ),
-                ),
-              ),
-              Positioned(
-                top: 20,
-                left: 0,
-                right: 0,
-                bottom: 20,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List<Widget>.generate(_list.length, _buildDot),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                    left: 16, right: 16, top: 20, bottom: 12),
-                child: TextButton(
-                    onPressed: () {
-                      debugLogs("text button clicked ${_pageNotifier.value}");
-                      _pageNotifier.value = _pageNotifier.value + 1;
-                      if (_currentBtn.value == "Get Started") {
-                        context.goToNextScreenPopUp("/MainActivity");
-                        return;
-                      }
-                      setState(() {
-                        if (_curr < _list.length - 1) {
-                          _currentBtn.value = "Next";
-                          _pageController.jumpToPage(_curr + 1);
-                        } else {
-                          _currentBtn.value = "Get Started";
-                        }
-                      });
-                    },
-                    style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                        minimumSize: const Size(double.infinity, 55),
-                        backgroundColor: const Color(buttonColor)),
-                    child: Text(
-                      _currentBtn.value,
-                      style: const TextStyle(
-                          fontSize: 16,
-                          fontFamily: publicSansBold,
-                          color: Colors.white),
-                      textAlign: TextAlign.center,
-                    )),
+                  SizedBox(
+                    height: 550,
+                    child: PageView.builder(
+                      itemBuilder: (context, index) {
+                        debugLogs("current index $index");
+                        return _list[index];
+                      },
+                      controller: _pageController,
+                      itemCount: _list.length,
+                      onPageChanged: (index) {
+                        debugLogs("TESTING THE CURRENT INDEX $index");
+                        setState(() {
+                          _curr = index;
+                          if (index == _list.length - 1) {
+                            _currentBtn.value = "Get Started";
+                          } else {
+                            _currentBtn.value = "Next";
+                          }
+                        });
+                        _pageNotifier.value = index;
+                      },
+                    ),
+                  ),
+                  Positioned(
+                    top: 20,
+                    left: 0,
+                    right: 0,
+                    bottom: 20,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List<Widget>.generate(_list.length, _buildDot),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(
+                        left: 16, right: 16, top: 20, bottom: 12),
+                    child: TextButton(
+                        onPressed: () {
+                          debugLogs(
+                              "text button clicked ${_pageNotifier.value}");
+                          _pageNotifier.value = _pageNotifier.value + 1;
+                          if (_currentBtn.value == "Get Started") {
+                            context.goToNextScreenPopUp("/MainActivity");
+                            return;
+                          }
+                          setState(() {
+                            if (_curr < _list.length - 1) {
+                              _currentBtn.value = "Next";
+                              _pageController.jumpToPage(_curr + 1);
+                            } else {
+                              _currentBtn.value = "Get Started";
+                            }
+                          });
+                        },
+                        style: TextButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                            minimumSize: const Size(double.infinity, 55),
+                            backgroundColor: const Color(buttonColor)),
+                        child: Text(
+                          _currentBtn.value,
+                          style: const TextStyle(
+                              fontSize: 16,
+                              fontFamily: publicSansBold,
+                              color: Colors.white),
+                          textAlign: TextAlign.center,
+                        )),
+                  )
+                ],
               )
             ],
           )),

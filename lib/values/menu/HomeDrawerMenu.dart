@@ -75,7 +75,10 @@ Drawer homeNavigationDrawer(BuildContext context) {
           title: const Text("Anytime Lawyer"),
           leading: const Icon(Icons.person),
           focusColor: const Color(editTextBg),
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+            context.goToNextScreen("/anyTimeLawyer");
+          },
         ),
         ListTile(
           title: const Text("Intimation Letter/Preferred Location Letter"),

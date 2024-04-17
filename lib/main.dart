@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:loansettle/presentaion/ui/AnyTimeLawyer.dart';
 import 'package:loansettle/presentaion/ui/AppGoToScreen.dart';
 import 'package:loansettle/presentaion/ui/ComplaintAgainstRecoveryAgent.dart';
 import 'package:loansettle/presentaion/ui/ContactUsScreen.dart';
@@ -35,8 +36,7 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(
-   MaterialApp(
+  runApp(MaterialApp(
     theme: ThemeData(
       primarySwatch: myCustomColor,
       brightness: Brightness.light,
@@ -53,14 +53,16 @@ Future<void> main() async {
       "/goTOScreen": (context) => const AppGoToScreen(),
       "/loginScreen": (context) => const LoginScreen(),
       "/forgetPassword": (context) => const ForgetPasswordScreen(),
-      "/homeScreen" :(context)=> const HomeScreen(),
-      "/myLawyerScreen" :(context)=> const MyLawyerScreen(),
-      "/MainActivity" :(context)=> const MainActivity(),
-      "/contactUs" :(context)=> const ContactUsScreen(),
-      "/complaintAgainstOfficer" :(context)=> const ComplaintAgainstRecoveryAgent(),
-      "/intimationDoc" :(context)=> const  IntimationDocument(),
-      "/escalation" :(context)=> const  EscalationScreen(),
-      "/ciblScore" :(context)=> const  IncreaseCIBLScore(),
+      "/homeScreen": (context) => const HomeScreen(),
+      "/myLawyerScreen": (context) => const MyLawyerScreen(),
+      "/MainActivity": (context) => const MainActivity(),
+      "/contactUs": (context) => const ContactUsScreen(),
+      "/complaintAgainstOfficer": (context) =>
+          const ComplaintAgainstRecoveryAgent(),
+      "/intimationDoc": (context) => const IntimationDocument(),
+      "/escalation": (context) => const EscalationScreen(),
+      "/ciblScore": (context) => const IncreaseCIBLScore(),
+      "/anyTimeLawyer": (context) => const AnyTimeLawyer(),
     },
   ));
 }
