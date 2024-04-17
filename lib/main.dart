@@ -6,6 +6,7 @@ import 'package:loansettle/presentaion/ui/ComplaintAgainstRecoveryAgent.dart';
 import 'package:loansettle/presentaion/ui/ContactUsScreen.dart';
 import 'package:loansettle/presentaion/ui/EscalationScreen.dart';
 import 'package:loansettle/presentaion/ui/ForgetPasswordScreen.dart';
+import 'package:loansettle/presentaion/ui/HelpAndResources.dart';
 import 'package:loansettle/presentaion/ui/HomeScreen.dart';
 import 'package:loansettle/presentaion/ui/IncreaseCiblScore.dart';
 import 'package:loansettle/presentaion/ui/IntimationDocument.dart';
@@ -63,6 +64,7 @@ Future<void> main() async {
       "/escalation": (context) => const EscalationScreen(),
       "/ciblScore": (context) => const IncreaseCIBLScore(),
       "/anyTimeLawyer": (context) => const AnyTimeLawyer(),
+      "/help&Resource": (context) => const HomeAndResources(),
     },
   ));
 }
