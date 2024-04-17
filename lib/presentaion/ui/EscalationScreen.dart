@@ -45,36 +45,34 @@ class _EscalationScreenState extends State<EscalationScreen> {
           ),
           Container(
             padding: const EdgeInsets.only(top: 16,left: 16,right: 16,bottom: 16),
-            child: Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("Email Address",
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text("Email Address",
+                    style: TextStyle(
+                      color: Color(textColor),
+                      fontFamily: publicSansBold,
+                      fontSize: 22,
+                    )),
+                Container(
+                  margin: const EdgeInsets.only(top: 8),
+                  child: const Text("xyz@gmail.com",
                       style: TextStyle(
-                        color: Color(textColor),
-                        fontFamily: publicSansBold,
-                        fontSize: 22,
+                        color: Color(editTextColor),
+                        fontFamily: publicSansReg,
+                        fontSize: 16,
                       )),
-                  Container(
-                    margin: const EdgeInsets.only(top: 8),
-                    child: const Text("xyz@gmail.com",
-                        style: TextStyle(
-                          color: Color(editTextColor),
-                          fontFamily: publicSansReg,
-                          fontSize: 16,
-                        )),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 8),
-                    child: const Text("xyz1@gmail.com",
-                        style: TextStyle(
-                          color: Color(editTextColor),
-                          fontFamily: publicSansReg,
-                          fontSize: 16,
-                        )),
-                  ),
-                ],
-              ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 8),
+                  child: const Text("xyz1@gmail.com",
+                      style: TextStyle(
+                        color: Color(editTextColor),
+                        fontFamily: publicSansReg,
+                        fontSize: 16,
+                      )),
+                ),
+              ],
             ),
           )
         ],
