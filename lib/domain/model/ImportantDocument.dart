@@ -4,9 +4,10 @@ class ImportantDocument {
   String title;
   String image;
   String desc;
+  String path;
 
   ImportantDocument(
-      {required this.title, required this.desc, required this.image});
+      {required this.title, required this.desc, required this.image,this.path="fdklgdfl;g"});
 
   static List<ImportantDocument> list = [
     ImportantDocument(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loansettle/domain/model/ImportantDocument.dart';
+import 'package:loansettle/utils/FilesUtils.dart';
 
 import '../../../values/color/Colors.dart';
 import '../../../values/fonts/Fonts.dart';
@@ -15,7 +16,9 @@ Widget listOfImportantDocument(
           itemBuilder: (context, position) {
             var data = arr[position];
             return InkWell(
-                onTap: () {},
+                onTap: () {
+                  context.goToDetailScreen(data.title,data.desc,data.path);
+                },
                 child: Container(
                   margin: const EdgeInsets.only(
                       left: 16, right: 16, top: 16, bottom: 16),
