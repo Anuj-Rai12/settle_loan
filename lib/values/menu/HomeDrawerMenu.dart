@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
+import '../../presentaion/ui/dialog/showDialogBox.dart';
 import '../color/Colors.dart';
 import '../fonts/Fonts.dart';
 import '../res/Resources.dart';
@@ -140,6 +141,7 @@ Drawer homeNavigationDrawer(BuildContext context) {
           focusColor: const Color(editTextBg),
           onTap: () {
             Navigator.pop(context);
+            showLogoutConfirmationDialog(context);
           },
         ),
         Container(
