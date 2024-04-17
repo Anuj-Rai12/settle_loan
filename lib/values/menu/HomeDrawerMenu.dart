@@ -54,19 +54,22 @@ Drawer homeNavigationDrawer(BuildContext context) {
             ],
           ),
         ),
-        ListTile(
+      /*  ListTile(
           title: const Text("DashBoard"),
           leading: const Icon(Icons.home),
           focusColor: const Color(editTextBg),
           onTap: () {
             Navigator.pop(context);
           },
-        ),
+        ),*/
         ListTile(
           title: const Text("Credit Builder"),
           leading: const Icon(Icons.credit_card_rounded),
           focusColor: const Color(editTextBg),
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+            context.goToNextScreen("/ciblScore");
+          },
         ),
         ListTile(
           title: const Text("Anytime Lawyer"),
@@ -122,6 +125,7 @@ Drawer homeNavigationDrawer(BuildContext context) {
           leading: const Icon(Icons.support_agent),
           focusColor: const Color(editTextBg),
           onTap: () {
+            Navigator.pop(context);
             context.goToNextScreen("/contactUs");
           },
         ),

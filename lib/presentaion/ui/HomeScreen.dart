@@ -40,7 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.notifications, color: Colors.black),
             onPressed: () {
-              debugLogs("Clicked with Debug Logs");
+              const SnackBar(
+                behavior: SnackBarBehavior.floating,
+                content: Text(
+                    "No Notification Yet")
+              );
             },
           )
         ],
