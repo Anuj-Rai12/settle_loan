@@ -29,3 +29,13 @@ extension navigation on BuildContext {
     );
   }
 }
+
+
+class ApiUrl{
+
+  static const String baseurl="https://crm.settleloan.in/";
+
+  static const String loginEndPoint="api/service/VerifyLead";
+
+
+}
