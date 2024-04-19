@@ -41,7 +41,7 @@ class _AppGoToScreenState extends State<AppGoToScreen> {
               children: [
                 Column(
                   children: [
-                    /*Align(
+                    Align(
                       alignment: Alignment.centerRight,
                       child: Container(
                         margin: const EdgeInsets.only(
@@ -50,13 +50,13 @@ class _AppGoToScreenState extends State<AppGoToScreen> {
                             onPressed: () {
                               // Go To Next Screen
                               // Navigator.pushNamedAndRemoveUntil(context, "/loginScreen", (route) => false);
-                              context.goToNextScreenPopUp("/homeScreen");
+                              context.goToNextScreenPopUp("/MainActivity");
                             },
                             child: const Text("Skip To Continue",
                                 style: TextStyle(
                                     fontSize: 16, fontFamily: publicSansReg))),
                       ),
-                    ),*/
+                    ),
                     SizedBox(
                       height: 600,
                       child: PageView.builder(

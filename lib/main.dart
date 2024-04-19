@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loansettle/data/datastore/LoanSettleSharedPreference.dart';
 import 'package:loansettle/presentaion/ui/AnyTimeLawyer.dart';
 import 'package:loansettle/presentaion/ui/AppGoToScreen.dart';
 import 'package:loansettle/presentaion/ui/ComplaintAgainstRecoveryAgent.dart';
@@ -25,6 +26,7 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  LoanSettleSharedPreference();
   runApp(MyApp());
 }
 

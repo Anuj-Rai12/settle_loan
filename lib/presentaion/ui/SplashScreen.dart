@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:loansettle/data/datastore/LoanSettleSharedPreference.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
 import 'package:loansettle/values/res/Resources.dart';
 
@@ -17,8 +18,13 @@ class _MainSplashScreenState extends State<MainSplashScreen> {
     super.initState();
     SchedulerBinding.instance.addPostFrameCallback((time) {
       Future.delayed(const Duration(seconds: 2), () {
-        //showButton();
-       context.goToNextScreenPopUp("/loginScreen");
+        var sharePref=LoanSettleSharedPreference();
+        if(!sharePref.isUserLogin()){
+          context.goToNextScreenPopUp("/loginScreen");
+        }else{
+          context.goToNextScreenPopUp("/MainActivity");
+        }
+
       //  Navigator.pop(context);
       });
     });

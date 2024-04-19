@@ -3,7 +3,7 @@ import 'package:loansettle/values/color/Colors.dart';
 import 'package:loansettle/values/fonts/Fonts.dart';
 
 void showDialogBox(BuildContext context, String title,
-    String desc, bool okBtn) {
+    String desc, bool okBtn,void Function() fun) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -37,6 +37,7 @@ void showDialogBox(BuildContext context, String title,
                             fontFamily: publicSansReg,
                             color: Color(editTextColor))),
                     onPressed: () {
+                      fun();
                       Navigator.of(context).pop(); // Dismiss the dialog
                       // Add your logout logic here
                     },

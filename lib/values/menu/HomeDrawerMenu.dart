@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:loansettle/data/datastore/LoanSettleSharedPreference.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
 import '../../presentaion/ui/dialog/showDialogBox.dart';
 import '../color/Colors.dart';
@@ -141,7 +143,10 @@ Drawer homeNavigationDrawer(BuildContext context) {
           focusColor: const Color(editTextBg),
           onTap: () {
             Navigator.pop(context);
-            showDialogBox(context,"Logout","Are you sure want to logout?",false);
+            showDialogBox(context,"Logout","Are you sure want to logout?",false,(){
+              LoanSettleSharedPreference().logout();
+              SystemNavigator.pop();
+            });
           },
         ),
         Container(
