@@ -58,7 +58,7 @@ class _AppGoToScreenState extends State<AppGoToScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 600,
+                      height: 500,
                       child: PageView.builder(
                         itemBuilder: (context, index) {
                           debugLogs("current index $index");
