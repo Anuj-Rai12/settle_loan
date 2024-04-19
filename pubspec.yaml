@@ -38,8 +38,8 @@ dependencies:
   sealed_flutter_bloc: ^8.0.2
   flutter_bloc: ^8.1.5
   flutter_html: ^2.2.1
+  http: ^1.1.0
   percent_indicator: ^4.2.3
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

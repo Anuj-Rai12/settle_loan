@@ -141,7 +141,7 @@ Drawer homeNavigationDrawer(BuildContext context) {
           focusColor: const Color(editTextBg),
           onTap: () {
             Navigator.pop(context);
-            showLogoutConfirmationDialog(context);
+            showDialogBox(context,"Logout","Are you sure want to logout?",false);
           },
         ),
         Container(

@@ -30,12 +30,23 @@ extension navigation on BuildContext {
   }
 }
 
+extension msg on BuildContext {
+  void showSnackBar(String str) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.floating,
+        content: Text(str),
+      ),
+    );
+  }
+}
 
-class ApiUrl{
+bool isValidString(String? str) {
+  return str == null || str.isEmpty || str == " ";
+}
 
-  static const String baseurl="https://crm.settleloan.in/";
+class ApiUrl {
+  static const String baseurl = "https://crm.settleloan.in/";
 
-  static const String loginEndPoint="api/service/VerifyLead";
-
-
+  static const String loginEndPoint = "api/service/VerifyLead";
 }

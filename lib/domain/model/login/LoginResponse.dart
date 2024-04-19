@@ -2,7 +2,7 @@
 /// response : "Success"
 /// Message : null
 
-class LoginResponse {
+/*class LoginResponse {
   LoginResponse({
       Data? data, 
       String? response, 
@@ -13,23 +13,23 @@ class LoginResponse {
 }
 
   LoginResponse.fromJson(dynamic json) {
-    _data = json['Data'] != null ? Data.fromJson(json['Data']) : null;
+    _data = null;//json['Data'] != null ? Data.fromJson(json['Data']) : null;
     _response = json['response'];
     _message = json['Message'];
   }
   Data? _data;
   String? _response;
-  dynamic _message;
+  String? _message;
 LoginResponse copyWith({  Data? data,
   String? response,
-  dynamic message,
+  String? message,
 }) => LoginResponse(  data: data ?? _data,
   response: response ?? _response,
   message: message ?? _message,
 );
   Data? get data => _data;
   String? get response => _response;
-  dynamic get message => _message;
+  String? get message => _message;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -41,7 +41,7 @@ LoginResponse copyWith({  Data? data,
     return map;
   }
 
-}
+}*/
 
 /// Email : "Abhichandra0326@gmail.com"
 /// Password : "123"
@@ -49,12 +49,12 @@ LoginResponse copyWith({  Data? data,
 /// Result : 1
 /// Message : null
 
-class Data {
+/*class Data {
   Data({
       String? email, 
       String? password, 
       List<ClientDetails>? clientDetails, 
-      num? result, 
+      int? result, 
       dynamic message,}){
     _email = email;
     _password = password;
@@ -78,12 +78,12 @@ class Data {
   String? _email;
   String? _password;
   List<ClientDetails>? _clientDetails;
-  num? _result;
+  int? _result;
   String? _message;
 Data copyWith({  String? email,
   String? password,
   List<ClientDetails>? clientDetails,
-  num? result,
+  int? result,
   dynamic message,
 }) => Data(  email: email ?? _email,
   password: password ?? _password,
@@ -94,8 +94,8 @@ Data copyWith({  String? email,
   String? get email => _email;
   String? get password => _password;
   List<ClientDetails>? get clientDetails => _clientDetails;
-  num? get result => _result;
-  dynamic get message => _message;
+  int? get result => _result;
+  String? get message => _message;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -109,7 +109,7 @@ Data copyWith({  String? email,
     return map;
   }
 
-}
+}*/
 
 /// Clientid : 5024
 /// ClientCode : "CT29875024"
@@ -122,9 +122,9 @@ Data copyWith({  String? email,
 /// PanCard : "AMHPC6545K"
 /// DOB : "14 Jun 1990"
 
-class ClientDetails {
+/*class ClientDetails {
   ClientDetails({
-      num? clientid, 
+      int? clientid, 
       String? clientCode, 
       String? clientName, 
       String? mobile, 
@@ -158,7 +158,7 @@ class ClientDetails {
     _panCard = json['PanCard'];
     _dob = json['DOB'];
   }
-  num? _clientid;
+  int? _clientid;
   String? _clientCode;
   String? _clientName;
   String? _mobile;
@@ -168,7 +168,7 @@ class ClientDetails {
   String? _remark;
   String? _panCard;
   String? _dob;
-ClientDetails copyWith({  num? clientid,
+ClientDetails copyWith({  int? clientid,
   String? clientCode,
   String? clientName,
   String? mobile,
@@ -189,7 +189,7 @@ ClientDetails copyWith({  num? clientid,
   panCard: panCard ?? _panCard,
   dob: dob ?? _dob,
 );
-  num? get clientid => _clientid;
+  int? get clientid => _clientid;
   String? get clientCode => _clientCode;
   String? get clientName => _clientName;
   String? get mobile => _mobile;
@@ -215,4 +215,123 @@ ClientDetails copyWith({  num? clientid,
     return map;
   }
 
+}*/
+
+
+class LoginResponse {
+  Data? data;
+  String? response;
+  String? message;
+
+  LoginResponse({this.data, this.response, this.message});
+
+  LoginResponse.fromJson(Map<String, dynamic> json) {
+    data = json['Data'] != null ? Data.fromJson(json['Data']) : null;
+    response = json['response'];
+    message = json['Message'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
+      data['Data'] = this.data!.toJson();
+    }
+    data['response'] = response;
+    data['Message'] = message;
+    return data;
+  }
+}
+
+class Data {
+  String? email;
+  String? password;
+  List<ClientDetails>? clientDetails;
+  int? result;
+  String? message;
+
+  Data(
+      {this.email,
+        this.password,
+        this.clientDetails,
+        this.result,
+        this.message});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    email = json['Email'];
+    password = json['Password'];
+    if (json['ClientDetails'] != null) {
+      clientDetails = <ClientDetails>[];
+      json['ClientDetails'].forEach((v) {
+        clientDetails!.add(new ClientDetails.fromJson(v));
+      });
+    }
+    result = json['Result'];
+    message = json['Message'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Email'] = this.email;
+    data['Password'] = this.password;
+    if (this.clientDetails != null) {
+      data['ClientDetails'] =
+          this.clientDetails!.map((v) => v.toJson()).toList();
+    }
+    data['Result'] = this.result;
+    data['Message'] = this.message;
+    return data;
+  }
+}
+
+class ClientDetails {
+  int? clientid;
+  String? clientCode;
+  String? clientName;
+  String? mobile;
+  String? address;
+  String? city;
+  String? pinCode;
+  String? remark;
+  String? panCard;
+  String? dOB;
+
+  ClientDetails(
+      {this.clientid,
+        this.clientCode,
+        this.clientName,
+        this.mobile,
+        this.address,
+        this.city,
+        this.pinCode,
+        this.remark,
+        this.panCard,
+        this.dOB});
+
+  ClientDetails.fromJson(Map<String, dynamic> json) {
+    clientid = json['Clientid'];
+    clientCode = json['ClientCode'];
+    clientName = json['ClientName'];
+    mobile = json['Mobile'];
+    address = json['Address'];
+    city = json['City'];
+    pinCode = json['PinCode'];
+    remark = json['Remark'];
+    panCard = json['PanCard'];
+    dOB = json['DOB'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['Clientid'] = this.clientid;
+    data['ClientCode'] = this.clientCode;
+    data['ClientName'] = this.clientName;
+    data['Mobile'] = this.mobile;
+    data['Address'] = this.address;
+    data['City'] = this.city;
+    data['PinCode'] = this.pinCode;
+    data['Remark'] = this.remark;
+    data['PanCard'] = this.panCard;
+    data['DOB'] = this.dOB;
+    return data;
+  }
 }

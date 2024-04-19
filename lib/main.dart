@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loansettle/presentaion/ui/AnyTimeLawyer.dart';
 import 'package:loansettle/presentaion/ui/AppGoToScreen.dart';
 import 'package:loansettle/presentaion/ui/ComplaintAgainstRecoveryAgent.dart';
@@ -15,9 +16,21 @@ import 'package:loansettle/presentaion/ui/MainActvitiy.dart';
 import 'package:loansettle/presentaion/ui/MylawyerScreen.dart';
 import 'package:loansettle/presentaion/ui/NegoatationScreen.dart';
 import 'package:loansettle/presentaion/ui/SplashScreen.dart';
+import 'package:loansettle/presentaion/viewmodel/LoginViewModel.dart';
 import 'package:loansettle/values/color/Colors.dart';
 
 Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+   MyApp({super.key});
+
   MaterialColor myCustomColor = const MaterialColor(
     buttonColor,
     <int, Color>{
@@ -33,73 +46,41 @@ Future<void> main() async {
       900: Color(buttonColor),
     },
   );
-
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
-  runApp(MaterialApp(
-    theme: ThemeData(
-      primarySwatch: myCustomColor,
-      brightness: Brightness.light,
-      hintColor: const Color(editTextBg),
-    ),
-    title: "Settle Loan",
-    debugShowCheckedModeBanner: false,
-    home: const AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(
-            statusBarColor: Colors.white,
-            statusBarIconBrightness: Brightness.dark),
-        child: MainSplashScreen()),
-    routes: {
-      "/goTOScreen": (context) => const AppGoToScreen(),
-      "/loginScreen": (context) => const LoginScreen(),
-      "/forgetPassword": (context) => const ForgetPasswordScreen(),
-      "/homeScreen": (context) => const HomeScreen(),
-      "/myLawyerScreen": (context) => const MyLawyerScreen(),
-      "/negoatationSecreen": (context) => const NegotiationScreen(),
-      "/MainActivity": (context) => const MainActivity(),
-      "/contactUs": (context) => const ContactUsScreen(),
-      "/complaintAgainstOfficer": (context) =>
-          const ComplaintAgainstRecoveryAgent(),
-      "/intimationDoc": (context) => const IntimationDocument(),
-      "/escalation": (context) => const EscalationScreen(),
-      "/ciblScore": (context) => const IncreaseCIBLScore(),
-      "/anyTimeLawyer": (context) => const AnyTimeLawyer(),
-      "/help&Resource": (context) => const HomeAndResources(),
-    },
-  ));
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (context)=> LoginViewModel())
+    ], child: MaterialApp(
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: myCustomColor,
+        brightness: Brightness.light,
+        hintColor: const Color(editTextBg),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+      title: "Settle Loan",
+      debugShowCheckedModeBanner: false,
+      home: const AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle(
+              statusBarColor: Colors.white,
+              statusBarIconBrightness: Brightness.dark),
+          child: MainSplashScreen()),
+      routes: {
+        "/goTOScreen": (context) => const AppGoToScreen(),
+        "/loginScreen": (context) => const LoginScreen(),
+        "/forgetPassword": (context) => const ForgetPasswordScreen(),
+        "/homeScreen": (context) => const HomeScreen(),
+        "/myLawyerScreen": (context) => const MyLawyerScreen(),
+        "/negoatationSecreen": (context) => const NegotiationScreen(),
+        "/MainActivity": (context) => const MainActivity(),
+        "/contactUs": (context) => const ContactUsScreen(),
+        "/complaintAgainstOfficer": (context) => const ComplaintAgainstRecoveryAgent(),
+        "/intimationDoc": (context) => const IntimationDocument(),
+        "/escalation": (context) => const EscalationScreen(),
+        "/ciblScore": (context) => const IncreaseCIBLScore(),
+        "/anyTimeLawyer": (context) => const AnyTimeLawyer(),
+        "/help&Resource": (context) => const HomeAndResources(),
+      },
+    ));
   }
 }
 

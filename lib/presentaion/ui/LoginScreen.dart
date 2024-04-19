@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loansettle/domain/model/login/LoginRequest.dart';
+import 'package:loansettle/presentaion/viewmodel/LoginViewModel.dart';
+import 'package:loansettle/utils/ApiWrapperResponse.dart';
+import 'package:loansettle/utils/BlocEvent.dart';
+import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
+import '../../utils/ApiWrapperResponse.dart';
 import '../../utils/FilesUtils.dart';
+import '../../utils/SealedState.dart';
 import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
+import 'dialog/showDialogBox.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,8 +20,21 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  String _email = "";
+  String _password = "";
+
+  LoginViewModel? _loginViewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    _loginViewModel = BlocProvider.of<LoginViewModel>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
+    //loginViewModel = BlocProvider.of<LoginViewModel>(context);
+
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
@@ -64,6 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontSize: 16)),
               onChanged: (value) {
                 // get the value
+                _email = value;
               },
             ),
           ),
@@ -92,6 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontSize: 16)),
               onChanged: (value) {
                 // get the value
+                _password = value;
               },
             ),
           ),
@@ -110,31 +134,119 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontFamily: publicSansReg,
                           color: Color(editTextColor))))),
           //Updated Log In
-          Container(
-            margin:
-                const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
-            child: TextButton(
-                onPressed: () {
-                  debugLogs("text button clicked");
-                  context.goToNextScreenPopUp("/goTOScreen");
-                },
-                style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    minimumSize: const Size(double.infinity, 55),
-                    backgroundColor: const Color(buttonColor)),
-                child: const Text(
-                  "Log In",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: publicSansBold,
-                      color: Colors.white),
-                  textAlign: TextAlign.center,
-                )),
+          BlocListener<LoginViewModel, SealedState>(
+            listener: (context, state) {
+              //print("STATE_CALLED ${state is Loading}");
+              state.join(
+                  (initial) => {},
+                  (loading) => {},
+                  (success) => {
+                    context.goToNextScreenPopUp("/anyTimeLawyer")
+                  },
+                  (error) => {
+                        showDialogBox(
+                            context,
+                            "Failed",
+                            "${isValidString(error.error) ? error.e.toString() : error.error}",
+                            true)
+                      });
+            },
+            child: SealedBlocBuilder4<LoginViewModel, SealedState, Inital,
+                    Loading, Success, Error>(
+                builder: (context, state) => state(
+                        (initial) => Container(
+                              margin: const EdgeInsets.only(
+                                  left: 16, right: 16, top: 12, bottom: 12),
+                              child: TextButton(
+                                  onPressed: () {
+                                    doLogin();
+                                  },
+                                  style: TextButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      minimumSize:
+                                          const Size(double.infinity, 55),
+                                      backgroundColor:
+                                          const Color(buttonColor)),
+                                  child: const Text(
+                                    "Log In",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: publicSansBold,
+                                        color: Colors.white),
+                                    textAlign: TextAlign.center,
+                                  )),
+                            ),
+                        (loading) => const CircularProgressIndicator(),
+                        (success) {
+                      return Container(
+                        margin: const EdgeInsets.only(
+                            left: 16, right: 16, top: 12, bottom: 12),
+                        child: TextButton(
+                            onPressed: () {
+                              doLogin();
+                            },
+                            style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                                minimumSize: const Size(double.infinity, 55),
+                                backgroundColor: const Color(buttonColor)),
+                            child: const Text(
+                              "Log In",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: publicSansBold,
+                                  color: Colors.white),
+                              textAlign: TextAlign.center,
+                            )),
+                      );
+                    }, (error) {
+                      // context.goToNextScreenPopUp("/goTOScreen");
+                      /*showDialogBox(context, "Failed",
+                      "${error.error == null ? error.error : error.e.toString()}", true);*/
+                      return Container(
+                        margin: const EdgeInsets.only(
+                            left: 16, right: 16, top: 12, bottom: 12),
+                        child: TextButton(
+                            onPressed: () {
+                              doLogin();
+                            },
+                            style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12)),
+                                minimumSize: const Size(double.infinity, 55),
+                                backgroundColor: const Color(buttonColor)),
+                            child: const Text(
+                              "Log In",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: publicSansBold,
+                                  color: Colors.white),
+                              textAlign: TextAlign.center,
+                            )),
+                      );
+                    })),
           )
           //New User Information
         ],
       ),
     ));
+  }
+
+  void doLogin() {
+    if (isValidString(_email) || isValidString(_password)) {
+      context.showSnackBar("Please Enter Correct Credentials");
+      return;
+    }
+    debugLogs("ITEM FOR DO LOGIN");
+    _loginViewModel?.add(
+        DataRequested(data: LoginRequest(email: _email, password: _password)));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _loginViewModel?.close();
   }
 }
