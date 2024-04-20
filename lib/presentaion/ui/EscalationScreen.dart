@@ -32,14 +32,18 @@ class _EscalationScreenState extends State<EscalationScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            decoration: const BoxDecoration(
+                color: Color(editTextBg),
+                borderRadius: BorderRadius.all(Radius.circular(10))
+            ),
             padding: const EdgeInsets.only(top: 16,left: 16,right: 16,bottom: 16),
-            margin: const EdgeInsets.only(top: 45),
+            margin: const EdgeInsets.only(top: 45,right: 16,left: 16),
             child: const Text(
               "You can escalate your concern on the below written email id if you have any issue with the lawyer or Financial advisor and our team will be get back to you within 24 hours.",
               style: TextStyle(
                   fontFamily: publicSansReg,
                   fontSize: 22,
-                  color: Color(textColor),
+                  color: Color(editTextColor),
                   ),
             ),
           ),
