@@ -49,6 +49,7 @@ class ApiUrl {
   static const String baseurl = "https://crm.settleloan.in/";
 
   static const String loginEndPoint = "api/service/VerifyLead";
+  static const String forgetPassword = "/api/details/ForgotPassword";
 
   static const String tipsAndResources="api/details/HelpResources";
   static const String escalationEndPoint="api/details/Escalation";

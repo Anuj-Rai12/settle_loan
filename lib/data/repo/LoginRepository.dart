@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:loansettle/domain/model/login/LoginRequest.dart';
 import 'package:loansettle/domain/model/login/LoginResponse.dart';
@@ -10,13 +9,11 @@ class LoginRepository extends LoginApi {
 
   @override
   Future<LoginResponse> getLogin(LoginRequest loginRequest) async {
-    var request =
-        http.Request('POST', Uri.parse('${ApiUrl.baseurl}/api/service/VerifyLead'));
+    var request = http.Request(
+        'POST', Uri.parse('${ApiUrl.baseurl}/api/service/VerifyLead'));
     debugLogs(jsonEncode(loginRequest.toJson()));
     request.body = jsonEncode(loginRequest.toJson());
-    var headers = {
-      'Content-Type': 'application/json'
-    };
+    var headers = {'Content-Type': 'application/json'};
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     debugLogs("${response.statusCode}");
@@ -30,4 +27,20 @@ class LoginRepository extends LoginApi {
       throw Exception("${response.reasonPhrase}");
     }
   }
+
+
+  @override
+  Future<String> forgetPassword(String email) async {
+    var request = http.Request('GET',
+        Uri.parse('${ApiUrl.baseurl}${ApiUrl.forgetPassword}?email=$email'));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      return await response.stream.bytesToString();
+    } else {
+      throw Exception(response.reasonPhrase);
+    }
+  }
+
 }

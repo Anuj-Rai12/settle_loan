@@ -18,12 +18,12 @@ import 'package:loansettle/presentaion/ui/MylawyerScreen.dart';
 import 'package:loansettle/presentaion/ui/NegoatationScreen.dart';
 import 'package:loansettle/presentaion/ui/SplashScreen.dart';
 import 'package:loansettle/presentaion/viewmodel/EscalationScreenViewModel.dart';
+import 'package:loansettle/presentaion/viewmodel/ForgetPasswordViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/LoginViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/TipsAndResoucesViewModel.dart';
 import 'package:loansettle/values/color/Colors.dart';
 
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -33,44 +33,48 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-   const MyApp({super.key});
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      BlocProvider(create: (context)=> LoginViewModel()),
-      BlocProvider(create: (context)=> TipsAndResourcesViewModel()),
-      BlocProvider(create: (context)=> EscalationScreenViewModel()),
-    ], child: MaterialApp(
-      theme: ThemeData(
-        primarySwatch: myCustomColor,
-        brightness: Brightness.light,
-        hintColor: const Color(editTextBg),
-      ),
-      title: "Settle Loan",
-      debugShowCheckedModeBanner: false,
-      home: const AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle(
-              statusBarColor: Colors.white,
-              statusBarIconBrightness: Brightness.dark),
-          child: MainSplashScreen()),
-      routes: {
-        "/goTOScreen": (context) => const AppGoToScreen(),
-        "/loginScreen": (context) => const LoginScreen(),
-        "/forgetPassword": (context) => const ForgetPasswordScreen(),
-        "/homeScreen": (context) => const HomeScreen(),
-        "/myLawyerScreen": (context) => const MyLawyerScreen(),
-        "/negoatationSecreen": (context) => const NegotiationScreen(),
-        "/MainActivity": (context) => const MainActivity(),
-        "/contactUs": (context) => const ContactUsScreen(),
-        "/complaintAgainstOfficer": (context) => const ComplaintAgainstRecoveryAgent(),
-        "/intimationDoc": (context) => const IntimationDocument(),
-        "/escalation": (context) => const EscalationScreen(),
-        "/ciblScore": (context) => const IncreaseCIBLScore(),
-        "/anyTimeLawyer": (context) => const AnyTimeLawyer(),
-        "/help&Resource": (context) => const HelpAndResourcesScreen(),
-      },
-    ));
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => LoginViewModel()),
+          BlocProvider(create: (context) => TipsAndResourcesViewModel()),
+          BlocProvider(create: (context) => EscalationScreenViewModel()),
+          BlocProvider(create: (context) => ForgetPasswordViewModel()),
+        ],
+        child: MaterialApp(
+          theme: ThemeData(
+            primarySwatch: myCustomColor,
+            brightness: Brightness.light,
+            hintColor: const Color(editTextBg),
+          ),
+          title: "Settle Loan",
+          debugShowCheckedModeBanner: false,
+          home: const AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle(
+                  statusBarColor: Colors.white,
+                  statusBarIconBrightness: Brightness.dark),
+              child: MainSplashScreen()),
+          routes: {
+            "/goTOScreen": (context) => const AppGoToScreen(),
+            "/loginScreen": (context) => const LoginScreen(),
+            "/forgetPassword": (context) => const ForgetPasswordScreen(),
+            "/homeScreen": (context) => const HomeScreen(),
+            "/myLawyerScreen": (context) => const MyLawyerScreen(),
+            "/negoatationSecreen": (context) => const NegotiationScreen(),
+            "/MainActivity": (context) => const MainActivity(),
+            "/contactUs": (context) => const ContactUsScreen(),
+            "/complaintAgainstOfficer": (context) =>
+                const ComplaintAgainstRecoveryAgent(),
+            "/intimationDoc": (context) => const IntimationDocument(),
+            "/escalation": (context) => const EscalationScreen(),
+            "/ciblScore": (context) => const IncreaseCIBLScore(),
+            "/anyTimeLawyer": (context) => const AnyTimeLawyer(),
+            "/help&Resource": (context) => const HelpAndResourcesScreen(),
+          },
+        ));
   }
 }

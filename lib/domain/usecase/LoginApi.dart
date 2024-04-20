@@ -6,4 +6,6 @@ abstract class LoginApi {
 
   Future<LoginResponse> getLogin(LoginRequest loginRequest);
 
+  Future<String> forgetPassword(String email);
+
 }
