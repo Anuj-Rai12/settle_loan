@@ -17,6 +17,7 @@ import 'package:loansettle/presentaion/ui/MainActvitiy.dart';
 import 'package:loansettle/presentaion/ui/MylawyerScreen.dart';
 import 'package:loansettle/presentaion/ui/NegoatationScreen.dart';
 import 'package:loansettle/presentaion/ui/SplashScreen.dart';
+import 'package:loansettle/presentaion/viewmodel/EscalationScreenViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/LoginViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/TipsAndResoucesViewModel.dart';
 import 'package:loansettle/values/color/Colors.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(providers: [
       BlocProvider(create: (context)=> LoginViewModel()),
       BlocProvider(create: (context)=> TipsAndResourcesViewModel()),
+      BlocProvider(create: (context)=> EscalationScreenViewModel()),
     ], child: MaterialApp(
       theme: ThemeData(
         primarySwatch: myCustomColor,

@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loansettle/presentaion/ui/adaptor/EscalationAdaptor.dart';
+import 'package:loansettle/presentaion/viewmodel/EscalationScreenViewModel.dart';
+import 'package:loansettle/utils/BlocEvent.dart';
+import 'package:loansettle/utils/FilesUtils.dart';
+import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
 
+import '../../domain/model/escalation/EscalationResponse.dart';
+import '../../utils/ApiWrapperResponse.dart';
+import '../../utils/SealedState.dart';
 import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
 
@@ -11,6 +20,15 @@ class EscalationScreen extends StatefulWidget {
 }
 
 class _EscalationScreenState extends State<EscalationScreen> {
+  EscalationScreenViewModel? _viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    _viewModel = BlocProvider.of<EscalationScreenViewModel>(context);
+    _viewModel?.add(DataRequested(data: null));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,59 +46,42 @@ class _EscalationScreenState extends State<EscalationScreen> {
                   fontWeight: FontWeight.bold,
                   fontFamily: publicSansBold)),
           centerTitle: true),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-                color: Color(editTextBg),
-                borderRadius: BorderRadius.all(Radius.circular(10))
-            ),
-            padding: const EdgeInsets.only(top: 16,left: 16,right: 16,bottom: 16),
-            margin: const EdgeInsets.only(top: 45,right: 16,left: 16),
-            child: const Text(
-              "You can escalate your concern on the below written email id if you have any issue with the lawyer or Financial advisor and our team will be get back to you within 24 hours.",
-              style: TextStyle(
-                  fontFamily: publicSansReg,
-                  fontSize: 22,
-                  color: Color(editTextColor),
-                  ),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(top: 16,left: 16,right: 16,bottom: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text("Email Address",
-                    style: TextStyle(
-                      color: Color(textColor),
-                      fontFamily: publicSansBold,
-                      fontSize: 22,
-                    )),
-                Container(
-                  margin: const EdgeInsets.only(top: 8),
-                  child: const Text("xyz@gmail.com",
-                      style: TextStyle(
-                        color: Color(editTextColor),
-                        fontFamily: publicSansReg,
-                        fontSize: 16,
-                      )),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 8),
-                  child: const Text("xyz1@gmail.com",
-                      style: TextStyle(
-                        color: Color(editTextColor),
-                        fontFamily: publicSansReg,
-                        fontSize: 16,
-                      )),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+      body: SealedBlocBuilder4<EscalationScreenViewModel, SealedState, Inital,
+              Loading, Success, Error>(
+          builder: (context, state) => state((initial) {
+                return loading();
+              }, (load) {
+                return loading();
+              }, (success) {
+                return successBody(success.data as List<EscalationResponse>);
+              }, (e) {
+                return error(
+                    isValidString(e.error) ? e.e.toString() : e.error!);
+              })),
     ));
+  }
+
+  Widget loading() {
+    return const Center(child: CircularProgressIndicator());
+  }
+
+  Widget error(String error) {
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.all(16),
+        child: Text(error,
+            style: const TextStyle(
+              color: Color(textColor),
+              fontSize: 16,
+              fontFamily: publicSansReg,
+            )),
+      ),
+    );
+  }
+
+  Widget successBody(List<EscalationResponse> data) {
+    return SingleChildScrollView(
+      child: listOfEscalationPoint(data, context),
+    );
   }
 }

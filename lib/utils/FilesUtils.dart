@@ -51,6 +51,7 @@ class ApiUrl {
   static const String loginEndPoint = "api/service/VerifyLead";
 
   static const String tipsAndResources="api/details/HelpResources";
+  static const String escalationEndPoint="api/details/Escalation";
 
 
 }
