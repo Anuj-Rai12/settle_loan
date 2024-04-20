@@ -53,6 +53,6 @@ class ApiUrl {
 
   static const String tipsAndResources="api/details/HelpResources";
   static const String escalationEndPoint="api/details/Escalation";
-
+  static const String importantContact ="api/details/ImportantContacts";
 
 }

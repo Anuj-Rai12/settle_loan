@@ -19,6 +19,7 @@ import 'package:loansettle/presentaion/ui/NegoatationScreen.dart';
 import 'package:loansettle/presentaion/ui/SplashScreen.dart';
 import 'package:loansettle/presentaion/viewmodel/EscalationScreenViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/ForgetPasswordViewModel.dart';
+import 'package:loansettle/presentaion/viewmodel/ImportantContactViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/LoginViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/TipsAndResoucesViewModel.dart';
 import 'package:loansettle/values/color/Colors.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => TipsAndResourcesViewModel()),
           BlocProvider(create: (context) => EscalationScreenViewModel()),
           BlocProvider(create: (context) => ForgetPasswordViewModel()),
+          BlocProvider(create: (context) => ImportantContactViewModel()),
         ],
         child: MaterialApp(
           theme: ThemeData(

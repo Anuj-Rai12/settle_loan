@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:loansettle/domain/model/ImportantContactInfomation.dart';
+import 'package:loansettle/domain/model/contacts/ImportantContactsResponse.dart';
 import 'package:loansettle/values/fonts/Fonts.dart';
 
 import '../../../values/color/Colors.dart';
+import '../../../values/res/Resources.dart';
 
 Widget listOfImportantContact(
-    List<ImportantContactInformation> arr, BuildContext context) {
+    List<ImportantContacts> arr, BuildContext context) {
   return Column(
     children: [
       ListView.builder(
@@ -28,7 +29,7 @@ Widget listOfImportantContact(
                           borderRadius: BorderRadius.circular(28),
                           // This makes the corners circular
                           child: Image.asset(
-                            data.src,
+                            profilePic,
                             fit: BoxFit
                                 .cover, // This ensures the image covers the box without stretching
                           ),
@@ -39,22 +40,22 @@ Widget listOfImportantContact(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(data.title,
+                            Text(data.position ?? "",
                                 style: const TextStyle(
                                     fontFamily: publicSansBold,
                                     color: Color(textColor),
                                     fontSize: 16)),
-                            Text(data.name,
+                            Text(data.name ?? "",
                                 style: const TextStyle(
                                     fontFamily: publicSansReg,
                                     color: Color(editTextColor),
                                     fontSize: 14)),
-                            Text(data.phoneNumber,
+                            Text(data.mobileNo ?? "",
                                 style: const TextStyle(
                                     fontFamily: publicSansReg,
                                     color: Color(editTextColor),
                                     fontSize: 14)),
-                            Text(data.email,
+                            Text(data.email ?? "",
                                 style: const TextStyle(
                                     fontFamily: publicSansReg,
                                     color: Color(editTextColor),

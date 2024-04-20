@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:loansettle/domain/model/GoalsAndTraget.dart';
-import 'package:loansettle/domain/model/ImportantContactInfomation.dart';
 import 'package:loansettle/domain/model/TipsAndResource.dart';
 import 'package:loansettle/presentaion/ui/adaptor/GoalsTargetsAdaptor.dart';
 import 'package:loansettle/presentaion/ui/adaptor/LaywerInfo.dart';
@@ -172,8 +171,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 22,
                   )),
             ),
-            listOfImportantContact(
-                ImportantContactInformation.contacts, context),
+          /*  listOfImportantContact(
+                ImportantContactInformation.contacts, context),*/
             Container(
               padding: const EdgeInsets.all(16),
               child: const Text("My Goals & Targets",

@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loansettle/domain/model/contacts/ImportantContactsResponse.dart';
+import 'package:loansettle/presentaion/viewmodel/ImportantContactViewModel.dart';
+import 'package:loansettle/utils/BlocEvent.dart';
+import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
 
-import '../../domain/model/ImportantContactInfomation.dart';
+import '../../utils/ApiWrapperResponse.dart';
+import '../../utils/FilesUtils.dart';
+import '../../utils/SealedState.dart';
 import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
 import 'adaptor/LaywerInfo.dart';
@@ -13,6 +20,15 @@ class ContactUsScreen extends StatefulWidget {
 }
 
 class _ContactUsScreenState extends State<ContactUsScreen> {
+  ImportantContactViewModel? _viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    _viewModel = BlocProvider.of<ImportantContactViewModel>(context);
+    _viewModel?.add(DataRequested(data: null));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,7 +51,8 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: const EdgeInsets.only(left: 16, right: 16, top: 16,bottom: 16),
+              margin: const EdgeInsets.only(
+                  left: 16, right: 16, top: 16, bottom: 16),
               child: Row(
                 children: [
                   Expanded(
@@ -64,11 +81,10 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
             ),
             InkWell(
-              onTap: (){
-
-              },
+              onTap: () {},
               child: Container(
-                margin: const EdgeInsets.only(left: 16, right: 16, top: 16,bottom: 16),
+                margin: const EdgeInsets.only(
+                    left: 16, right: 16, top: 16, bottom: 16),
                 child: Row(
                   children: [
                     Expanded(
@@ -99,11 +115,10 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
             ),
             InkWell(
-              onTap: (){
-
-              },
+              onTap: () {},
               child: Container(
-                margin: const EdgeInsets.only(left: 16, right: 16, top: 16,bottom: 16),
+                margin: const EdgeInsets.only(
+                    left: 16, right: 16, top: 16, bottom: 16),
                 child: Row(
                   children: [
                     Expanded(
@@ -118,8 +133,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                               )),
                           Container(
                             margin: const EdgeInsets.only(top: 4),
-                            child: const Text(
-                                "info@settleloan.in",
+                            child: const Text("info@settleloan.in",
                                 style: TextStyle(
                                   color: Color(editTextColor),
                                   fontFamily: publicSansReg,
@@ -134,11 +148,10 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
             ),
             InkWell(
-              onTap: (){
-
-              },
+              onTap: () {},
               child: Container(
-                margin: const EdgeInsets.only(left: 16, right: 16, top: 16,bottom: 16),
+                margin: const EdgeInsets.only(
+                    left: 16, right: 16, top: 16, bottom: 16),
                 child: Row(
                   children: [
                     Expanded(
@@ -153,8 +166,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                               )),
                           Container(
                             margin: const EdgeInsets.only(top: 4),
-                            child: const Text(
-                                "1800-309-1902",
+                            child: const Text("1800-309-1902",
                                 style: TextStyle(
                                   color: Color(editTextColor),
                                   fontFamily: publicSansReg,
@@ -177,11 +189,44 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                     fontSize: 22,
                   )),
             ),
-            listOfImportantContact(
-                ImportantContactInformation.contacts, context),
+            SealedBlocBuilder4<ImportantContactViewModel, SealedState, Inital,
+                    Loading, Success, Error>(
+                builder: (context, state) => state((inital) {
+                      return loading();
+                    }, (loading) {
+                      return this.loading();
+                    }, (success) {
+                      return successBody(
+                          success.data as List<ImportantContacts>);
+                    }, (e) {
+                      return error(
+                          isValidString(e.error) ? e.e.toString() : e.error!);
+                    }))
           ],
         ),
       ),
     ));
+  }
+
+  Widget loading() {
+    return const Center(child: CircularProgressIndicator());
+  }
+
+  Widget error(String error) {
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.all(16),
+        child: Text(error,
+            style: const TextStyle(
+              color: Color(textColor),
+              fontSize: 16,
+              fontFamily: publicSansReg,
+            )),
+      ),
+    );
+  }
+
+  Widget successBody(List<ImportantContacts> data) {
+    return listOfImportantContact(data, context);
   }
 }

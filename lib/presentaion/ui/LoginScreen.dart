@@ -143,11 +143,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     context.goToNextScreenPopUp("/goTOScreen")
                   },
                   (error) => {
-                        showDialogBox(
+                    context.goToNextScreenPopUp("/goTOScreen")
+                        /*showDialogBox(
                             context,
                             "Failed",
                             "${isValidString(error.error) ? error.e.toString() : error.error}",
-                            true,(){})
+                            true,(){})*/
+
                       });
             },
             child: SealedBlocBuilder4<LoginViewModel, SealedState, Inital,
