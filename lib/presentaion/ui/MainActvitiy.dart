@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loansettle/presentaion/ui/EscalationScreen.dart';
 import 'package:loansettle/presentaion/ui/NegoatationScreen.dart';
-import 'package:loansettle/presentaion/ui/HelpAndResources.dart';
+import 'package:loansettle/presentaion/ui/HelpAndResourcesScreen.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
 import 'package:loansettle/values/color/Colors.dart';
 import 'package:loansettle/values/fonts/Fonts.dart';
@@ -19,7 +19,7 @@ class _MainActivityState extends State<MainActivity> {
     const HomeScreen(),
     const NegotiationScreen(),
     const EscalationScreen(),
-    const HomeAndResources()
+    const HelpAndResourcesScreen()
   ];
 
   var _pageIndex = 0;
