@@ -8,3 +8,4 @@ const String profilePic = "assets/images/delete_me.png";
 const String document1 = "assets/images/documentOne.png";
 const String document2 = "assets/images/documentTwo.png";
 const String anytimeLawyerIMG = "assets/images/anytimelaywer.png";
+const String bankLogo = "assets/images/bankState.png";

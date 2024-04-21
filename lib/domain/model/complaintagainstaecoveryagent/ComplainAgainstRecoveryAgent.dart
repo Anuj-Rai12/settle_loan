@@ -6,19 +6,20 @@ import 'package:loansettle/utils/FilesUtils.dart';
 
 class ComplainAgainstRecoveryAgent {
   ComplainAgainstRecoveryAgent({
-      List<GrievanceOfficer>? grievanceOfficer, 
-      List<NodalOfficer>? nodalOfficer, 
-      List<RbiOmbudsman>? rBIOmbudsman,}){
+    List<GrievanceOfficer>? grievanceOfficer,
+    List<NodalOfficer>? nodalOfficer,
+    List<RbiOmbudsman>? rBIOmbudsman,
+  }) {
     _grievanceOfficer = grievanceOfficer;
     _nodalOfficer = nodalOfficer;
     _rBIOmbudsman = rBIOmbudsman;
-}
+  }
 
   ComplainAgainstRecoveryAgent.fromJson(dynamic json) {
     //debugLogs("Add grive 1  ${json}");
     if (json['Grievance Officer'] != null) {
       _grievanceOfficer = [];
-     // debugLogs("Add grive");
+      // debugLogs("Add grive");
       json['Grievance Officer'].forEach((v) {
         debugLogs("ADD GRIEVANCE");
         _grievanceOfficer?.add(GrievanceOfficer.fromJson(v));
@@ -38,24 +39,33 @@ class ComplainAgainstRecoveryAgent {
       });
     }
   }
+
   List<GrievanceOfficer>? _grievanceOfficer;
   List<NodalOfficer>? _nodalOfficer;
   List<RbiOmbudsman>? _rBIOmbudsman;
-ComplainAgainstRecoveryAgent copyWith({  List<GrievanceOfficer>? grievanceOfficer,
-  List<NodalOfficer>? nodalOfficer,
-  List<RbiOmbudsman>? rBIOmbudsman,
-}) => ComplainAgainstRecoveryAgent(  grievanceOfficer: grievanceOfficer ?? _grievanceOfficer,
-  nodalOfficer: nodalOfficer ?? _nodalOfficer,
-  rBIOmbudsman: rBIOmbudsman ?? _rBIOmbudsman,
-);
+
+  ComplainAgainstRecoveryAgent copyWith({
+    List<GrievanceOfficer>? grievanceOfficer,
+    List<NodalOfficer>? nodalOfficer,
+    List<RbiOmbudsman>? rBIOmbudsman,
+  }) =>
+      ComplainAgainstRecoveryAgent(
+        grievanceOfficer: grievanceOfficer ?? _grievanceOfficer,
+        nodalOfficer: nodalOfficer ?? _nodalOfficer,
+        rBIOmbudsman: rBIOmbudsman ?? _rBIOmbudsman,
+      );
+
   List<GrievanceOfficer>? get grievanceOfficer => _grievanceOfficer;
+
   List<NodalOfficer>? get nodalOfficer => _nodalOfficer;
+
   List<RbiOmbudsman>? get rBIOmbudsman => _rBIOmbudsman;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     if (_grievanceOfficer != null) {
-      map['Grievance Officer'] = _grievanceOfficer?.map((v) => v.toJson()).toList();
+      map['Grievance Officer'] =
+          _grievanceOfficer?.map((v) => v.toJson()).toList();
     }
     if (_nodalOfficer != null) {
       map['Nodal Officer'] = _nodalOfficer?.map((v) => v.toJson()).toList();
@@ -65,7 +75,6 @@ ComplainAgainstRecoveryAgent copyWith({  List<GrievanceOfficer>? grievanceOffice
     }
     return map;
   }
-
 }
 
 /// ContactPosition : "RBI"
@@ -77,19 +86,20 @@ ComplainAgainstRecoveryAgent copyWith({  List<GrievanceOfficer>? grievanceOffice
 
 class RbiOmbudsman {
   RbiOmbudsman({
-      String? contactPosition, 
-      String? description, 
-      String? contactNo, 
-      String? phoneNo, 
-      String? email, 
-      String? otherDetails,}){
+    String? contactPosition,
+    String? description,
+    String? contactNo,
+    String? phoneNo,
+    String? email,
+    String? otherDetails,
+  }) {
     _contactPosition = contactPosition;
     _description = description;
     _contactNo = contactNo;
     _phoneNo = phoneNo;
     _email = email;
     _otherDetails = otherDetails;
-}
+  }
 
   RbiOmbudsman.fromJson(dynamic json) {
     _contactPosition = json['ContactPosition'];
@@ -99,30 +109,41 @@ class RbiOmbudsman {
     _email = json['Email'];
     _otherDetails = json['OtherDetails'];
   }
+
   String? _contactPosition;
   String? _description;
   String? _contactNo;
   String? _phoneNo;
   String? _email;
   String? _otherDetails;
-RbiOmbudsman copyWith({  String? contactPosition,
-  String? description,
-  String? contactNo,
-  String? phoneNo,
-  String? email,
-  String? otherDetails,
-}) => RbiOmbudsman(  contactPosition: contactPosition ?? _contactPosition,
-  description: description ?? _description,
-  contactNo: contactNo ?? _contactNo,
-  phoneNo: phoneNo ?? _phoneNo,
-  email: email ?? _email,
-  otherDetails: otherDetails ?? _otherDetails,
-);
+
+  RbiOmbudsman copyWith({
+    String? contactPosition,
+    String? description,
+    String? contactNo,
+    String? phoneNo,
+    String? email,
+    String? otherDetails,
+  }) =>
+      RbiOmbudsman(
+        contactPosition: contactPosition ?? _contactPosition,
+        description: description ?? _description,
+        contactNo: contactNo ?? _contactNo,
+        phoneNo: phoneNo ?? _phoneNo,
+        email: email ?? _email,
+        otherDetails: otherDetails ?? _otherDetails,
+      );
+
   String? get contactPosition => _contactPosition;
+
   String? get description => _description;
+
   String? get contactNo => _contactNo;
+
   String? get phoneNo => _phoneNo;
+
   String? get email => _email;
+
   String? get otherDetails => _otherDetails;
 
   Map<String, dynamic> toJson() {
@@ -135,7 +156,6 @@ RbiOmbudsman copyWith({  String? contactPosition,
     map['OtherDetails'] = _otherDetails;
     return map;
   }
-
 }
 
 /// ContactPosition : "National Consumer Helpline"
@@ -147,19 +167,20 @@ RbiOmbudsman copyWith({  String? contactPosition,
 
 class NodalOfficer {
   NodalOfficer({
-      String? contactPosition, 
-      String? description, 
-      String? contactNo, 
-      String? phoneNo, 
-      String? email, 
-      String? otherDetails,}){
+    String? contactPosition,
+    String? description,
+    String? contactNo,
+    String? phoneNo,
+    String? email,
+    String? otherDetails,
+  }) {
     _contactPosition = contactPosition;
     _description = description;
     _contactNo = contactNo;
     _phoneNo = phoneNo;
     _email = email;
     _otherDetails = otherDetails;
-}
+  }
 
   NodalOfficer.fromJson(dynamic json) {
     _contactPosition = json['ContactPosition'];
@@ -169,30 +190,41 @@ class NodalOfficer {
     _email = json['Email'];
     _otherDetails = json['OtherDetails'];
   }
+
   String? _contactPosition;
   String? _description;
   String? _contactNo;
   String? _phoneNo;
   String? _email;
   String? _otherDetails;
-NodalOfficer copyWith({  String? contactPosition,
-  String? description,
-  String? contactNo,
-  String? phoneNo,
-  String? email,
-  String? otherDetails,
-}) => NodalOfficer(  contactPosition: contactPosition ?? _contactPosition,
-  description: description ?? _description,
-  contactNo: contactNo ?? _contactNo,
-  phoneNo: phoneNo ?? _phoneNo,
-  email: email ?? _email,
-  otherDetails: otherDetails ?? _otherDetails,
-);
+
+  NodalOfficer copyWith({
+    String? contactPosition,
+    String? description,
+    String? contactNo,
+    String? phoneNo,
+    String? email,
+    String? otherDetails,
+  }) =>
+      NodalOfficer(
+        contactPosition: contactPosition ?? _contactPosition,
+        description: description ?? _description,
+        contactNo: contactNo ?? _contactNo,
+        phoneNo: phoneNo ?? _phoneNo,
+        email: email ?? _email,
+        otherDetails: otherDetails ?? _otherDetails,
+      );
+
   String? get contactPosition => _contactPosition;
+
   String? get description => _description;
+
   String? get contactNo => _contactNo;
+
   String? get phoneNo => _phoneNo;
+
   String? get email => _email;
+
   String? get otherDetails => _otherDetails;
 
   Map<String, dynamic> toJson() {
@@ -205,7 +237,6 @@ NodalOfficer copyWith({  String? contactPosition,
     map['OtherDetails'] = _otherDetails;
     return map;
   }
-
 }
 
 /// ContactPosition : "National Consumer Helpline"
@@ -217,19 +248,20 @@ NodalOfficer copyWith({  String? contactPosition,
 
 class GrievanceOfficer {
   GrievanceOfficer({
-      String? contactPosition, 
-      String? description, 
-      String? contactNo, 
-      String? phoneNo, 
-      String? email, 
-      String? otherDetails,}){
+    String? contactPosition,
+    String? description,
+    String? contactNo,
+    String? phoneNo,
+    String? email,
+    String? otherDetails,
+  }) {
     _contactPosition = contactPosition;
     _description = description;
     _contactNo = contactNo;
     _phoneNo = phoneNo;
     _email = email;
     _otherDetails = otherDetails;
-}
+  }
 
   GrievanceOfficer.fromJson(dynamic json) {
     _contactPosition = json['ContactPosition'];
@@ -239,30 +271,41 @@ class GrievanceOfficer {
     _email = json['Email'];
     _otherDetails = json['OtherDetails'];
   }
+
   String? _contactPosition;
   String? _description;
   String? _contactNo;
   String? _phoneNo;
   String? _email;
   String? _otherDetails;
-GrievanceOfficer copyWith({  String? contactPosition,
-  String? description,
-  String? contactNo,
-  String? phoneNo,
-  String? email,
-  String? otherDetails,
-}) => GrievanceOfficer(  contactPosition: contactPosition ?? _contactPosition,
-  description: description ?? _description,
-  contactNo: contactNo ?? _contactNo,
-  phoneNo: phoneNo ?? _phoneNo,
-  email: email ?? _email,
-  otherDetails: otherDetails ?? _otherDetails,
-);
+
+  GrievanceOfficer copyWith({
+    String? contactPosition,
+    String? description,
+    String? contactNo,
+    String? phoneNo,
+    String? email,
+    String? otherDetails,
+  }) =>
+      GrievanceOfficer(
+        contactPosition: contactPosition ?? _contactPosition,
+        description: description ?? _description,
+        contactNo: contactNo ?? _contactNo,
+        phoneNo: phoneNo ?? _phoneNo,
+        email: email ?? _email,
+        otherDetails: otherDetails ?? _otherDetails,
+      );
+
   String? get contactPosition => _contactPosition;
+
   String? get description => _description;
+
   String? get contactNo => _contactNo;
+
   String? get phoneNo => _phoneNo;
+
   String? get email => _email;
+
   String? get otherDetails => _otherDetails;
 
   Map<String, dynamic> toJson() {
@@ -275,5 +318,4 @@ GrievanceOfficer copyWith({  String? contactPosition,
     map['OtherDetails'] = _otherDetails;
     return map;
   }
-
 }
