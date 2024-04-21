@@ -28,10 +28,14 @@ Widget listOfImportantContact(
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(28),
                           // This makes the corners circular
-                          child: Image.asset(
-                            profilePic,
-                            fit: BoxFit
-                                .cover, // This ensures the image covers the box without stretching
+                          child: FadeInImage.assetNetwork(
+                            image: data.imagepath??"",
+                            imageErrorBuilder: (context, error, stackTrace) {
+                              return Image.asset(profilePic, fit: BoxFit.cover);
+                            },
+                            fit: BoxFit.cover,
+                            placeholder:
+                                profilePic, // This ensures the image covers the box without stretching
                           ),
                         ),
                       ),
