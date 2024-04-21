@@ -4,7 +4,6 @@ import 'package:loansettle/domain/model/contacts/ImportantContactsResponse.dart'
 import 'package:loansettle/presentaion/viewmodel/ImportantContactViewModel.dart';
 import 'package:loansettle/utils/BlocEvent.dart';
 import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
-
 import '../../utils/ApiWrapperResponse.dart';
 import '../../utils/FilesUtils.dart';
 import '../../utils/SealedState.dart';

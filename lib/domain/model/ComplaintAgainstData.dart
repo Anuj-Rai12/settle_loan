@@ -6,7 +6,7 @@ class ComplainAgainstData {
 
   ComplainAgainstData({required this.title, required this.content});
 
-  static List<ComplainAgainstData> list = [
+  /*static List<ComplainAgainstData> list = [
     ComplainAgainstData(title: "Grievance Office", content: [
       HelplineData(
           contactPosition: "National Consumer Helpline",
@@ -49,5 +49,5 @@ class ComplainAgainstData {
           logo: "assets/images/walk_throught_screen_two.png",
           otherDetails: "Contact Cyber Security officer for inquiry")
     ]),
-  ];
+  ];*/
 }

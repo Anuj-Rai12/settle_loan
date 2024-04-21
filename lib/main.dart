@@ -17,6 +17,7 @@ import 'package:loansettle/presentaion/ui/MainActvitiy.dart';
 import 'package:loansettle/presentaion/ui/MylawyerScreen.dart';
 import 'package:loansettle/presentaion/ui/NegoatationScreen.dart';
 import 'package:loansettle/presentaion/ui/SplashScreen.dart';
+import 'package:loansettle/presentaion/viewmodel/ComplaintAgainstRecoveryAgentViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/EscalationScreenViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/ForgetPasswordViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/ImportantContactViewModel.dart';
@@ -30,7 +31,7 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
   ]);
   LoanSettleSharedPreference();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => EscalationScreenViewModel()),
           BlocProvider(create: (context) => ForgetPasswordViewModel()),
           BlocProvider(create: (context) => ImportantContactViewModel()),
+          BlocProvider(create: (context) => ComplaintAgainstRecoveryAgentViewModel()),
         ],
         child: MaterialApp(
           theme: ThemeData(

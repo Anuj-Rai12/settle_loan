@@ -1,10 +1,13 @@
+import '../../utils/NewTbUrl.dart';
+
 class HelplineData {
   String contactPosition;
   String otherDetails;
-  String logo;
+
+  ItemInfo data;
 
   HelplineData(
       {required this.contactPosition,
-      required this.logo,
-      required this.otherDetails});
+      required this.otherDetails,
+      required this.data});
 }

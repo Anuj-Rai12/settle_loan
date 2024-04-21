@@ -51,8 +51,9 @@ class ApiUrl {
   static const String loginEndPoint = "api/service/VerifyLead";
   static const String forgetPassword = "/api/details/ForgotPassword";
 
-  static const String tipsAndResources="api/details/HelpResources";
-  static const String escalationEndPoint="api/details/Escalation";
-  static const String importantContact ="api/details/ImportantContacts";
-
+  static const String tipsAndResources = "api/details/HelpResources";
+  static const String escalationEndPoint = "api/details/Escalation";
+  static const String importantContact = "api/details/ImportantContacts";
+  static const String complaintAgainstRecoveryAgent = "api/details/ComplaintAgainstRecovery";
 }
+
