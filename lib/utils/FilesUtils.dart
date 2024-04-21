@@ -57,5 +57,7 @@ class ApiUrl {
   static const String complaintAgainstRecoveryAgent = "api/details/ComplaintAgainstRecovery";
   static const String negotiationStatusResponse = "api/details/ProcessedData/";
   static const String importantDocEndPoint = "api/details/ImportantDocs";
+  static const String benfitOfEndPoint = "api/details/Benefits";
+
 }
 

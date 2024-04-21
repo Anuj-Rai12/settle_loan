@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:loansettle/domain/model/AnyTimeLaywerModel.dart';
-
+import '../../../domain/model/benfitofPermiumPorgram/BenfitOfPermiumProgram.dart';
 import '../../../values/color/Colors.dart';
 import '../../../values/fonts/Fonts.dart';
 
-Widget anyTimeAdaptor(List<AnyTimeLawyerModel> arr, BuildContext context) {
+Widget anyTimeAdaptor(List<BenfitPermiumInstance> arr, BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -23,7 +22,7 @@ Widget anyTimeAdaptor(List<AnyTimeLawyerModel> arr, BuildContext context) {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(data.title,
+                      Text(data.title??"",
                           style: const TextStyle(
                               fontFamily: publicSansBold,
                               color: Color(textColor),
@@ -31,9 +30,7 @@ Widget anyTimeAdaptor(List<AnyTimeLawyerModel> arr, BuildContext context) {
 
                       Container(
                         margin: const EdgeInsets.only(top: 5),
-                        child: Text(data.desc,
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
+                        child: Text(data.description??"",
                             style: const TextStyle(
                                 fontFamily: publicSansReg,
                                 color: Color(editTextColor),
