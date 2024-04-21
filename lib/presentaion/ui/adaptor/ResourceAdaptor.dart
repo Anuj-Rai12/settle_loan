@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:loansettle/domain/model/TipsAndResource.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
+import 'package:loansettle/values/res/Resources.dart';
+import '../../../domain/model/home/HomeScreenResponse.dart';
 import '../../../values/color/Colors.dart';
 import '../../../values/fonts/Fonts.dart';
 
-listOfResourceAdaptor(List<TipsAndResource> arr, BuildContext context) {
+listOfResourceAdaptor(List<TipsResources> arr, BuildContext context) {
+  var img=[document1,document2];
   return Column(
     children: [
       ListView.builder(
@@ -15,7 +17,7 @@ listOfResourceAdaptor(List<TipsAndResource> arr, BuildContext context) {
             var data = arr[position];
             return InkWell(
                 onTap: () {
-                  context.goToDetailScreen(data.title,data.desc,null);
+                  context.goToDetailScreen(data.title??"",data.description??"",null);
                 },
                 child: Container(
                   margin: const EdgeInsets.only(
@@ -29,9 +31,14 @@ listOfResourceAdaptor(List<TipsAndResource> arr, BuildContext context) {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           // This makes the corners circular
-                          child: Image.asset(
-                            data.src,
+                          child: FadeInImage.assetNetwork(
+                            image: data.imagepath??"",
+                            imageErrorBuilder: (context, error, stackTrace) {
+                              return Image.asset(img[position%img.length], fit: BoxFit.cover);
+                            },
                             fit: BoxFit.cover,
+                            placeholder:
+                            img[position%img.length], // This ensures the image covers the box without stretching
                           ),
                         ),
                       ),
@@ -41,14 +48,14 @@ listOfResourceAdaptor(List<TipsAndResource> arr, BuildContext context) {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(data.title,
+                              Text(data.title??"",
                                   style: const TextStyle(
                                       fontFamily: publicSansBold,
                                       color: Color(textColor),
                                       fontSize: 16)),
                               Container(
                                 margin: const EdgeInsets.only(top: 5),
-                                child: Text(data.desc,
+                                child: Text(data.description??"",
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(

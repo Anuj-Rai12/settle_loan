@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loansettle/data/datastore/LoanSettleSharedPreference.dart';
+import 'package:loansettle/domain/model/home/HomeScreenResponse.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
 import '../../presentaion/ui/dialog/showDialogBox.dart';
 import '../color/Colors.dart';
 import '../fonts/Fonts.dart';
 import '../res/Resources.dart';
 
-Drawer homeNavigationDrawer(BuildContext context) {
+Drawer homeNavigationDrawer(BuildContext context, HomeScreenResponse data) {
+  var client=data.clientsDetails![0];
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
@@ -30,30 +32,32 @@ Drawer homeNavigationDrawer(BuildContext context) {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 16, right: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Anuj Rai",
-                        style: TextStyle(
-                            fontFamily: publicSansBold,
-                            color: Color(textColor),
-                            fontSize: 16)),
-                    Text("Delhi NCR",
-                        style: TextStyle(
-                            fontFamily: publicSansReg,
-                            color: Color(editTextColor),
-                            fontSize: 14)),
-                    Text("+91983345678",
-                        style: TextStyle(
-                            fontFamily: publicSansReg,
-                            color: Color(editTextColor),
-                            fontSize: 14)),
-                  ],
-                ),
-              )
+               Expanded(
+                 child: Padding(
+                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(client.clientName??"",
+                          style: const TextStyle(
+                              fontFamily: publicSansBold,
+                              color: Color(textColor),
+                              fontSize: 16)),
+                      Text(client.city??"",
+                          style: const TextStyle(
+                              fontFamily: publicSansReg,
+                              color: Color(editTextColor),
+                              fontSize: 14)),
+                      Text(client.mobile??"",
+                          style: const TextStyle(
+                              fontFamily: publicSansReg,
+                              color: Color(editTextColor),
+                              fontSize: 14)),
+                    ],
+                  ),
+              ),
+               )
             ],
           ),
         ),

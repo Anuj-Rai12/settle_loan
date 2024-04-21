@@ -59,5 +59,6 @@ class ApiUrl {
   static const String importantDocEndPoint = "api/details/ImportantDocs";
   static const String benfitOfEndPoint = "api/details/Benefits";
 
+  static const String homeScreenApiEndPoint = "api/details/DashboardInfo/";
 }
 

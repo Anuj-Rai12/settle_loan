@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:loansettle/utils/FilesUtils.dart';
 
 class LoginRepository extends LoginApi {
-
   @override
   Future<LoginResponse> getLogin(LoginRequest loginRequest) async {
     var request = http.Request(
@@ -28,7 +27,6 @@ class LoginRepository extends LoginApi {
     }
   }
 
-
   @override
   Future<String> forgetPassword(String email) async {
     var request = http.Request('GET',
@@ -42,5 +40,4 @@ class LoginRepository extends LoginApi {
       throw Exception(response.reasonPhrase);
     }
   }
-
 }

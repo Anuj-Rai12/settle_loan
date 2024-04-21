@@ -10,16 +10,21 @@ class GoalsAndTarget {
       required this.progress,
       required this.loanType});
 
-  static List<GoalsAndTarget> list = [
-    GoalsAndTarget(
-        dueDate: "21-11-2021",
-        monthlyEmi: "543K",
-        progress: 0.60,
-        loanType: "Monthly EMI Due:"),
-    GoalsAndTarget(
-        dueDate: "11-11-2021",
-        monthlyEmi: "543K",
-        progress: 0.20,
-        loanType: "Monthly Car Loan Due:")
-  ];
+
+  static List<GoalsAndTarget> createGoal(String date, String emi1, String emi2,
+      String amount, String loanType1, String loanType2) {
+    List<GoalsAndTarget> ls = [];
+    ls.add(GoalsAndTarget(
+        dueDate: date,
+        monthlyEmi: emi1,
+        progress: ((int.parse(emi1) / int.parse(amount)) * 100).toInt().toDouble(),
+        loanType: loanType1));
+
+    ls.add(GoalsAndTarget(
+        dueDate: date,
+        monthlyEmi: emi2,
+        progress: ((int.parse(emi2) / int.parse(amount)) * 100).toInt().toDouble(),
+        loanType: loanType2));
+    return ls;
+  }
 }

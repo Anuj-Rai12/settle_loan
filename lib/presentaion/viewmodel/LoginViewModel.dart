@@ -24,6 +24,7 @@ class LoginViewModel extends Bloc<BlocEvent, SealedState> {
           emit(SealedState.error(response.data?.message, null));
         }else {
           sharePref.setUserIsLogin();
+          sharePref.setClientID(response.data?.clientDetails?[0].clientid??-1);
           emit(SealedState.success(success: response));
         }
       }catch(e){

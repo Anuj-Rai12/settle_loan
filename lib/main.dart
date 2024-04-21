@@ -21,6 +21,7 @@ import 'package:loansettle/presentaion/viewmodel/BenefitOfPermiumViewModel.dart'
 import 'package:loansettle/presentaion/viewmodel/ComplaintAgainstRecoveryAgentViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/EscalationScreenViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/ForgetPasswordViewModel.dart';
+import 'package:loansettle/presentaion/viewmodel/HomeScreenViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/ImportantContactViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/ImportantDocumentViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/LoginViewModel.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => NegotiationStatusViewModel()),
           BlocProvider(create: (context) => ImportantDocumentViewModel()),
           BlocProvider(create: (context) => BenefitOfPermiumViewModel()),
+          BlocProvider(create: (context) => HomeScreenViewModel()),
         ],
         child: MaterialApp(
           theme: ThemeData(
