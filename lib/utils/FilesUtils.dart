@@ -56,5 +56,6 @@ class ApiUrl {
   static const String importantContact = "api/details/ImportantContacts";
   static const String complaintAgainstRecoveryAgent = "api/details/ComplaintAgainstRecovery";
   static const String negotiationStatusResponse = "api/details/ProcessedData/";
+  static const String importantDocEndPoint = "api/details/ImportantDocs";
 }
 

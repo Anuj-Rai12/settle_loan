@@ -21,6 +21,7 @@ import 'package:loansettle/presentaion/viewmodel/ComplaintAgainstRecoveryAgentVi
 import 'package:loansettle/presentaion/viewmodel/EscalationScreenViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/ForgetPasswordViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/ImportantContactViewModel.dart';
+import 'package:loansettle/presentaion/viewmodel/ImportantDocumentViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/LoginViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/NegotiationStatusViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/TipsAndResoucesViewModel.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => ImportantContactViewModel()),
           BlocProvider(create: (context) => ComplaintAgainstRecoveryAgentViewModel()),
           BlocProvider(create: (context) => NegotiationStatusViewModel()),
+          BlocProvider(create: (context) => ImportantDocumentViewModel()),
         ],
         child: MaterialApp(
           theme: ThemeData(

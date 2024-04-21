@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:loansettle/domain/model/ImportantDocument.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
-
+import 'package:loansettle/values/res/Resources.dart';
+import '../../../domain/model/importantdocument/ImportantDocument.dart';
 import '../../../values/color/Colors.dart';
 import '../../../values/fonts/Fonts.dart';
 
 Widget listOfImportantDocument(
     List<ImportantDocument> arr, BuildContext context) {
+  var docLogo = [document1, document2];
+
   return Column(
     children: [
       ListView.builder(
@@ -17,7 +19,8 @@ Widget listOfImportantDocument(
             var data = arr[position];
             return InkWell(
                 onTap: () {
-                  context.goToDetailScreen(data.title,data.desc,data.path);
+                  context.goToDetailScreen(data.title ?? "",
+                      data.description ?? "", data.documentPath);
                 },
                 child: Container(
                   margin: const EdgeInsets.only(
@@ -32,7 +35,7 @@ Widget listOfImportantDocument(
                           borderRadius: BorderRadius.circular(10),
                           // This makes the corners circular
                           child: Image.asset(
-                            data.image,
+                            docLogo[position % docLogo.length],
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -43,14 +46,14 @@ Widget listOfImportantDocument(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(data.title,
+                              Text(data.title??"",
                                   style: const TextStyle(
                                       fontFamily: publicSansBold,
                                       color: Color(textColor),
                                       fontSize: 16)),
                               Container(
                                 margin: const EdgeInsets.only(top: 5),
-                                child: Text(data.desc,
+                                child: Text(data.description??"",
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
