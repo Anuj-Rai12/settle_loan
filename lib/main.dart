@@ -14,7 +14,6 @@ import 'package:loansettle/presentaion/ui/IncreaseCiblScore.dart';
 import 'package:loansettle/presentaion/ui/IntimationDocument.dart';
 import 'package:loansettle/presentaion/ui/LoginScreen.dart';
 import 'package:loansettle/presentaion/ui/MainActvitiy.dart';
-import 'package:loansettle/presentaion/ui/MylawyerScreen.dart';
 import 'package:loansettle/presentaion/ui/NegoatationScreen.dart';
 import 'package:loansettle/presentaion/ui/SplashScreen.dart';
 import 'package:loansettle/presentaion/viewmodel/BenefitOfPermiumViewModel.dart';
@@ -75,7 +74,6 @@ class MyApp extends StatelessWidget {
             "/loginScreen": (context) => const LoginScreen(),
             "/forgetPassword": (context) => const ForgetPasswordScreen(),
             "/homeScreen": (context) => const HomeScreen(),
-            "/myLawyerScreen": (context) => const MyLawyerScreen(),
             "/negoatationSecreen": (context) => const NegotiationScreen(),
             "/MainActivity": (context) => const MainActivity(),
             "/contactUs": (context) => const ContactUsScreen(),

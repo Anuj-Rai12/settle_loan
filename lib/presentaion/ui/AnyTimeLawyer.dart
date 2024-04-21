@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loansettle/domain/model/benfitofPermiumPorgram/BenfitOfPermiumProgram.dart';
 import 'package:loansettle/presentaion/viewmodel/BenefitOfPermiumViewModel.dart';
 import 'package:loansettle/utils/BlocEvent.dart';
+import 'package:loansettle/utils/NewTbUrl.dart';
 import 'package:loansettle/values/res/Resources.dart';
 import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
 import '../../utils/ApiWrapperResponse.dart';
@@ -10,6 +11,7 @@ import '../../utils/FilesUtils.dart';
 import '../../utils/SealedState.dart';
 import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
+import '../../values/string/Strings.dart';
 import 'adaptor/AnyTimeAdaptor.dart';
 
 class AnyTimeLawyer extends StatefulWidget {
@@ -120,6 +122,7 @@ class _AnyTimeLawyerState extends State<AnyTimeLawyer> {
             child: TextButton(
                 onPressed: () {
                   debugLogs("text button clicked");
+                  context.openNewTab(loanSettlementApp);
                 },
                 style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(

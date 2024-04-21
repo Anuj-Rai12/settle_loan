@@ -1,4 +1,6 @@
-
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 class ItemInfo {
   String url;
@@ -14,10 +16,20 @@ class HelplineDataURl {
         img: "https://consumerhelpline.gov.in/images/jago1.png"),
     "Cyber Cell": ItemInfo(
         url: "https://cybercrime.gov.in/",
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReeJpHqYecxxgdu35kuy8z5tUbEZc6r44JnmsRFAbF-g&s"),
+        img:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReeJpHqYecxxgdu35kuy8z5tUbEZc6r44JnmsRFAbF-g&s"),
     "RBI": ItemInfo(
         url: "https://rbi.org.in/Scripts/Complaints.aspx",
         img:
-        "https://media4support.com/wp-content/uploads/2023/10/RBI-LOGO.jpg")
+            "https://media4support.com/wp-content/uploads/2023/10/RBI-LOGO.jpg")
   };
+}
+
+extension newWindow on BuildContext {
+
+  Future<void> openNewTab(String url) async {
+    await FlutterWebBrowser.openWebPage(url: url);
+
+  }
+
 }

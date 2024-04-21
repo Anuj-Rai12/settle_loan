@@ -79,8 +79,11 @@ Widget complaintHelpAgainstData(
                     itemCount: data.content.length,
                     itemBuilder: (con, pos) {
                       var content = data.content[pos];
+                      debugLogs("${content.data.url} and ${content.data.img}");
                       return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            con.openNewTab(content.data.url);
+                          },
                           child: Container(
                             margin: const EdgeInsets.only(
                                 left: 16, right: 16, top: 16, bottom: 16),
