@@ -9,6 +9,7 @@ const indicatorTintColor=0xFFD9E8DB;
 const editTextBg=0xFFF0F5F0;
 const editTextColor=0xFF5E8C5E;
 
+const borderTint=0xFFDBE0E5;
 
 MaterialColor myCustomColor = const MaterialColor(
   buttonColor,

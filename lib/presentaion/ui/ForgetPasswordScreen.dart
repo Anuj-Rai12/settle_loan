@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loansettle/presentaion/viewmodel/ForgetPasswordViewModel.dart';
@@ -51,29 +52,45 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           Container(
             margin:
                 const EdgeInsets.only(left: 16, right: 16, top: 55, bottom: 12),
-            padding: const EdgeInsets.only(left: 16, right: 16),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: const Color(editTextBg)),
-            width: MediaQuery.of(context).size.width,
-            height: 56,
-            child: TextFormField(
-              autofocus: true,
-              style: const TextStyle(
-                  color: Color(editTextColor),
-                  fontFamily: publicSansReg,
-                  fontSize: 16),
-              decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Enter your Registered Email Address",
-                  hintStyle: TextStyle(
-                      color: Color(editTextColor),
-                      fontFamily: publicSansReg,
-                      fontSize: 16)),
-              onChanged: (value) {
-                // get the value
-                _email = value;
-              },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text("Email Address",
+                    style: TextStyle(
+                        color: Color(textColor),
+                        fontFamily: publicSansReg,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold)),
+                Container(
+                  margin: const EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border:
+                          Border.all(color: const Color(borderTint), width: 1)),
+                  width: MediaQuery.of(context).size.width,
+                  height: 56,
+                  child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    autofocus: true,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontFamily: publicSansReg,
+                        fontSize: 16),
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Email Address",
+                        hintStyle: TextStyle(
+                            color: Color(borderTint),
+                            fontFamily: publicSansReg,
+                            fontSize: 16)),
+                    onChanged: (value) {
+                      // get the value
+                      _email = value;
+                    },
+                  ),
+                )
+              ],
             ),
           ),
           //Forget Password

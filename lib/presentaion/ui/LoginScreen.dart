@@ -9,7 +9,6 @@ import '../../utils/FilesUtils.dart';
 import '../../utils/SealedState.dart';
 import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
-import 'dialog/showDialogBox.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -62,60 +61,89 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontFamily: publicSansBold))),
           //Email Address
           Container(
-            margin:
-                const EdgeInsets.only(left: 16, right: 16, top: 35, bottom: 12),
-            padding: const EdgeInsets.only(left: 16, right: 16),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: const Color(editTextBg)),
-            width: MediaQuery.of(context).size.width,
-            height: 56,
-            child: TextFormField(
-              autofocus: true,
-              style: const TextStyle(
-                  color: Color(editTextColor),
-                  fontFamily: publicSansReg,
-                  fontSize: 16),
-              decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Email Address",
-                  hintStyle: TextStyle(
-                      color: Color(editTextColor),
-                      fontFamily: publicSansReg,
-                      fontSize: 16)),
-              onChanged: (value) {
-                // get the value
-                _email = value;
-              },
+            margin: const EdgeInsets.only(left: 16, right: 16, top: 35, bottom: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text("Email Address",
+                    style: TextStyle(
+                        color: Color(textColor),
+                        fontFamily: publicSansReg,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold)),
+                Container(
+                  margin: const EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                          color: const Color(borderTint), width: 1)),
+                  width: MediaQuery.of(context).size.width,
+                  height: 56,
+                  child: TextFormField(
+                    keyboardType: TextInputType.emailAddress,
+                    autofocus: true,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontFamily: publicSansReg,
+                        fontSize: 16),
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Email Address",
+                        hintStyle: TextStyle(
+                            color: Color(borderTint),
+                            fontFamily: publicSansReg,
+                            fontSize: 16)),
+                    onChanged: (value) {
+                      // get the value
+                      _email = value;
+                    },
+                  ),
+                )
+              ],
             ),
           ),
           //Password
           Container(
-            margin:
-                const EdgeInsets.only(left: 16, right: 16, top: 15, bottom: 12),
-            padding: const EdgeInsets.only(left: 16, right: 16),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: const Color(editTextBg)),
-            width: MediaQuery.of(context).size.width,
-            height: 56,
-            child: TextFormField(
-              obscureText: true,
-              style: const TextStyle(
-                  color: Color(editTextColor),
-                  fontFamily: publicSansReg,
-                  fontSize: 16),
-              decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Password",
-                  hintStyle: TextStyle(
-                      color: Color(editTextColor),
-                      fontFamily: publicSansReg,
-                      fontSize: 16)),
-              onChanged: (value) {
-                // get the value
-                _password = value;
-              },
+            margin: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text("Password",
+                    style: TextStyle(
+                        color: Color(textColor),
+                        fontFamily: publicSansReg,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold)),
+                Container(
+                  margin: const EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                          color: const Color(borderTint), width: 1)),
+                  width: MediaQuery.of(context).size.width,
+                  height: 56,
+                  child: TextFormField(
+                    obscureText: true,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontFamily: publicSansReg,
+                        fontSize: 16),
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Password",
+                        hintStyle: TextStyle(
+                            color: Color(borderTint),
+                            fontFamily: publicSansReg,
+                            fontSize: 16)),
+                    onChanged: (value) {
+                      // get the value
+                      _password = value;
+                    }
+                  ),
+                )
+              ],
             ),
           ),
           //Forget Password
@@ -131,7 +159,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                           fontSize: 14,
                           fontFamily: publicSansReg,
-                          color: Color(editTextColor))))),
+                          color: Color(editTextColor))
+                  )
+              )),
           //Updated Log In
           BlocListener<LoginViewModel, SealedState>(
             listener: (context, state) {
@@ -139,17 +169,14 @@ class _LoginScreenState extends State<LoginScreen> {
               state.join(
                   (initial) => {},
                   (loading) => {},
-                  (success) => {
-                    context.goToNextScreenPopUp("/goTOScreen")
-                  },
+                  (success) => {context.goToNextScreenPopUp("/goTOScreen")},
                   (error) => {
-                    context.goToNextScreenPopUp("/goTOScreen")
+                        context.goToNextScreenPopUp("/goTOScreen")
                         /*showDialogBox(
                             context,
                             "Failed",
                             "${isValidString(error.error) ? error.e.toString() : error.error}",
                             true,(){})*/
-
                       });
             },
             child: SealedBlocBuilder4<LoginViewModel, SealedState, Inital,
