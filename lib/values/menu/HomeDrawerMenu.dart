@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:loansettle/data/datastore/LoanSettleSharedPreference.dart';
 import 'package:loansettle/domain/model/home/HomeScreenResponse.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../presentaion/ui/dialog/showDialogBox.dart';
 import '../color/Colors.dart';
 import '../fonts/Fonts.dart';
@@ -139,6 +140,15 @@ Drawer homeNavigationDrawer(BuildContext context, HomeScreenResponse data) {
           onTap: () {
             Navigator.pop(context);
             context.goToNextScreen("/contactUs");
+          },
+        ),
+        ListTile(
+          title: const Text("Share"),
+          leading: const Icon(Icons.share),
+          focusColor: const Color(editTextBg),
+          onTap: () {
+            Navigator.pop(context);
+            Share.share("https://www.settleloan.in/");
           },
         ),
         ListTile(
