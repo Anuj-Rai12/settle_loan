@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loansettle/domain/model/GoalsAndTraget.dart';
@@ -201,11 +199,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   direction: Axis.horizontal,
                   children: [
                     OutlinedButton.icon(
-                      onPressed: () {
+                      onPressed: () async {
                         debugLogs("Download Resource");
                         //context.goToNextScreenPopUp("/goTOScreen");
-                        context.goToPdf(
+                        context.showSnackBar("Loading Pdf");
+                        var f= await createFileOfPdfUrl(
                             "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf");
+                        context.goToPdf(f.path);
                       },
                       style: OutlinedButton.styleFrom(
                           shape: RoundedRectangleBorder(

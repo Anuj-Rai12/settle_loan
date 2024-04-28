@@ -27,7 +27,7 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
           elevation: 0,
           backgroundColor: Colors.white,
           iconTheme: const IconThemeData(color: Color(textColor)),
-          title: const Text("Contact Us",
+          title: const Text("Document",
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Color(textColor),
