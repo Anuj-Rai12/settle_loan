@@ -1,9 +1,8 @@
-import 'dart:convert';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loansettle/domain/model/GoalsAndTraget.dart';
-import 'package:loansettle/domain/model/TipsAndResource.dart';
 import 'package:loansettle/domain/model/home/HomeScreenResponse.dart';
 import 'package:loansettle/presentaion/ui/adaptor/GoalsTargetsAdaptor.dart';
 import 'package:loansettle/presentaion/ui/adaptor/LaywerInfo.dart';
@@ -38,14 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: SealedBlocBuilder4<HomeScreenViewModel,
-            SealedState,
-            Inital,
-            Loading,
-            Success,
-            Error>(
-            builder: (context, state) =>
-                state((initial) {
+        child: SealedBlocBuilder4<HomeScreenViewModel, SealedState, Inital,
+                Loading, Success, Error>(
+            builder: (context, state) => state((initial) {
                   return loading();
                 }, (load) {
                   return loading();
@@ -84,8 +78,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget successBody(HomeScreenResponse data) {
     var clientDetail = data.clientsDetails?[0];
     var goal = GoalsAndTarget.createGoal(
-        clientDetail?.startDate ?? "", clientDetail?.homeLoanEMI ?? "", clientDetail?.otherExpenses??"",
-        clientDetail?.loanAmount??"", "Monthly Home Loan Amount", "Monthly Other Loan Amount");
+        clientDetail?.startDate ?? "",
+        clientDetail?.homeLoanEMI ?? "",
+        clientDetail?.otherExpenses ?? "",
+        clientDetail?.loanAmount ?? "",
+        "Monthly Home Loan Amount",
+        "Monthly Other Loan Amount");
     debugLogs("PROGRESS ${goal[0].progress} ,${goal[1].progress}");
     return Scaffold(
       backgroundColor: Colors.white,
@@ -154,11 +152,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontFamily: publicSansReg,
                           fontSize: 16),
                       children: <TextSpan>[
-                        const TextSpan(text: "Monthly EMI: "),
-                        TextSpan(
-                            text: "$Rupess_Symbol${clientDetail?.eMI ?? ""}",
-                            style: const TextStyle(fontFamily: publicSansBold))
-                      ])),
+                    const TextSpan(text: "Monthly EMI: "),
+                    TextSpan(
+                        text: "$Rupess_Symbol${clientDetail?.eMI ?? ""}",
+                        style: const TextStyle(fontFamily: publicSansBold))
+                  ])),
             ),
             Container(
               margin: const EdgeInsets.only(
@@ -170,11 +168,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontFamily: publicSansReg,
                           fontSize: 14),
                       children: <TextSpan>[
-                        const TextSpan(text: "Start Date: "),
-                        TextSpan(
-                            text: clientDetail?.startDate ?? "",
-                            style: const TextStyle(color: Color(editTextColor)))
-                      ])),
+                    const TextSpan(text: "Start Date: "),
+                    TextSpan(
+                        text: clientDetail?.startDate ?? "",
+                        style: const TextStyle(color: Color(editTextColor)))
+                  ])),
             ),
             Container(
               padding: const EdgeInsets.all(16),
@@ -206,6 +204,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: () {
                         debugLogs("Download Resource");
                         //context.goToNextScreenPopUp("/goTOScreen");
+                        context.goToPdf(
+                            "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf");
                       },
                       style: OutlinedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -214,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           minimumSize: const Size(250, 55),
                           side: const BorderSide(color: Color(buttonColor))),
                       icon:
-                      const Icon(Icons.download, color: Color(buttonColor)),
+                          const Icon(Icons.download, color: Color(buttonColor)),
                       label: const Text(
                         "Download",
                         style: TextStyle(
@@ -262,7 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 22,
                   )),
             ),
-            listOfResourceAdaptor(data.tipsResources??[], context),
+            listOfResourceAdaptor(data.tipsResources ?? [], context),
             const SizedBox(
               height: 60,
             )
