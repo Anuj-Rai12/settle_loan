@@ -58,6 +58,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           theme: ThemeData(
+            useMaterial3: false,
             primarySwatch: myCustomColor,
             brightness: Brightness.light,
             hintColor: const Color(editTextBg),
