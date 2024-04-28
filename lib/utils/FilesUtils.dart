@@ -1,5 +1,7 @@
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:loansettle/presentaion/ui/DetailScreen.dart';
 
 void debugLogs(String msg) {
@@ -54,7 +56,8 @@ class ApiUrl {
   static const String tipsAndResources = "api/details/HelpResources";
   static const String escalationEndPoint = "api/details/Escalation";
   static const String importantContact = "api/details/ImportantContacts";
-  static const String complaintAgainstRecoveryAgent = "api/details/ComplaintAgainstRecovery";
+  static const String complaintAgainstRecoveryAgent =
+      "api/details/ComplaintAgainstRecovery";
   static const String negotiationStatusResponse = "api/details/ProcessedData/";
   static const String importantDocEndPoint = "api/details/ImportantDocs";
   static const String benfitOfEndPoint = "api/details/Benefits";
@@ -62,3 +65,8 @@ class ApiUrl {
   static const String homeScreenApiEndPoint = "api/details/DashboardInfo/";
 }
 
+Future<void> openMap(double latitude, double longitude) async {
+  String googleUrl =
+      'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+  FlutterWebBrowser.openWebPage(url: googleUrl);
+}

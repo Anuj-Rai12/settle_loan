@@ -80,7 +80,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                openMap(28.5758384, 77.320955);
+              },
               child: Container(
                 margin: const EdgeInsets.only(
                     left: 16, right: 16, top: 16, bottom: 16),
