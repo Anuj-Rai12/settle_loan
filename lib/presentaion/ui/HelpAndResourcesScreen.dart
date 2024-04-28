@@ -31,7 +31,7 @@ class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
@@ -44,16 +44,16 @@ class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
                   fontWeight: FontWeight.bold,
                   fontFamily: publicSansBold)),
           centerTitle: true),
-      body: SealedBlocBuilder4<TipsAndResourcesViewModel, SealedState,
-          Inital, Loading, Success, Error>(
+      body: SealedBlocBuilder4<TipsAndResourcesViewModel, SealedState, Inital,
+          Loading, Success, Error>(
         builder: (context, state) => state((inital) {
           return loading();
         }, (pb) {
           return loading();
-        },(success){
+        }, (success) {
           return successBody(success.data as HelpAndResources);
-        },(e){
-          return error(isValidString(e.error) ? e.e.toString():e.error!);
+        }, (e) {
+          return error(isValidString(e.error) ? e.e.toString() : e.error!);
         }),
       ),
     ));
@@ -86,21 +86,20 @@ class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
             margin: const EdgeInsets.only(top: 20),
             padding:
                 const EdgeInsets.only(top: 4, left: 16, right: 16, bottom: 4),
-            child:  Text(
+            child: Text(
               data.description ?? "",
               style: const TextStyle(
                 color: Color(textColor),
-                fontSize: 16,
+                fontSize: 18,
                 fontFamily: publicSansReg,
               ),
             ),
           ),
           Container(
-            padding:
-                const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 16),
-            margin: const EdgeInsets.only(top: 12),
-                child: helpAndResourceAdaptor(data.data?? [], context)
-          )
+              padding: const EdgeInsets.only(
+                  left: 16, right: 16, bottom: 16, top: 16),
+              margin: const EdgeInsets.only(top: 12),
+              child: helpAndResourceAdaptor(data.data ?? [], context))
         ],
       ),
     );
@@ -111,22 +110,28 @@ class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
       itemBuilder: (context, pos) {
         var data = arr[pos];
         return Container(
-            color: const Color(editTextBg),
-            margin: const EdgeInsets.only(top: 12),
+            decoration:  BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                border: Border.all(
+                    color: const Color(borderTint), width: 1)),
+            margin: const EdgeInsets.only(top: 16, bottom: 16),
             child: ExpansionTile(
-              backgroundColor: const Color(editTextBg),
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(width: 1, color: Color(borderTint)),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
               title: Text(data.question ?? "",
                   style: const TextStyle(
                       fontFamily: publicSansBold,
-                      fontSize: 14,
+                      fontSize: 18,
                       color: Color(textColor))),
               children: [
                 ListTile(
                     title: Text(data.answer ?? "",
                         style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 16,
                             fontFamily: publicSansReg,
-                            color: Color(editTextColor)))),
+                            color: Color(textColor)))),
                 const SizedBox(height: 15)
               ],
             ));
