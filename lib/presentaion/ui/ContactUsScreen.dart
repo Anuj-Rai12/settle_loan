@@ -116,7 +116,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                context.copyText("info@settleloan.in");
+              },
               child: Container(
                 margin: const EdgeInsets.only(
                     left: 16, right: 16, top: 16, bottom: 16),
@@ -149,7 +151,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                context.copyText("1800-309-1902");
+              },
               child: Container(
                 margin: const EdgeInsets.only(
                     left: 16, right: 16, top: 16, bottom: 16),

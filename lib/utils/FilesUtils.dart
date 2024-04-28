@@ -1,6 +1,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:loansettle/presentaion/ui/DetailScreen.dart';
 
@@ -40,6 +41,13 @@ extension msg on BuildContext {
         content: Text(str),
       ),
     );
+  }
+}
+
+extension clip on BuildContext {
+   void copyText(String str) {
+    Clipboard.setData(ClipboardData(text: str));
+    showSnackBar("copied!!");
   }
 }
 
