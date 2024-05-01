@@ -35,7 +35,7 @@ Widget listOfEscalationPoint(
                         style: const TextStyle(
                           fontFamily: publicSansReg,
                           fontSize: 17,
-                          color: Color(editTextColor),
+                          color: Color(textColor),
                         ),
                       ),
                     ),
@@ -63,7 +63,7 @@ Widget listOfEscalationPoint(
                         style: const TextStyle(
                           fontFamily: publicSansReg,
                           fontSize: 16,
-                          color: Color(editTextColor),
+                          color: Color(textColor),
                         ),
                       ),
                     ),
