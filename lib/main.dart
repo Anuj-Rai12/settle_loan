@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loansettle/data/datastore/LoanSettleSharedPreference.dart';
 import 'package:loansettle/presentaion/ui/AnyTimeLawyer.dart';
 import 'package:loansettle/presentaion/ui/AppGoToScreen.dart';
+import 'package:loansettle/presentaion/ui/AstroSignScreen.dart';
 import 'package:loansettle/presentaion/ui/ComplaintAgainstRecoveryAgent.dart';
 import 'package:loansettle/presentaion/ui/ContactUsScreen.dart';
 import 'package:loansettle/presentaion/ui/EscalationScreen.dart';
@@ -69,7 +70,7 @@ class MyApp extends StatelessWidget {
               value: SystemUiOverlayStyle(
                   statusBarColor: Colors.white,
                   statusBarIconBrightness: Brightness.dark),
-              child: MainSplashScreen()),
+              child: AstroSignScreen()),
           routes: {
             "/goTOScreen": (context) => const AppGoToScreen(),
             "/loginScreen": (context) => const LoginScreen(),
