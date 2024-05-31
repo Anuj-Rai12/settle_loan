@@ -79,8 +79,7 @@ class MyApp extends StatelessWidget {
             "/negoatationSecreen": (context) => const NegotiationScreen(),
             "/MainActivity": (context) => const MainActivity(),
             "/contactUs": (context) => const ContactUsScreen(),
-            "/complaintAgainstOfficer": (context) =>
-                const ComplaintAgainstRecoveryAgent(),
+            "/complaintAgainstOfficer": (context) => const ComplaintAgainstRecoveryAgent(),
             "/intimationDoc": (context) => const IntimationDocument(),
             "/escalation": (context) => const EscalationScreen(),
             "/ciblScore": (context) => const IncreaseCIBLScore(),
