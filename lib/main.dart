@@ -51,7 +51,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => EscalationScreenViewModel()),
           BlocProvider(create: (context) => ForgetPasswordViewModel()),
           BlocProvider(create: (context) => ImportantContactViewModel()),
-          BlocProvider(create: (context) => ComplaintAgainstRecoveryAgentViewModel()),
+          BlocProvider(
+              create: (context) => ComplaintAgainstRecoveryAgentViewModel()),
           BlocProvider(create: (context) => NegotiationStatusViewModel()),
           BlocProvider(create: (context) => ImportantDocumentViewModel()),
           BlocProvider(create: (context) => BenefitOfPermiumViewModel()),
@@ -70,7 +71,7 @@ class MyApp extends StatelessWidget {
               value: SystemUiOverlayStyle(
                   statusBarColor: Colors.white,
                   statusBarIconBrightness: Brightness.dark),
-              child: AstroSignScreen()),
+              child: MainSplashScreen()),
           routes: {
             "/goTOScreen": (context) => const AppGoToScreen(),
             "/loginScreen": (context) => const LoginScreen(),
@@ -82,6 +83,7 @@ class MyApp extends StatelessWidget {
             "/complaintAgainstOfficer": (context) => const ComplaintAgainstRecoveryAgent(),
             "/intimationDoc": (context) => const IntimationDocument(),
             "/escalation": (context) => const EscalationScreen(),
+            "/astroSignScreen": (context) => const AstroSignScreen(),
             "/ciblScore": (context) => const IncreaseCIBLScore(),
             "/anyTimeLawyer": (context) => const AnyTimeLawyer(),
             "/help&Resource": (context) => const HelpAndResourcesScreen(),
