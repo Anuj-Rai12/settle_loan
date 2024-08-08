@@ -66,7 +66,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                             )),
                         Container(
                           margin: const EdgeInsets.only(top: 4),
-                          child: const Text("Settle Loan pvt.Ltd",
+                          child: const Text("Savemoney Financial Services Private Limited",
                               style: TextStyle(
                                 color: Color(editTextColor),
                                 fontFamily: publicSansReg,
@@ -81,7 +81,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
             ),
             InkWell(
               onTap: () {
-                openMap(28.5758384, 77.320955);
+                openMap(28.4670328, 76.9830856);
               },
               child: Container(
                 margin: const EdgeInsets.only(
@@ -101,7 +101,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                           Container(
                             margin: const EdgeInsets.only(top: 4),
                             child: const Text(
-                                "Block G, Sushant Lok 2, Sector 57, Gurugram, Haryana 122003",
+                                "SCO-83, City Centre, 3rd Floor, VR1@ U&I Business Centre, Sector 29, Gurugram, Haryana 122001",
                                 style: TextStyle(
                                   color: Color(editTextColor),
                                   fontFamily: publicSansReg,

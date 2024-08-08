@@ -31,6 +31,8 @@ class _IncreaseCIBLScoreState extends State<IncreaseCIBLScore> {
                   fontFamily: publicSansBold)),
           centerTitle: true),
       body: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             margin: const EdgeInsets.only(left: 16, right: 16, top: 35, bottom: 12),
