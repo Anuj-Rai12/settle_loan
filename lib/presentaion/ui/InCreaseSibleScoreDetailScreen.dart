@@ -8,7 +8,15 @@ import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
 
 class IncreaseCibleScoreDetails extends StatefulWidget {
-  const IncreaseCibleScoreDetails({super.key});
+  double CurrentCridtScore;
+  double achiveCreditScore;
+  double time;
+
+  IncreaseCibleScoreDetails(
+      {super.key,
+      required this.time,
+      required this.achiveCreditScore,
+      required this.CurrentCridtScore});
 
   @override
   State<IncreaseCibleScoreDetails> createState() =>
@@ -41,15 +49,17 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   buildScoreAndTimeCard(
-                      title: "760", desc: CreditScoreData.scoreDesc),
+                      title: "${widget.achiveCreditScore.toInt()}",
+                      desc: CreditScoreData.scoreDesc),
                   const SizedBox(width: 16),
                   buildScoreAndTimeCard(
-                      title: "3", desc: CreditScoreData.timeDesc)
+                      title: "${widget.time.toInt()}", desc: CreditScoreData.timeDesc)
                 ],
               ),
               makeSpaceVertically(),
               buildDescription(
-                  desc: CreditScoreData.generateDesc(creditScore: 20, time: 3)),
+                  desc: CreditScoreData.generateDesc(creditScore: CreditScoreData.howToAchive(
+                      widget.CurrentCridtScore, widget.achiveCreditScore), time: widget.time.toInt())),
               makeSpaceVertically(),
               const Text("Try This",
                   style: TextStyle(

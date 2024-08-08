@@ -7,6 +7,14 @@ class CreditScoreData {
     return "Increasing the score by $creditScore in $time months is difficult. Hence showing the results for increase by 10 in $time months";
   }
 
+  static int howToAchive(double current, double achive){
+     if ((achive - current)<=0) {
+     return  0;
+     } else {
+       return (achive - current).toInt();
+     }
+  }
+
   static String timeDesc="Number of months\n";
   static String scoreDesc="Score you want to achieve";
 

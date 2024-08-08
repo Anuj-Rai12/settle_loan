@@ -13,6 +13,10 @@ class IncreaseCIBLScore extends StatefulWidget {
 }
 
 class _IncreaseCIBLScoreState extends State<IncreaseCIBLScore> {
+  double? time;
+  double? currentScore;
+  double? achivedScore;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -69,8 +73,11 @@ class _IncreaseCIBLScoreState extends State<IncreaseCIBLScore> {
                             fontFamily: publicSansReg,
                             fontSize: 16)),
                     onChanged: (value) {
-                      // get the value
-                     // _email = value;
+                      try{
+                        currentScore=double.parse(value);
+                      }catch(e){
+                        currentScore=null;
+                      }
                     },
                   ),
                 )
@@ -113,6 +120,11 @@ class _IncreaseCIBLScoreState extends State<IncreaseCIBLScore> {
                             fontSize: 16)),
                     onChanged: (value) {
                       // get the value
+                      try{
+                        achivedScore=double.parse(value);
+                      }catch(e){
+                        achivedScore=null;
+                      }
                     },
                   ),
                 )
@@ -155,7 +167,11 @@ class _IncreaseCIBLScoreState extends State<IncreaseCIBLScore> {
                             fontFamily: publicSansReg,
                             fontSize: 16)),
                     onChanged: (value) {
-                      // get the value
+                      try{
+                        time=double.parse(value);
+                      }catch(e){
+                        time=null;
+                      }
                     },
                   ),
                 )
@@ -170,6 +186,21 @@ class _IncreaseCIBLScoreState extends State<IncreaseCIBLScore> {
             child: TextButton(
                 onPressed: () {
                   debugLogs("text button clicked");
+                  if(currentScore==null){
+                    context.showSnackBar("Enter your current Score");
+                    return;
+                  }
+                  if(achivedScore==null){
+                    context.showSnackBar("Enter your Score the you want to achieve");
+                    return;
+                  }
+                  if(time==null){
+                    context.showSnackBar("Enter your Time Frame");
+                    return;
+                  }
+
+                  context.goToCridetBuilderScreen(currentScore: currentScore!, achiviedScore: achivedScore!, time: time!);
+
                 },
                 style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(

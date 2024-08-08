@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:loansettle/presentaion/ui/DetailScreen.dart';
+import 'package:loansettle/presentaion/ui/InCreaseSibleScoreDetailScreen.dart';
 import 'package:loansettle/presentaion/ui/PDFScreen.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -39,6 +40,16 @@ extension navigation on BuildContext {
     );
   }
 
+
+  void goToCridetBuilderScreen({required double currentScore, required double achiviedScore, required double time}) {
+    Navigator.push(
+      this,
+      MaterialPageRoute(
+        builder: (context) =>
+            IncreaseCibleScoreDetails(achiveCreditScore: achiviedScore,CurrentCridtScore: currentScore,time: time),
+      ),
+    );
+  }
 
   void goToPdf(String link) {
     Navigator.push(
