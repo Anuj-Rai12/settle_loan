@@ -26,7 +26,9 @@ extension navigation on BuildContext {
   void goToNextScreenPopUp(String loc) {
     Navigator.pushNamedAndRemoveUntil(this, loc, (route) => false);
   }
-
+  void onBackPress() {
+    Navigator.pop(this);
+  }
   void goToDetailScreen(String title, String desc, String? link) {
     Navigator.push(
       this,
