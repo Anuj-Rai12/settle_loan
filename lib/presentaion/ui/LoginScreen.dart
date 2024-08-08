@@ -9,6 +9,7 @@ import '../../utils/FilesUtils.dart';
 import '../../utils/SealedState.dart';
 import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
+import 'dialog/showDialogBox.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -171,12 +172,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   (loading) => {},
                   (success) => {context.goToNextScreenPopUp("/goTOScreen")},
                   (error) => {
-                        context.goToNextScreenPopUp("/goTOScreen")
-                        /*showDialogBox(
+                       // context.goToNextScreenPopUp("/goTOScreen")
+                        showDialogBox(
                             context,
                             "Failed",
                             "${isValidString(error.error) ? error.e.toString() : error.error}",
-                            true,(){})*/
+                            true,(){})
                       });
             },
             child: SealedBlocBuilder4<LoginViewModel, SealedState, Inital,

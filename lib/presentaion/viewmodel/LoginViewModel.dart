@@ -20,7 +20,7 @@ class LoginViewModel extends Bloc<BlocEvent, SealedState> {
       var sharePref=LoanSettleSharedPreference();
 
         if(response.data?.result ==0){
-          sharePref.setUserIsLogin();
+          //sharePref.setUserIsLogin();
           emit(SealedState.error(response.data?.message, null));
         }else {
           sharePref.setUserIsLogin();
