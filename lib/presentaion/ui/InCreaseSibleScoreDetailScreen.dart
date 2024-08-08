@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:loansettle/domain/model/creditscore/CreditScoreInformation.dart';
 
 import '../../utils/FilesUtils.dart';
 import '../../values/color/Colors.dart';
@@ -40,16 +41,15 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   buildScoreAndTimeCard(
-                      title: "760", desc: "Score that you want to achieve"),
+                      title: "760", desc: CreditScoreData.scoreDesc),
                   const SizedBox(width: 16),
                   buildScoreAndTimeCard(
-                      title: "3", desc: "Score that you want to see")
+                      title: "3", desc: CreditScoreData.timeDesc)
                 ],
               ),
               makeSpaceVertically(),
               buildDescription(
-                  desc:
-                      "Increase the score with 5 and complete With Item Complete in tie compose"),
+                  desc: CreditScoreData.generateDesc(creditScore: 20, time: 3)),
               makeSpaceVertically(),
               const Text("Try This",
                   style: TextStyle(
@@ -61,16 +61,18 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
               ListView.builder(
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
-                  itemCount: 10,
+                  itemCount:
+                      CreditScoreData.generateCreditScoreDataDesc().length,
                   itemBuilder: (context, position) {
                     return buildTheStepsToAnswerTheQuestion(
-                        desc:
-                            "sjkgdfkljdflkjgdfkjlg gjkldfjklgdfkjl fgjkdfjkldf kjljgkdsdgjklslkjdsdgkj kjlv jgsglkjgseijof sjkv kjljo;sdgf;df;");
+                        desc: CreditScoreData.generateCreditScoreDataDesc()[
+                                position]
+                            .desc);
                   }),
               makeSpaceVertically(height: 40),
               Container(
-                margin:
-                const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+                margin: const EdgeInsets.only(
+                    left: 16, right: 16, top: 12, bottom: 12),
                 child: TextButton(
                     onPressed: () {
                       debugLogs("text button clicked");
