@@ -107,7 +107,7 @@ class ClientsDetails {
     loanSettleAmount2 = json['LoanSettleAmount2'];
     income = json['Income'];
     eMI = json['EMI'];
-    startDate = json['StartDate'];
+    startDate = json['EMIDate'];
     homeLoanEMI = json['HomeLoanEMI'];
     otherExpenses = json['OtherExpenses'];
     nextEMIdate = json['NextEMIdate'];

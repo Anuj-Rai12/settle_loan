@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loansettle/domain/model/contacts/ImportantContactsResponse.dart';
+import 'package:loansettle/utils/FilesUtils.dart';
 import 'package:loansettle/values/fonts/Fonts.dart';
 
 import '../../../values/color/Colors.dart';
@@ -20,53 +21,115 @@ Widget listOfImportantContact(
                 child: Container(
                   margin: const EdgeInsets.only(
                       left: 16, right: 16, top: 16, bottom: 16),
-                  child: Row(
+                  child: Column(
                     children: [
-                      SizedBox(
-                        width: 56,
-                        height: 56,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(28),
-                          // This makes the corners circular
-                          child: FadeInImage.assetNetwork(
-                            image: data.imagepath??"",
-                            imageErrorBuilder: (context, error, stackTrace) {
-                              return Image.asset(profilePic, fit: BoxFit.cover);
-                            },
-                            fit: BoxFit.cover,
-                            placeholder:
-                                profilePic, // This ensures the image covers the box without stretching
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 56,
+                            height: 56,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(28),
+                              // This makes the corners circular
+                              child: FadeInImage.assetNetwork(
+                                image: "",
+                                imageErrorBuilder:
+                                    (context, error, stackTrace) {
+                                  return Image.asset(profilePic,
+                                      fit: BoxFit.cover);
+                                },
+                                fit: BoxFit.cover,
+                                placeholder:
+                                    profilePic, // This ensures the image covers the box without stretching
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16, right: 16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text("Financial Advisor",
+                                    style: TextStyle(
+                                        fontFamily: publicSansBold,
+                                        color: Color(textColor),
+                                        fontSize: 16)),
+                                Text(data.financialAdvisorName ?? "",
+                                    style: const TextStyle(
+                                        fontFamily: publicSansReg,
+                                        color: Color(editTextColor),
+                                        fontSize: 14)),
+                                Text(data.financialAdvisorMobileNo ?? "",
+                                    style: const TextStyle(
+                                        fontFamily: publicSansReg,
+                                        color: Color(editTextColor),
+                                        fontSize: 14)),
+                                Text(data.financialAdvisorEmail ?? "",
+                                    style: const TextStyle(
+                                        fontFamily: publicSansReg,
+                                        color: Color(editTextColor),
+                                        fontSize: 14)),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                      if (!isValidString(data.legalAdvisorName))
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 56,
+                                height: 56,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(28),
+                                  // This makes the corners circular
+                                  child: FadeInImage.assetNetwork(
+                                    image: data.legalAdvisorImagepath ?? "",
+                                    imageErrorBuilder:
+                                        (context, error, stackTrace) {
+                                      return Image.asset(profilePic,
+                                          fit: BoxFit.cover);
+                                    },
+                                    fit: BoxFit.cover,
+                                    placeholder:
+                                        profilePic, // This ensures the image covers the box without stretching
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 16, right: 16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text("Legal Advisor",
+                                        style: TextStyle(
+                                            fontFamily: publicSansBold,
+                                            color: Color(textColor),
+                                            fontSize: 16)),
+                                    Text(data.legalAdvisorName ?? "",
+                                        style: const TextStyle(
+                                            fontFamily: publicSansReg,
+                                            color: Color(editTextColor),
+                                            fontSize: 14)),
+                                    Text(data.legalAdvisorEmail ?? "",
+                                        style: const TextStyle(
+                                            fontFamily: publicSansReg,
+                                            color: Color(editTextColor),
+                                            fontSize: 14)),
+                                    Text(data.legalAdvisorMobileNo ?? "",
+                                        style: const TextStyle(
+                                            fontFamily: publicSansReg,
+                                            color: Color(editTextColor),
+                                            fontSize: 14)),
+                                  ],
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(data.position ?? "",
-                                style: const TextStyle(
-                                    fontFamily: publicSansBold,
-                                    color: Color(textColor),
-                                    fontSize: 16)),
-                            Text(data.name ?? "",
-                                style: const TextStyle(
-                                    fontFamily: publicSansReg,
-                                    color: Color(editTextColor),
-                                    fontSize: 14)),
-                            Text(data.mobileNo ?? "",
-                                style: const TextStyle(
-                                    fontFamily: publicSansReg,
-                                    color: Color(editTextColor),
-                                    fontSize: 14)),
-                            Text(data.email ?? "",
-                                style: const TextStyle(
-                                    fontFamily: publicSansReg,
-                                    color: Color(editTextColor),
-                                    fontSize: 14)),
-                          ],
-                        ),
-                      )
                     ],
                   ),
                 ));
