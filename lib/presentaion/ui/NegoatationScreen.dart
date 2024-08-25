@@ -130,7 +130,7 @@ class _NegotiationScreenState extends State<NegotiationScreen> {
                                     Container(
                                       margin: const EdgeInsets.only(top: 8),
                                       child: const Text(
-                                          "Possibility of Settlement Read.",
+                                          "Possibility of Settlement Status of amount as per agreement.",
                                           maxLines: 3,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(

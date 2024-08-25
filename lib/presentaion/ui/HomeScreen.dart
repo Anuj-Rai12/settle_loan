@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
         clientDetail?.otherExpenses ?? "",
         clientDetail?.loanAmount ?? "",
         "Monthly Home Loan Amount",
-        "Monthly Other Loan Amount");
+        "Monthly Unsecured Loan Amount");
     debugLogs("PROGRESS ${goal[0].progress} ,${goal[1].progress}");
     return Scaffold(
       backgroundColor: Colors.white,
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.only(
                     left: 16, right: 16, top: 4, bottom: 12),
                 child: const Text(
-                  "Total Loan amount Settlement",
+                  "Total Loan Amount Outstanding",
                   style: TextStyle(
                       fontSize: 14,
                       fontFamily: publicSansReg,
