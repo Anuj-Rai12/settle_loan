@@ -13,7 +13,9 @@ import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
 
 class EscalationScreen extends StatefulWidget {
-  const EscalationScreen({super.key});
+  
+  bool? isNavigateFromNavigationBar = false;
+   EscalationScreen({super.key , required this.isNavigateFromNavigationBar});
 
   @override
   State<EscalationScreen> createState() => _EscalationScreenState();
@@ -34,7 +36,7 @@ class _EscalationScreenState extends State<EscalationScreen> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
+      appBar: widget.isNavigateFromNavigationBar == false? AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
           iconTheme: const IconThemeData(color: Color(textColor)),
@@ -45,7 +47,7 @@ class _EscalationScreenState extends State<EscalationScreen> {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   fontFamily: publicSansBold)),
-          centerTitle: true),
+          centerTitle: true):null,
       body: SealedBlocBuilder4<EscalationScreenViewModel, SealedState, Inital,
               Loading, Success, Error>(
           builder: (context, state) => state((initial) {

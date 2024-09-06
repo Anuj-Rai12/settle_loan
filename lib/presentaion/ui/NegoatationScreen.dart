@@ -12,7 +12,8 @@ import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
 
 class NegotiationScreen extends StatefulWidget {
-  const NegotiationScreen({super.key});
+  bool? isNavigateFromNavigationBar = false;
+   NegotiationScreen({super.key,required this.isNavigateFromNavigationBar});
 
   @override
   State<NegotiationScreen> createState() => _NegotiationScreenState();
@@ -33,7 +34,7 @@ class _NegotiationScreenState extends State<NegotiationScreen> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
+      appBar:widget.isNavigateFromNavigationBar == false?  AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
           iconTheme: const IconThemeData(color: Color(textColor)),
@@ -44,7 +45,7 @@ class _NegotiationScreenState extends State<NegotiationScreen> {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   fontFamily: publicSansBold)),
-          centerTitle: true),
+          centerTitle: true):null,
       body:  SealedBlocBuilder4<NegotiationStatusViewModel, SealedState, Inital,
           Loading, Success, Error>(
           builder: (context, state) => state((initial) {

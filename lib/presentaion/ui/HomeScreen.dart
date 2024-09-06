@@ -47,7 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 }, (e) {
                   return error(
                       isValidString(e.error) ? e.e.toString() : e.error!);
-                })));
+                }))
+                );
   }
 
   Widget loading() {
@@ -85,28 +86,28 @@ class _HomeScreenState extends State<HomeScreen> {
     debugLogs("PROGRESS ${goal[0].progress} ,${goal[1].progress}");
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: homeNavigationDrawer(context, data),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Color(textColor)),
-        title: const Text("Home",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Color(textColor),
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                fontFamily: publicSansReg)),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications, color: Colors.black),
-            onPressed: () {
-              context.showSnackBar("No Notification yet");
-            },
-          )
-        ],
-      ),
+      // drawer: homeNavigationDrawer(context, data),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   backgroundColor: Colors.white,
+      //   iconTheme: const IconThemeData(color: Color(textColor)),
+      //   title: const Text("Home",
+      //       textAlign: TextAlign.center,
+      //       style: TextStyle(
+      //           color: Color(textColor),
+      //           fontSize: 18,
+      //           fontWeight: FontWeight.bold,
+      //           fontFamily: publicSansReg)),
+      //   centerTitle: true,
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.notifications, color: Colors.black),
+      //       onPressed: () {
+      //         context.showSnackBar("No Notification yet");
+      //       },
+      //     )
+      //   ],
+      // ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

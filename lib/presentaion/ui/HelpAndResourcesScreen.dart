@@ -11,7 +11,9 @@ import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
 
 class HelpAndResourcesScreen extends StatefulWidget {
-  const HelpAndResourcesScreen({super.key});
+  
+  bool? isNavigateFromNavigationBar = false;
+   HelpAndResourcesScreen({super.key,required this.isNavigateFromNavigationBar});
 
   @override
   State<HelpAndResourcesScreen> createState() => _HelpAndResourcesScreenState();
@@ -32,7 +34,7 @@ class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
+      appBar:widget.isNavigateFromNavigationBar== false? AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
           iconTheme: const IconThemeData(color: Color(textColor)),
@@ -43,7 +45,7 @@ class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   fontFamily: publicSansBold)),
-          centerTitle: true),
+          centerTitle: true):null,
       body: SealedBlocBuilder4<TipsAndResourcesViewModel, SealedState, Inital,
           Loading, Success, Error>(
         builder: (context, state) => state((inital) {
@@ -83,9 +85,9 @@ class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 20),
+            // margin: const EdgeInsets.only(top: 20),
             padding:
-                const EdgeInsets.only(top: 4, left: 16, right: 16, bottom: 4),
+                const EdgeInsets.only( left: 16, right: 16, bottom: 4),
             child: Text(
               data.description ?? "",
               style: const TextStyle(
@@ -97,7 +99,7 @@ class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
           ),
           Container(
               padding: const EdgeInsets.only(
-                  left: 16, right: 16, bottom: 16, top: 16),
+                  left: 16, right: 16, bottom: 16,),
               margin: const EdgeInsets.only(top: 12),
               child: helpAndResourceAdaptor(data.data ?? [], context))
         ],
@@ -114,7 +116,7 @@ class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
                 borderRadius: BorderRadius.circular(10.0),
                 border: Border.all(
                     color: const Color(borderTint), width: 1)),
-            margin: const EdgeInsets.only(top: 16, bottom: 16),
+            margin: const EdgeInsets.only( bottom: 16),
             child: ExpansionTile(
               shape: RoundedRectangleBorder(
                 side: const BorderSide(width: 1, color: Color(borderTint)),
@@ -132,7 +134,7 @@ class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
                             fontSize: 16,
                             fontFamily: publicSansReg,
                             color: Color(textColor)))),
-                const SizedBox(height: 15)
+                // const SizedBox(height: 15)
               ],
             ));
       },

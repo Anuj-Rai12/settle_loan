@@ -35,6 +35,20 @@ class _AnyTimeLawyerState extends State<AnyTimeLawyer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, icon: Icon(Icons.arrow_back,color: Colors.black,)),
+        title: const Text("Anytime Lawyer",
+                style: TextStyle(
+                  color: Color(textColor),
+                  fontFamily: publicSansBold,
+                  fontSize: 18,
+                )),
+                centerTitle: false,
+                backgroundColor: Colors.white,
+                elevation: 0,
+      ),
       backgroundColor: Colors.white,
       body: SealedBlocBuilder4<BenefitOfPermiumViewModel, SealedState, Inital,
               Loading, Success, Error>(
@@ -80,25 +94,23 @@ class _AnyTimeLawyerState extends State<AnyTimeLawyer> {
           automaticallyImplyLeading: false,
           backgroundColor: Colors.white,
           flexibleSpace: FlexibleSpaceBar(
-            background: Image.asset(
-              anytimeLawyerIMG,
-              width: MediaQuery.of(context).size.width,
-              height: 320,
-              fit: BoxFit.fitWidth,
+            background: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Image.asset(
+                anytimeLawyerIMG,
+                width: MediaQuery.of(context).size.width,
+                height: 320,
+                fit: BoxFit.fitWidth,
+              ),
             ),
           ),
         ),
-        SliverToBoxAdapter(
-          child: Container(
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 12,top: 12),
-            child: const Text("Anytime Lawyer",
-                style: TextStyle(
-                  color: Color(textColor),
-                  fontFamily: publicSansBold,
-                  fontSize: 28,
-                )),
-          ),
-        ),
+        // SliverToBoxAdapter(
+        //   child: Container(
+        //     padding: const EdgeInsets.only(left: 16, right: 16, bottom: 12,top: 12),
+        //     child: 
+        //   ),
+        // ),
         SliverToBoxAdapter(
           child: Container(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),

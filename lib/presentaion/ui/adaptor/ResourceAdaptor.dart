@@ -16,9 +16,11 @@ listOfResourceAdaptor(List<TipsResources> arr, BuildContext context) {
           itemBuilder: (context, position) {
             var data = arr[position];
             return InkWell(
-                onTap: () {
-                  context.goToDetailScreen(data.title??"",data.description??"",null);
-                },
+              // Uncomment this if you want to redirect user to the details page.
+              
+                // onTap: () {
+                //   context.goToDetailScreen(data.title??"",data.description??"",null);
+                // },
                 child: Container(
                   margin: const EdgeInsets.only(
                       left: 16, right: 16, top: 16, bottom: 16),

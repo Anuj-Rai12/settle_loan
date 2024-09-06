@@ -17,6 +17,7 @@ import 'package:loansettle/presentaion/ui/LoginScreen.dart';
 import 'package:loansettle/presentaion/ui/MainActvitiy.dart';
 import 'package:loansettle/presentaion/ui/NegoatationScreen.dart';
 import 'package:loansettle/presentaion/ui/SplashScreen.dart';
+import 'package:loansettle/presentaion/ui/testMainActivity.dart';
 import 'package:loansettle/presentaion/viewmodel/BenefitOfPermiumViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/ComplaintAgainstRecoveryAgentViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/EscalationScreenViewModel.dart';
@@ -77,16 +78,16 @@ class MyApp extends StatelessWidget {
             "/loginScreen": (context) => const LoginScreen(),
             "/forgetPassword": (context) => const ForgetPasswordScreen(),
             "/homeScreen": (context) => const HomeScreen(),
-            "/negoatationSecreen": (context) => const NegotiationScreen(),
+            "/negoatationSecreen": (context) =>  NegotiationScreen(isNavigateFromNavigationBar: false,),
             "/MainActivity": (context) => const MainActivity(),
             "/contactUs": (context) => const ContactUsScreen(),
             "/complaintAgainstOfficer": (context) => const ComplaintAgainstRecoveryAgent(),
             "/intimationDoc": (context) => const IntimationDocument(),
-            "/escalation": (context) => const EscalationScreen(),
+            "/escalation": (context) =>  EscalationScreen(isNavigateFromNavigationBar: false,),
             "/astroSignScreen": (context) => const AstroSignScreen(),
             "/ciblScore": (context) => const IncreaseCIBLScore(),
             "/anyTimeLawyer": (context) => const AnyTimeLawyer(),
-            "/help&Resource": (context) => const HelpAndResourcesScreen(),
+            "/help&Resource": (context) =>  HelpAndResourcesScreen(isNavigateFromNavigationBar: false,),
           },
         ));
   }
