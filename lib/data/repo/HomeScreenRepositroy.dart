@@ -8,6 +8,7 @@ import 'package:loansettle/utils/FilesUtils.dart';
 class HomeScreenRepositroy extends HomeScreenApi {
   @override
   Future<List<HomeScreenResponse>> getHomeScreen(int clientId) async {
+    print("client id: $clientId" );
     var request = http.Request('GET',
         Uri.parse('${ApiUrl.baseurl}${ApiUrl.homeScreenApiEndPoint}$clientId'));
     http.StreamedResponse response = await request.send();

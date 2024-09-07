@@ -16,7 +16,7 @@ class NegotiationStatusViewModel extends Bloc<BlocEvent, SealedState> {
       try {
         var response =
             await _repo.getNegotiationStatus(_sharedPref.getClientID());
-        debugLogs("Response $response");
+       // debugLogs("Response $response");
         emit(SealedState.success(success: response));
       } catch (e) {
         emit(SealedState.error(e.toString(), null));

@@ -3,32 +3,50 @@
 import '../contacts/ImportantContactsResponse.dart';
 
 class HomeScreenResponse {
-  List<ClientsDetails>? clientsDetails;
+  List<ClientsDetails> clientsDetails = [];
   List<ImportantContacts>? importantContacts;
   List<TipsResources>? tipsResources;
 
   HomeScreenResponse(
-      {this.clientsDetails, this.importantContacts, this.tipsResources});
+      {required this.clientsDetails, this.importantContacts, this.tipsResources});
 
   HomeScreenResponse.fromJson(Map<String, dynamic> json) {
+     try{
     if (json['ClientsDetails'] != null) {
-      clientsDetails = <ClientsDetails>[];
+       clientsDetails = <ClientsDetails>[];
       json['ClientsDetails'].forEach((v) {
         clientsDetails!.add(ClientsDetails.fromJson(v));
       });
     }
+     }catch (e) {
+      print("Error from client details response: $e ");
+     }
+
+
+       try{
     if (json['ImportantContacts'] != null) {
       importantContacts = <ImportantContacts>[];
       json['ImportantContacts'].forEach((v) {
         importantContacts!.add(ImportantContacts.fromJson(v));
       });
     }
+     }catch (e) {
+      print("Error from impoartant contact response: $e ");
+     }
+      
+
+
+      try{
     if (json['TipsResources'] != null) {
       tipsResources = <TipsResources>[];
       json['TipsResources'].forEach((v) {
         tipsResources!.add(new TipsResources.fromJson(v));
       });
     }
+
+      }catch(e){
+          print("Error from tips response: $e ");
+      }
   }
 
   Map<String, dynamic> toJson() {
@@ -115,25 +133,25 @@ class ClientsDetails {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Clientid'] = this.clientid;
-    data['ClientCode'] = this.clientCode;
-    data['ClientName'] = this.clientName;
-    data['Mobile'] = this.mobile;
-    data['Address'] = this.address;
-    data['City'] = this.city;
-    data['PinCode'] = this.pinCode;
-    data['Remark'] = this.remark;
-    data['PanCard'] = this.panCard;
-    data['DOB'] = this.dOB;
-    data['LoanAmount'] = this.loanAmount;
-    data['LoanSettleAmount'] = this.loanSettleAmount;
-    data['LoanSettleAmount2'] = this.loanSettleAmount2;
-    data['Income'] = this.income;
-    data['EMI'] = this.eMI;
-    data['StartDate'] = this.startDate;
-    data['HomeLoanEMI'] = this.homeLoanEMI;
-    data['OtherExpenses'] = this.otherExpenses;
-    data['NextEMIdate'] = this.nextEMIdate;
+    data['Clientid'] = clientid;
+    data['ClientCode'] = clientCode;
+    data['ClientName'] = clientName;
+    data['Mobile'] = mobile;
+    data['Address'] = address;
+    data['City'] = city;
+    data['PinCode'] = pinCode;
+    data['Remark'] = remark;
+    data['PanCard'] = panCard;
+    data['DOB'] = dOB;
+    data['LoanAmount'] = loanAmount;
+    data['LoanSettleAmount'] = loanSettleAmount;
+    data['LoanSettleAmount2'] = loanSettleAmount2;
+    data['Income'] = income;
+    data['EMI'] = eMI;
+    data['StartDate'] = startDate;
+    data['HomeLoanEMI'] = homeLoanEMI;
+    data['OtherExpenses'] = otherExpenses;
+    data['NextEMIdate'] = nextEMIdate;
     return data;
   }
 }

@@ -16,6 +16,7 @@ class HomeScreenViewModel extends Bloc<BlocEvent, SealedState> {
         var response = await _repo.getHomeScreen(_sharedPref.getClientID());
         emit(SealedState.success(success: response));
       } catch (e) {
+        print("error from view model: $e");
         emit(SealedState.error(e.toString(), null));
       }
     });

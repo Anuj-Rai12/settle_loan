@@ -26,10 +26,6 @@ class Test_MainActivityState extends State<MainActivity> {
     "Resources"
   ];
 
-  final HomeScreenResponse data = HomeScreenResponse(); 
-
-
-
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);

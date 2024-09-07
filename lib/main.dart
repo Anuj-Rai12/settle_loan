@@ -14,10 +14,9 @@ import 'package:loansettle/presentaion/ui/HomeScreen.dart';
 import 'package:loansettle/presentaion/ui/IncreaseCiblScore.dart';
 import 'package:loansettle/presentaion/ui/IntimationDocument.dart';
 import 'package:loansettle/presentaion/ui/LoginScreen.dart';
-import 'package:loansettle/presentaion/ui/MainActvitiy.dart';
 import 'package:loansettle/presentaion/ui/NegoatationScreen.dart';
 import 'package:loansettle/presentaion/ui/SplashScreen.dart';
-import 'package:loansettle/presentaion/ui/testMainActivity.dart';
+import 'package:loansettle/presentaion/ui/MainActivity.dart';
 import 'package:loansettle/presentaion/viewmodel/BenefitOfPermiumViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/ComplaintAgainstRecoveryAgentViewModel.dart';
 import 'package:loansettle/presentaion/viewmodel/EscalationScreenViewModel.dart';
@@ -42,7 +41,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -78,16 +76,23 @@ class MyApp extends StatelessWidget {
             "/loginScreen": (context) => const LoginScreen(),
             "/forgetPassword": (context) => const ForgetPasswordScreen(),
             "/homeScreen": (context) => const HomeScreen(),
-            "/negoatationSecreen": (context) =>  NegotiationScreen(isNavigateFromNavigationBar: false,),
+            "/negoatationSecreen": (context) => NegotiationScreen(
+                  isNavigateFromNavigationBar: false,
+                ),
             "/MainActivity": (context) => const MainActivity(),
             "/contactUs": (context) => const ContactUsScreen(),
-            "/complaintAgainstOfficer": (context) => const ComplaintAgainstRecoveryAgent(),
+            "/complaintAgainstOfficer": (context) =>
+                const ComplaintAgainstRecoveryAgent(),
             "/intimationDoc": (context) => const IntimationDocument(),
-            "/escalation": (context) =>  EscalationScreen(isNavigateFromNavigationBar: false,),
+            "/escalation": (context) => EscalationScreen(
+                  isNavigateFromNavigationBar: false,
+                ),
             "/astroSignScreen": (context) => const AstroSignScreen(),
             "/ciblScore": (context) => const IncreaseCIBLScore(),
             "/anyTimeLawyer": (context) => const AnyTimeLawyer(),
-            "/help&Resource": (context) =>  HelpAndResourcesScreen(isNavigateFromNavigationBar: false,),
+            "/help&Resource": (context) => HelpAndResourcesScreen(
+                  isNavigateFromNavigationBar: false,
+                ),
           },
         ));
   }

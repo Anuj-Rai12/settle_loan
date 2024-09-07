@@ -55,22 +55,22 @@ listOfResourceAdaptor(List<TipsResources> arr, BuildContext context) {
                                       fontFamily: publicSansBold,
                                       color: Color(textColor),
                                       fontSize: 16)),
-                              Container(
-                                margin: const EdgeInsets.only(top: 5),
-                                child: Text(data.description??"",
-                                    maxLines: 3,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                        fontFamily: publicSansReg,
-                                        color: Color(editTextColor),
-                                        fontSize: 14)),
-                              )
+                              // Container(
+                              //   margin: const EdgeInsets.only(top: 5),
+                              //   child: Text(data.description??"",
+                              //       maxLines: 3,
+                              //       overflow: TextOverflow.ellipsis,
+                              //       style: const TextStyle(
+                              //           fontFamily: publicSansReg,
+                              //           color: Color(editTextColor),
+                              //           fontSize: 14)),
+                              // )
                             ],
                           ),
                         ),
                       ),
-                      const Icon(Icons.navigate_next_sharp,
-                          color: Color(textColor))
+                      // const Icon(Icons.navigate_next_sharp,
+                      //     color: Color(textColor))
                     ],
                   ),
                 ));

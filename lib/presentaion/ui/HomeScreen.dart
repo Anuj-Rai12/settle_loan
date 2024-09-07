@@ -42,12 +42,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 }, (load) {
                   return loading();
                 }, (success) {
+                 print("getting data");
+                  print((success.data as List<HomeScreenResponse>)[0].clientsDetails![0].otherExpenses);
+                //   print((success.data as List<HomeScreenResponse>)[0].importantContacts);
+                //   print((success.data as List<HomeScreenResponse>)[0].tipsResources);
+            
                   return successBody(
                       (success.data as List<HomeScreenResponse>)[0]);
                 }, (e) {
+               
                   return error(
                       isValidString(e.error) ? e.e.toString() : e.error!);
-                }))
+                },
+                
+                
+                ))
                 );
   }
 
@@ -75,39 +84,34 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget successBody(HomeScreenResponse data) {
-    var clientDetail = data.clientsDetails?[0];
+    print("i am in success");
+    var clientDetail = data.clientsDetails[0];
+            print("sucesss: ${clientDetail!.startDate.toString()}");
+        print("sucesss: ${clientDetail!.homeLoanEMI.toString()}");
+        print("sucesss: ${clientDetail!.otherExpenses.toString()}");
+        print("sucesss: ${clientDetail!.loanAmount}");
+
+
+    // final date =  clientDetail.startDate;
+    // final homeLoanEmi =  clientDetail.homeLoanEMI;
+    // final otherExp =  clientDetail.otherExpenses;
+    // final loanAmt =  clientDetail.loanAmount;
+        print("before goal");
+
     var goal = GoalsAndTarget.createGoal(
-        clientDetail?.startDate ?? "",
-        clientDetail?.homeLoanEMI ?? "",
-        clientDetail?.otherExpenses ?? "",
-        clientDetail?.loanAmount ?? "",
-        "Monthly Home Loan Amount",
-        "Monthly Unsecured Loan Amount");
-    debugLogs("PROGRESS ${goal[0].progress} ,${goal[1].progress}");
+        date: clientDetail.startDate,
+       emi1: clientDetail.homeLoanEMI ?? "",
+       emi2: clientDetail.otherExpenses ?? "",
+       amount:  clientDetail.loanAmount,
+      loanType1:   "Monthly Home Loan Amount",
+      loanType2:   "Monthly Unsecured Loan Amount");
+
+        print("after goal");
+
+
+    // debugLogs("PROGRESS ${goal[0].progress} ,${goal[1].progress}");
     return Scaffold(
       backgroundColor: Colors.white,
-      // drawer: homeNavigationDrawer(context, data),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   backgroundColor: Colors.white,
-      //   iconTheme: const IconThemeData(color: Color(textColor)),
-      //   title: const Text("Home",
-      //       textAlign: TextAlign.center,
-      //       style: TextStyle(
-      //           color: Color(textColor),
-      //           fontSize: 18,
-      //           fontWeight: FontWeight.bold,
-      //           fontFamily: publicSansReg)),
-      //   centerTitle: true,
-      //   actions: [
-      //     IconButton(
-      //       icon: const Icon(Icons.notifications, color: Colors.black),
-      //       onPressed: () {
-      //         context.showSnackBar("No Notification yet");
-      //       },
-      //     )
-      //   ],
-      // ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,6 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             listOfImportantContact(data.importantContacts ?? [], context),
+
             Container(
               padding: const EdgeInsets.all(16),
               child: const Text("My Goals & Targets",
@@ -253,10 +258,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 22,
                   )),
             ),
-            listOfGoalsAndTargetAdaptor(goal, context),
+           listOfGoalsAndTargetAdaptor(goal, context),
             Container(
               padding: const EdgeInsets.all(16),
-              child: const Text("Tips & Recourse",
+              child: const Text("Tips & Resourse",
                   style: TextStyle(
                     color: Color(textColor),
                     fontFamily: publicSansBold,

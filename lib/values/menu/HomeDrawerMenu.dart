@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:loansettle/data/datastore/LoanSettleSharedPreference.dart';
 import 'package:loansettle/domain/model/GoalsAndTraget.dart';
 import 'package:loansettle/domain/model/home/HomeScreenResponse.dart';
+import 'package:loansettle/presentaion/ui/LoginScreen.dart';
 import 'package:loansettle/presentaion/viewmodel/HomeScreenViewModel.dart';
 import 'package:loansettle/utils/ApiWrapperResponse.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
@@ -52,15 +53,15 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
   }
 
   Widget drawer(HomeScreenResponse data) {
-    var clientDetail = data.clientsDetails?[0];
+    var clientDetail = data.clientsDetails[0];
     var goal = GoalsAndTarget.createGoal(
-        clientDetail?.startDate ?? "",
-        clientDetail?.homeLoanEMI ?? "",
-        clientDetail?.otherExpenses ?? "",
-        clientDetail?.loanAmount ?? "",
-        "Monthly Home Loan Amount",
-        "Monthly Unsecured Loan Amount");
-    debugLogs("PROGRESS ${goal[0].progress} ,${goal[1].progress}");
+        date: clientDetail?.startDate,
+        emi1: clientDetail?.homeLoanEMI ?? "",
+        emi2: clientDetail?.otherExpenses ?? "",
+        amount: clientDetail?.loanAmount,
+        loanType1: "Monthly Home Loan Amount",
+        loanType2: "Monthly Unsecured Loan Amount");
+    // debugLogs("PROGRESS ${goal[0].progress} ,${goal[1].progress}");
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -207,25 +208,35 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
               showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                        title: Text("Are you sure want to logout?",style: TextStyle(fontSize: 17)),
+                        title: Text("Are you sure want to logout?",
+                            style: TextStyle(fontSize: 17)),
                         content: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             TextButton(
                                 onPressed: () {
                                   LoanSettleSharedPreference().logout();
-                                  SystemNavigator.pop();
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginScreen()),
+                                      (route) => false);
                                 },
-                                child: Text("Yes",style: TextStyle(fontSize: 15),)),
+                                child: Text(
+                                  "Yes",
+                                  style: TextStyle(fontSize: 15),
+                                )),
                             TextButton(
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: Text("No",style: TextStyle(fontSize: 15),)),
+                                child: Text(
+                                  "No",
+                                  style: TextStyle(fontSize: 15),
+                                )),
                           ],
                         ),
                       ));
-
             },
           ),
           Container(
