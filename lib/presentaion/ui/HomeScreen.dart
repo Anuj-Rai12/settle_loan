@@ -1,5 +1,10 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loansettle/domain/model/GoalsAndTraget.dart';
 import 'package:loansettle/domain/model/home/HomeScreenResponse.dart';
 import 'package:loansettle/presentaion/ui/adaptor/GoalsTargetsAdaptor.dart';
@@ -14,6 +19,9 @@ import '../../utils/SealedState.dart';
 import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
 import 'adaptor/ResourceAdaptor.dart';
+
+
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,32 +40,35 @@ class _HomeScreenState extends State<HomeScreen> {
     _viewModel?.add(DataRequested(data: null));
   }
 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: SealedBlocBuilder4<HomeScreenViewModel, SealedState, Inital,
                 Loading, Success, Error>(
-            builder: (context, state) => state((initial) {
-                  return loading();
-                }, (load) {
-                  return loading();
-                }, (success) {
-                 print("getting data");
-                  print((success.data as List<HomeScreenResponse>)[0].clientsDetails![0].otherExpenses);
-                //   print((success.data as List<HomeScreenResponse>)[0].importantContacts);
-                //   print((success.data as List<HomeScreenResponse>)[0].tipsResources);
-            
-                  return successBody(
-                      (success.data as List<HomeScreenResponse>)[0]);
-                }, (e) {
-               
-                  return error(
-                      isValidString(e.error) ? e.e.toString() : e.error!);
-                },
-                
-                
-                ))
-                );
+            builder: (context, state) => state(
+                  (initial) {
+                    return loading();
+                  },
+                  (load) {
+                    return loading();
+                  },
+                  (success) {
+                    print("getting data");
+                    print((success.data as List<HomeScreenResponse>)[0]
+                        .clientsDetails![0]
+                        .otherExpenses);
+                    //   print((success.data as List<HomeScreenResponse>)[0].importantContacts);
+                    //   print((success.data as List<HomeScreenResponse>)[0].tipsResources);
+
+                    return successBody(
+                        (success.data as List<HomeScreenResponse>)[0]);
+                  },
+                  (e) {
+                    return error(
+                        isValidString(e.error) ? e.e.toString() : e.error!);
+                  },
+                )));
   }
 
   Widget loading() {
@@ -84,29 +95,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget successBody(HomeScreenResponse data) {
-    print("i am in success");
     var clientDetail = data.clientsDetails[0];
-            print("sucesss: ${clientDetail!.startDate.toString()}");
-        print("sucesss: ${clientDetail!.homeLoanEMI.toString()}");
-        print("sucesss: ${clientDetail!.otherExpenses.toString()}");
-        print("sucesss: ${clientDetail!.loanAmount}");
-
-
-    // final date =  clientDetail.startDate;
-    // final homeLoanEmi =  clientDetail.homeLoanEMI;
-    // final otherExp =  clientDetail.otherExpenses;
-    // final loanAmt =  clientDetail.loanAmount;
-        print("before goal");
 
     var goal = GoalsAndTarget.createGoal(
         date: clientDetail.startDate,
-       emi1: clientDetail.homeLoanEMI ?? "",
-       emi2: clientDetail.otherExpenses ?? "",
-       amount:  clientDetail.loanAmount,
-      loanType1:   "Monthly Home Loan Amount",
-      loanType2:   "Monthly Unsecured Loan Amount");
-
-        print("after goal");
+        emi1: clientDetail.homeLoanEMI ?? "",
+        emi2: clientDetail.otherExpenses ?? "",
+        amount: clientDetail.loanAmount,
+        loanType1: "Monthly Home Loan Amount",
+        loanType2: "Monthly Unsecured Loan Amount");
 
 
     // debugLogs("PROGRESS ${goal[0].progress} ,${goal[1].progress}");
@@ -205,11 +202,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     OutlinedButton.icon(
                       onPressed: () async {
+                        // TODO: Add pdf will come from API via user id
                         debugLogs("Download Resource");
                         //context.goToNextScreenPopUp("/goTOScreen");
                         context.showSnackBar("Loading Pdf");
-                        var f= await createFileOfPdfUrl(
-                            "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf");
+                        var f = await createFileOfPdfUrl(
+                            "https://slcrm.settleloan.in/UploadedFiles/8349_Agreement_Ravi%20Shankor%20Krishnamurthy.pdf");
+                        context.showSnackBar(" File saved in: $f");
                         context.goToPdf(f.path);
                       },
                       style: OutlinedButton.styleFrom(
@@ -248,7 +247,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             listOfImportantContact(data.importantContacts ?? [], context),
-
             Container(
               padding: const EdgeInsets.all(16),
               child: const Text("My Goals & Targets",
@@ -258,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontSize: 22,
                   )),
             ),
-           listOfGoalsAndTargetAdaptor(goal, context),
+            listOfGoalsAndTargetAdaptor(goal, context),
             Container(
               padding: const EdgeInsets.all(16),
               child: const Text("Tips & Resourse",

@@ -10,6 +10,7 @@ import 'package:loansettle/utils/FilesUtils.dart';
 import 'package:loansettle/utils/SealedState.dart';
 import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../presentaion/ui/dialog/showDialogBox.dart';
 import '../color/Colors.dart';
 import '../fonts/Fonts.dart';
@@ -164,6 +165,16 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
               context.goToNextScreen("/negoatationSecreen");
             },
           ),
+
+           ListTile(
+            title: const Text("Generate CR link"),
+            leading: const Icon(Icons.link_rounded),
+            focusColor: const Color(editTextBg),
+            //TODO: the url will get from API.
+            onTap: () {launchUrl(Uri.parse("https://creditreport.bankharassment.com/exp-report/lxsys3t?upn=hEP5nl39xk5j0kTz+ft4/F3l6cOeaVH1MtLMG27rCfYTW1REXHdKTBNLh74ObloyM8DlUQUGG3FK6wEx/W+W3HrDIi76B3IcKdTntQtSaNkW+7W3CSEE61ZCUMfCdvFL"));
+            },
+          ),
+
           ListTile(
             title: const Text("Help & Resource"),
             leading: const Icon(Icons.help),

@@ -1,4 +1,8 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loansettle/domain/model/GoalsAndTraget.dart';
 import 'package:loansettle/domain/model/home/HomeScreenResponse.dart';
 import 'package:loansettle/presentaion/ui/EscalationScreen.dart';
@@ -26,6 +30,63 @@ class Test_MainActivityState extends State<MainActivity> {
     "Resources"
   ];
 
+  late StreamSubscription? _subscription;
+  bool isDeviceConnected = false;
+  bool isAlertSet = false;
+  @override
+  void initState() {
+    getConnectivity();
+    super.initState();
+  }
+
+  getConnectivity() {
+    _subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((List<ConnectivityResult> result) async {
+      isDeviceConnected = await InternetConnectionChecker().hasConnection;
+      if (!isDeviceConnected && isAlertSet == false) {
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (context) => showDialogboxForInternet());
+        setState(() {
+          isAlertSet = true;
+        });
+      }
+    });
+  }
+
+  showDialogboxForInternet() => AlertDialog.adaptive(
+        title: const Text('No Connection'),
+        content: Text(
+          'Please check your internet connectivity',
+        ),
+        actions: <Widget>[
+          TextButton(
+              child: const Text('ok'),
+              onPressed: () async {
+                setState(() {
+                  isAlertSet = false;
+                });
+                isDeviceConnected =
+                    await InternetConnectionChecker().hasConnection;
+                if (!isDeviceConnected) {
+                  showDialogboxForInternet();
+                  setState(() {
+                    isAlertSet = true;
+                  });
+                } else {
+                  Navigator.pop(context);
+                }
+              }),
+        ],
+      );
+
+@override
+      void dispose(){
+    _subscription!.cancel();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -64,9 +125,15 @@ class Test_MainActivityState extends State<MainActivity> {
       body: SafeArea(
         child: <Widget>[
           const HomeScreen(),
-           NegotiationScreen(isNavigateFromNavigationBar: true,),
-           EscalationScreen(isNavigateFromNavigationBar: true,),
-           HelpAndResourcesScreen(isNavigateFromNavigationBar: true,)
+          NegotiationScreen(
+            isNavigateFromNavigationBar: true,
+          ),
+          EscalationScreen(
+            isNavigateFromNavigationBar: true,
+          ),
+          HelpAndResourcesScreen(
+            isNavigateFromNavigationBar: true,
+          )
         ][currentPageIndex],
       ),
       bottomNavigationBar: myNavigationBarr(),

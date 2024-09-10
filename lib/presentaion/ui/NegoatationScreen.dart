@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loansettle/presentaion/viewmodel/NegotiationStatusViewModel.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
 import 'package:loansettle/values/res/Resources.dart';
@@ -21,7 +25,7 @@ class NegotiationScreen extends StatefulWidget {
 
 class _NegotiationScreenState extends State<NegotiationScreen> {
   NegotiationStatusViewModel? _viewModel;
-
+  
   @override
   void initState() {
     super.initState();

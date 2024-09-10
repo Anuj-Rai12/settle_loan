@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:loansettle/presentaion/viewmodel/TipsAndResoucesViewModel.dart';
 import 'package:loansettle/utils/BlocEvent.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
@@ -21,10 +25,12 @@ class HelpAndResourcesScreen extends StatefulWidget {
 
 class _HelpAndResourcesScreenState extends State<HelpAndResourcesScreen> {
   TipsAndResourcesViewModel? _viewModel;
+  
 
   @override
   void initState() {
     super.initState();
+    
     _viewModel = BlocProvider.of<TipsAndResourcesViewModel>(context);
     _viewModel?.add(DataRequested(data: ""));
   }

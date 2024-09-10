@@ -62,26 +62,28 @@ Widget listOfGoalsAndTargetAdaptor(
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            const Text("Due Date",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: publicSansReg,
-                                    color: Color(textColor))),
-                            Text(
-                              data.dueDate,
-                              style: const TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: publicSansBold,
-                                  color: Color(textColor)),
-                            )
-                          ],
-                        ),
-                      )
+
+                      //! Uncomment the following code for showing the due date.
+                      // Padding(
+                      //   padding: const EdgeInsets.only(left: 16),
+                      //   child: Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.end,
+                      //     children: [
+                      //       const Text("Due Date",
+                      //           style: TextStyle(
+                      //               fontSize: 16,
+                      //               fontFamily: publicSansReg,
+                      //               color: Color(textColor))),
+                      //       Text(
+                      //         data.dueDate,
+                      //         style: const TextStyle(
+                      //             fontSize: 16,
+                      //             fontFamily: publicSansBold,
+                      //             color: Color(textColor)),
+                      //       )
+                      //     ],
+                      //   ),
+                      // )
                     ],
                   ),
                 ));
