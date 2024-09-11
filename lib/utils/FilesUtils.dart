@@ -100,6 +100,7 @@ class ApiUrl {
   static const String benfitOfEndPoint = "api/details/Benefits";
 
   static const String homeScreenApiEndPoint = "api/details/DashboardInfo/";
+  static const String generateCrLinkEndPoint = "api/details/GenerateCRlink/";
 }
 
 Future<void> openMap(double latitude, double longitude) async {

@@ -3,8 +3,8 @@ class CreditScoreData {
 
   CreditScoreData(this.desc);
 
-  static String generateDesc({required int creditScore, required int time}) {
-    return "Increasing the score by $creditScore in $time months is difficult. Hence showing the results for increase by 10 in $time months";
+  static String generateDesc({required int creditScore, required int time,required achiveCreditScore}) {
+    return "Hence showing the results for increase by $achiveCreditScore in $time - ${time+2} months";
   }
 
   static int howToAchive(double current, double achive){

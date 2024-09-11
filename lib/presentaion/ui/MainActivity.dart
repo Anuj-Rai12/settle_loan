@@ -57,7 +57,7 @@ class Test_MainActivityState extends State<MainActivity> {
   }
 
   showDialogboxForInternet() => AlertDialog.adaptive(
-        title: const Text('No Connection'),
+        title: const Text('No Internet Connection'),
         content: Text(
           'Please check your internet connectivity',
         ),

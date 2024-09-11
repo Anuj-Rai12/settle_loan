@@ -59,7 +59,7 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
               makeSpaceVertically(),
               buildDescription(
                   desc: CreditScoreData.generateDesc(creditScore: CreditScoreData.howToAchive(
-                      widget.CurrentCridtScore, widget.achiveCreditScore), time: widget.time.toInt())),
+                      widget.CurrentCridtScore, widget.achiveCreditScore), time: widget.time.toInt(), achiveCreditScore: widget.achiveCreditScore.toInt()),),
               makeSpaceVertically(),
               const Text("Try This",
                   style: TextStyle(

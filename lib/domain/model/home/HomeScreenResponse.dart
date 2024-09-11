@@ -87,6 +87,7 @@ class ClientsDetails {
   String? homeLoanEMI;
   String? otherExpenses;
   String? nextEMIdate;
+  String? documentUrl;
 
   ClientsDetails(
       {this.clientid,
@@ -107,7 +108,9 @@ class ClientsDetails {
         this.startDate,
         this.homeLoanEMI,
         this.otherExpenses,
-        this.nextEMIdate});
+        this.nextEMIdate,
+        this.documentUrl
+        });
 
   ClientsDetails.fromJson(Map<String, dynamic> json) {
     clientid = json['Clientid'];
@@ -129,6 +132,7 @@ class ClientsDetails {
     homeLoanEMI = json['HomeLoanEMI'];
     otherExpenses = json['OtherExpenses'];
     nextEMIdate = json['NextEMIdate'];
+    documentUrl = json['DocumentURL'];
   }
 
   Map<String, dynamic> toJson() {
@@ -152,6 +156,7 @@ class ClientsDetails {
     data['HomeLoanEMI'] = homeLoanEMI;
     data['OtherExpenses'] = otherExpenses;
     data['NextEMIdate'] = nextEMIdate;
+    data['DocumentURL'] = documentUrl;
     return data;
   }
 }

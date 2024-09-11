@@ -36,18 +36,23 @@ class _AnyTimeLawyerState extends State<AnyTimeLawyer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back,color: Colors.black,)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
         title: const Text("Anytime Lawyer",
-                style: TextStyle(
-                  color: Color(textColor),
-                  fontFamily: publicSansBold,
-                  fontSize: 18,
-                )),
-                centerTitle: false,
-                backgroundColor: Colors.white,
-                elevation: 0,
+            style: TextStyle(
+              color: Color(textColor),
+              fontFamily: publicSansBold,
+              fontSize: 18,
+            )),
+        centerTitle: false,
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
       backgroundColor: Colors.white,
       body: SealedBlocBuilder4<BenefitOfPermiumViewModel, SealedState, Inital,
@@ -108,7 +113,7 @@ class _AnyTimeLawyerState extends State<AnyTimeLawyer> {
         // SliverToBoxAdapter(
         //   child: Container(
         //     padding: const EdgeInsets.only(left: 16, right: 16, bottom: 12,top: 12),
-        //     child: 
+        //     child:
         //   ),
         // ),
         SliverToBoxAdapter(
@@ -138,9 +143,9 @@ class _AnyTimeLawyerState extends State<AnyTimeLawyer> {
         SliverToBoxAdapter(
           child: Container(
             margin:
-            const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+                const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
             child: TextButton(
-                onPressed: ()  async {
+                onPressed: () async {
                   String email = Uri.encodeComponent('finane@settleloan.in');
                   String subject = Uri.encodeComponent('ATL subscription');
                   Uri uri = Uri.parse('mailto:$email?subject=$subject');

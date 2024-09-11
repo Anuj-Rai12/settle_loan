@@ -43,7 +43,7 @@ class _IncreaseCIBLScoreState extends State<IncreaseCIBLScore> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("CiBl Score",
+                const Text("CiBil Score",
                     style: TextStyle(
                         color: Color(textColor),
                         fontFamily: publicSansReg,
@@ -67,7 +67,7 @@ class _IncreaseCIBLScoreState extends State<IncreaseCIBLScore> {
                         fontSize: 16),
                     decoration: const InputDecoration(
                         border: InputBorder.none,
-                        hintText: "Enter Your CiBl Score",
+                        hintText: "Enter Your CiBil Score",
                         hintStyle: TextStyle(
                             color: Color(borderTint),
                             fontFamily: publicSansReg,
@@ -89,7 +89,7 @@ class _IncreaseCIBLScoreState extends State<IncreaseCIBLScore> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Yours Target Score",
+                const Text("Target Score",
                     style: TextStyle(
                         color: Color(textColor),
                         fontFamily: publicSansReg,

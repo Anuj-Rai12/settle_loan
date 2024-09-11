@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:loansettle/data/datastore/LoanSettleSharedPreference.dart';
+import 'package:loansettle/data/repo/generateCrLinkRepo.dart';
 import 'package:loansettle/domain/model/GoalsAndTraget.dart';
 import 'package:loansettle/domain/model/home/HomeScreenResponse.dart';
 import 'package:loansettle/presentaion/ui/LoginScreen.dart';
@@ -170,13 +171,14 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
             title: const Text("Generate CR link"),
             leading: const Icon(Icons.link_rounded),
             focusColor: const Color(editTextBg),
-            //TODO: the url will get from API.
-            onTap: () {launchUrl(Uri.parse("https://creditreport.bankharassment.com/exp-report/lxsys3t?upn=hEP5nl39xk5j0kTz+ft4/F3l6cOeaVH1MtLMG27rCfYTW1REXHdKTBNLh74ObloyM8DlUQUGG3FK6wEx/W+W3HrDIi76B3IcKdTntQtSaNkW+7W3CSEE61ZCUMfCdvFL"));
+            onTap: () async{
+              final response = CrLinkGenrator();
+             launchUrl(Uri.parse(await  response.getCrLink()));
             },
           ),
 
           ListTile(
-            title: const Text("Help & Resource"),
+            title: const Text("What should you do ?"),
             leading: const Icon(Icons.help),
             focusColor: const Color(editTextBg),
             onTap: () {

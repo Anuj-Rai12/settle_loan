@@ -154,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: <TextSpan>[
                     const TextSpan(text: "Monthly EMI: "),
                     TextSpan(
-                        text: "$Rupess_Symbol${clientDetail?.eMI ?? ""}",
+                        text: "$Rupess_Symbol${clientDetail.eMI ?? ""}",
                         style: const TextStyle(fontFamily: publicSansBold))
                   ])),
             ),
@@ -176,17 +176,17 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Container(
               padding: const EdgeInsets.all(16),
-              child: const Text("Contact Agreement",
+              child: const Text("Contract Agreement and settllement tenure",
                   style: TextStyle(
                     color: Color(textColor),
                     fontFamily: publicSansBold,
-                    fontSize: 22,
+                    fontSize: 21,
                   )),
             ),
             Container(
               padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
               child: const Text(
-                  "Click Below button download the contact agreement settlement tenure with Save Money.",
+                  "Click Below button to download the contract agreement settlement tenure with Save Money.",
                   style: TextStyle(
                     color: Color(editTextColor),
                     fontFamily: publicSansReg,
@@ -202,13 +202,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     OutlinedButton.icon(
                       onPressed: () async {
-                        // TODO: Add pdf will come from API via user id
                         debugLogs("Download Resource");
                         //context.goToNextScreenPopUp("/goTOScreen");
                         context.showSnackBar("Loading Pdf");
                         var f = await createFileOfPdfUrl(
-                            "https://slcrm.settleloan.in/UploadedFiles/8349_Agreement_Ravi%20Shankor%20Krishnamurthy.pdf");
-                        context.showSnackBar(" File saved in: $f");
+                           "${clientDetail.documentUrl}");
+                        context.showSnackBar("File saved in: $f");
                         context.goToPdf(f.path);
                       },
                       style: OutlinedButton.styleFrom(
@@ -259,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
             listOfGoalsAndTargetAdaptor(goal, context),
             Container(
               padding: const EdgeInsets.all(16),
-              child: const Text("Tips & Resourse",
+              child: const Text("tips & resources",
                   style: TextStyle(
                     color: Color(textColor),
                     fontFamily: publicSansBold,

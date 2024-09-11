@@ -82,6 +82,7 @@ flutter:
     - assets/images/walk_throught_screen_three.png
     - assets/images/walk_throught_screen_two.png
     - assets/images/delete_me.png
+    - assets/images/person.jpg
     - assets/images/documentTwo.png
     - assets/images/documentOne.png
     - assets/images/anytimelaywer.png

@@ -176,17 +176,19 @@ class _NegotiationScreenState extends State<NegotiationScreen> {
                                               color: Color(editTextColor),
                                               fontSize: 14)),
                                     ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 8),
-                                      child: const Text(
-                                          "Current amount offered (including  o/s)",
-                                          maxLines: 3,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                              fontFamily: publicSansReg,
-                                              color: Color(textColor),
-                                              fontSize: 16)),
-                                    ),
+                                        data.currentAmountOfferred!="0"?Column(
+                                      children: [
+                                        Container(
+                                          margin: const EdgeInsets.only(top: 8),
+                                          child: const Text(
+                                              "Current amount offered (including  o/s)",
+                                              maxLines: 3,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                  fontFamily: publicSansReg,
+                                                  color: Color(textColor),
+                                                  fontSize: 16)),
+                                        ),
                                     Container(
                                       margin: const EdgeInsets.only(top: 8),
                                       child: Text(
@@ -198,6 +200,8 @@ class _NegotiationScreenState extends State<NegotiationScreen> {
                                               color: Color(editTextColor),
                                               fontSize: 14)),
                                     ),
+                                      ],
+                                    ):SizedBox()
                                   ],
                                 ),
                               ),

@@ -35,7 +35,7 @@ Widget listOfImportantContact(
                                 image: "",
                                 imageErrorBuilder:
                                     (context, error, stackTrace) {
-                                  return Image.asset(profilePic,
+                                  return Image.asset(profilePic2,
                                       fit: BoxFit.cover);
                                 },
                                 fit: BoxFit.cover,
