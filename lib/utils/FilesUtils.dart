@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:io';
 
@@ -27,9 +26,11 @@ extension navigation on BuildContext {
   void goToNextScreenPopUp(String loc) {
     Navigator.pushNamedAndRemoveUntil(this, loc, (route) => false);
   }
+
   void onBackPress() {
     Navigator.pop(this);
   }
+
   void goToDetailScreen(String title, String desc, String? link) {
     Navigator.push(
       this,
@@ -40,13 +41,17 @@ extension navigation on BuildContext {
     );
   }
 
-
-  void goToCridetBuilderScreen({required double currentScore, required double achiviedScore, required double time}) {
+  void goToCridetBuilderScreen(
+      {required double currentScore,
+      required double achiviedScore,
+      required double time}) {
     Navigator.push(
       this,
       MaterialPageRoute(
-        builder: (context) =>
-            IncreaseCibleScoreDetails(achiveCreditScore: achiviedScore,CurrentCridtScore: currentScore,time: time),
+        builder: (context) => IncreaseCibleScoreDetails(
+            achiveCreditScore: achiviedScore,
+            CurrentCridtScore: currentScore,
+            time: time),
       ),
     );
   }
@@ -55,8 +60,7 @@ extension navigation on BuildContext {
     Navigator.push(
       this,
       MaterialPageRoute(
-        builder: (context) =>
-            PDFScreen(path: link),
+        builder: (context) => PDFScreen(path: link),
       ),
     );
   }
@@ -74,7 +78,7 @@ extension msg on BuildContext {
 }
 
 extension clip on BuildContext {
-   void copyText(String str) {
+  void copyText(String str) {
     Clipboard.setData(ClipboardData(text: str));
     showSnackBar("copied!!");
   }
@@ -109,9 +113,7 @@ Future<void> openMap(double latitude, double longitude) async {
   FlutterWebBrowser.openWebPage(url: googleUrl);
 }
 
-
-
-Future<File> createFileOfPdfUrl(String url) async {
+Future<File> createFileOfPdfUrl(String url, BuildContext context) async {
   Completer<File> completer = Completer();
   print("Start download file from internet!");
   try {
@@ -121,13 +123,19 @@ Future<File> createFileOfPdfUrl(String url) async {
     var request = await HttpClient().getUrl(Uri.parse(url));
     var response = await request.close();
     var bytes = await consolidateHttpClientResponseBytes(response);
-    var dir = await getApplicationDocumentsDirectory();
-    print("Download files");
-    print("${dir.path}/$filename");
-    File file = File("${dir.path}/$filename");
+    Directory? dir;
 
-    await file.writeAsBytes(bytes, flush: true);
-    completer.complete(file);
+    if (Platform.isAndroid == true) {
+      dir = await getDownloadsDirectory();
+
+      String originalString = dir!.path.toString();
+      String newString = originalString.replaceAll("/storage/emulated/0/", "");
+      File file = File("${dir.path}/$filename");
+
+      context.showSnackBar("File saved in: $newString");
+      await file.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
+    }
   } catch (e) {
     throw Exception('Error parsing asset file!');
   }

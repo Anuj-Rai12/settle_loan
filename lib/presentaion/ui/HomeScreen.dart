@@ -206,8 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         //context.goToNextScreenPopUp("/goTOScreen");
                         context.showSnackBar("Loading Pdf");
                         var f = await createFileOfPdfUrl(
-                           "${clientDetail.documentUrl}");
-                        context.showSnackBar("File saved in: $f");
+                           "${clientDetail.documentUrl}",context);
                         context.goToPdf(f.path);
                       },
                       style: OutlinedButton.styleFrom(

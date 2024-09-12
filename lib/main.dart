@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
                 const ComplaintAgainstRecoveryAgent(),
             "/intimationDoc": (context) => const IntimationDocument(),
             "/escalation": (context) => EscalationScreen(
-                  isNavigateFromNavigationBar: false,
+                  isNavigateFromNavigationBar: false, 
                 ),
             "/astroSignScreen": (context) => const AstroSignScreen(),
             "/ciblScore": (context) => const IncreaseCIBLScore(),

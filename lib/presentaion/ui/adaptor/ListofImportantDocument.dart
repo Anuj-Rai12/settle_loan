@@ -1,12 +1,18 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
 import 'package:loansettle/values/res/Resources.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../../domain/model/importantdocument/ImportantDocument.dart';
 import '../../../values/color/Colors.dart';
 import '../../../values/fonts/Fonts.dart';
 
 Widget listOfImportantDocument(
     List<ImportantDocument> arr, BuildContext context) {
+  Completer<File> completer = Completer();
   var docLogo = [document1, document2];
 
   return Column(
@@ -18,9 +24,11 @@ Widget listOfImportantDocument(
           itemBuilder: (context, position) {
             var data = arr[position];
             return InkWell(
-                onTap: () {
-                  context.goToDetailScreen(data.title ?? "",
-                      data.description ?? "", data.documentPath);
+                onTap: () async {
+                   var f = await createFileOfPdfUrl(
+                           "${data.documentPath}",context);
+                  // context.goToDetailScreen(data.title ?? "",
+                  //     data.description ?? "", data.documentPath);
                 },
                 child: Container(
                   margin: const EdgeInsets.only(
@@ -46,14 +54,14 @@ Widget listOfImportantDocument(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(data.title??"",
+                              Text(data.title ?? "",
                                   style: const TextStyle(
                                       fontFamily: publicSansBold,
                                       color: Color(textColor),
                                       fontSize: 16)),
                               Container(
                                 margin: const EdgeInsets.only(top: 5),
-                                child: Text(data.description??"",
+                                child: Text(data.description ?? "",
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
