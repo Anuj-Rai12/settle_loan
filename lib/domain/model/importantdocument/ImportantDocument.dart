@@ -15,10 +15,10 @@ class ImportantDocument {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['DocumentPath'] = this.documentPath;
-    data['Title'] = this.title;
-    data['Description'] = this.description;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['DocumentPath'] = documentPath;
+    data['Title'] = title;
+    data['Description'] = description;
     return data;
   }
 }

@@ -1,6 +1,7 @@
 /// Data : {"Email":"Abhichandra0326@gmail.com","Password":"123","ClientDetails":[{"Clientid":5024,"ClientCode":"CT29875024","ClientName":"ABHISHEK CHANDRA","Mobile":"6200104499","Address":"","City":"Delhi NCR","PinCode":"","Remark":"","PanCard":"AMHPC6545K","DOB":"14 Jun 1990"}],"Result":1,"Message":null}
 /// response : "Success"
 /// Message : null
+library;
 
 /*class LoginResponse {
   LoginResponse({
@@ -262,7 +263,7 @@ class Data {
     if (json['ClientDetails'] != null) {
       clientDetails = <ClientDetails>[];
       json['ClientDetails'].forEach((v) {
-        clientDetails!.add(new ClientDetails.fromJson(v));
+        clientDetails!.add(ClientDetails.fromJson(v));
       });
     }
     result = json['Result'];
@@ -271,14 +272,14 @@ class Data {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['Email'] = this.email;
-    data['Password'] = this.password;
-    if (this.clientDetails != null) {
+    data['Email'] = email;
+    data['Password'] = password;
+    if (clientDetails != null) {
       data['ClientDetails'] =
-          this.clientDetails!.map((v) => v.toJson()).toList();
+          clientDetails!.map((v) => v.toJson()).toList();
     }
-    data['Result'] = this.result;
-    data['Message'] = this.message;
+    data['Result'] = result;
+    data['Message'] = message;
     return data;
   }
 }
@@ -321,17 +322,17 @@ class ClientDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Clientid'] = this.clientid;
-    data['ClientCode'] = this.clientCode;
-    data['ClientName'] = this.clientName;
-    data['Mobile'] = this.mobile;
-    data['Address'] = this.address;
-    data['City'] = this.city;
-    data['PinCode'] = this.pinCode;
-    data['Remark'] = this.remark;
-    data['PanCard'] = this.panCard;
-    data['DOB'] = this.dOB;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Clientid'] = clientid;
+    data['ClientCode'] = clientCode;
+    data['ClientName'] = clientName;
+    data['Mobile'] = mobile;
+    data['Address'] = address;
+    data['City'] = city;
+    data['PinCode'] = pinCode;
+    data['Remark'] = remark;
+    data['PanCard'] = panCard;
+    data['DOB'] = dOB;
     return data;
   }
 }

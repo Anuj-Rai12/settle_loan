@@ -18,7 +18,7 @@ class NegotiationStatusRepository extends NegotiationScreenApi {
     if (response.statusCode == 200) {
       var value = (await response.stream.bytesToString());
       final List<dynamic> jsonDecode = json.decode(value);
-      debugLogs("${jsonDecode}");
+      debugLogs("$jsonDecode");
       return jsonDecode.map((e) => NegotiationStatus.fromJson(e)).toList();
     } else {
       throw Exception(response.reasonPhrase);

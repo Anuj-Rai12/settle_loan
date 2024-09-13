@@ -1,5 +1,6 @@
 /// Email : "Abhichandra0326@gmail.com"
 /// Password : "123"
+library;
 
 class LoginRequest {
   LoginRequest({

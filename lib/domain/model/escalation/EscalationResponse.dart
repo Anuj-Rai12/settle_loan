@@ -23,11 +23,11 @@ class EscalationResponse {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['Title'] = this.title;
+    data['Title'] = title;
     data['Description'] = description;
-    data['Email1'] = this.email1;
-    data['Email2'] = this.email2;
-    data['OtherDetails'] = this.otherDetails;
+    data['Email1'] = email1;
+    data['Email2'] = email2;
+    data['OtherDetails'] = otherDetails;
     return data;
   }
 }

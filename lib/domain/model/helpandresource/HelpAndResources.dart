@@ -42,8 +42,8 @@ class TipsData {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['Question'] = this.question;
-    data['Answer'] = this.answer;
+    data['Question'] = question;
+    data['Answer'] = answer;
     return data;
   }
 }

@@ -11,9 +11,9 @@ class BenfitPermiumInstance {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Title'] = this.title;
-    data['Description'] = this.description;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Title'] = title;
+    data['Description'] = description;
     return data;
   }
 }

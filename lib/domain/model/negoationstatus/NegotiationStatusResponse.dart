@@ -29,15 +29,15 @@ class NegotiationStatus {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Bank'] = this.bank;
-    data['SettlementIntimation'] = this.settlementIntimation;
-    data['RequestServiceNo'] = this.requestServiceNo;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Bank'] = bank;
+    data['SettlementIntimation'] = settlementIntimation;
+    data['RequestServiceNo'] = requestServiceNo;
     data['PossibilityofSettlementAcqired'] =
-        this.possibilityofSettlementAcqired;
-    data['AgreementStatusAmt'] = this.agreementStatusAmt;
-    data['CurrentAmountOfferred'] = this.currentAmountOfferred;
-    data['Documentation'] = this.documentation;
+        possibilityofSettlementAcqired;
+    data['AgreementStatusAmt'] = agreementStatusAmt;
+    data['CurrentAmountOfferred'] = currentAmountOfferred;
+    data['Documentation'] = documentation;
     return data;
   }
 }

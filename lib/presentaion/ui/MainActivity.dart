@@ -91,7 +91,7 @@ class Test_MainActivityState extends State<MainActivity> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
-      drawer: HomedrawerMenu(),
+      drawer: const HomedrawerMenu(),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -112,7 +112,7 @@ class Test_MainActivityState extends State<MainActivity> {
                 fontFamily: publicSansReg,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: const Color(textColor))),
+                color: Color(textColor))),
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications, color: Colors.black),

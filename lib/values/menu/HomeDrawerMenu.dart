@@ -30,9 +30,9 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
     return SealedBlocBuilder4<HomeScreenViewModel, SealedState, Inital, Loading,
             Success, Error>(
         builder: (context, state) => state((initial) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }, (load) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }, (success) {
               return drawer((success.data as List<HomeScreenResponse>)[0]);
             }, (e) {
@@ -57,10 +57,10 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
   Widget drawer(HomeScreenResponse data) {
     var clientDetail = data.clientsDetails[0];
     var goal = GoalsAndTarget.createGoal(
-        date: clientDetail?.startDate,
-        emi1: clientDetail?.homeLoanEMI ?? "",
-        emi2: clientDetail?.otherExpenses ?? "",
-        amount: clientDetail?.loanAmount,
+        date: clientDetail.startDate,
+        emi1: clientDetail.homeLoanEMI ?? "",
+        emi2: clientDetail.otherExpenses ?? "",
+        amount: clientDetail.loanAmount,
         loanType1: "Monthly Home Loan Amount",
         loanType2: "Monthly Unsecured Loan Amount");
     // debugLogs("PROGRESS ${goal[0].progress} ,${goal[1].progress}");
@@ -91,17 +91,17 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(clientDetail?.clientName ?? "",
+                        Text(clientDetail.clientName ?? "",
                             style: const TextStyle(
                                 fontFamily: publicSansBold,
                                 color: Color(textColor),
                                 fontSize: 16)),
-                        Text(clientDetail?.city ?? "",
+                        Text(clientDetail.city ?? "",
                             style: const TextStyle(
                                 fontFamily: publicSansReg,
                                 color: Color(editTextColor),
                                 fontSize: 14)),
-                        Text(clientDetail?.mobile ?? "",
+                        Text(clientDetail.mobile ?? "",
                             style: const TextStyle(
                                 fontFamily: publicSansReg,
                                 color: Color(editTextColor),
@@ -221,7 +221,7 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
               showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                        title: Text("Are you sure want to logout?",
+                        title: const Text("Are you sure want to logout?",
                             style: TextStyle(fontSize: 17)),
                         content: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -232,10 +232,10 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
                                   Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => LoginScreen()),
+                                          builder: (context) => const LoginScreen()),
                                       (route) => false);
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Yes",
                                   style: TextStyle(fontSize: 15),
                                 )),
@@ -243,7 +243,7 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: Text(
+                                child: const Text(
                                   "No",
                                   style: TextStyle(fontSize: 15),
                                 )),

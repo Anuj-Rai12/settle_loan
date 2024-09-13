@@ -44,19 +44,19 @@ class ImportantContacts {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Clientid'] = this.clientid;
-    data['ClientCode'] = this.clientCode;
-    data['ClientName'] = this.clientName;
-    data['ClientMobile'] = this.clientMobile;
-    data['ClientEmail'] = this.clientEmail;
-    data['FinancialAdvisorName'] = this.financialAdvisorName;
-    data['FinancialAdvisorMobileNo'] = this.financialAdvisorMobileNo;
-    data['FinancialAdvisorEmail'] = this.financialAdvisorEmail;
-    data['LegalAdvisorName'] = this.legalAdvisorName;
-    data['LegalAdvisorMobileNo'] = this.legalAdvisorMobileNo;
-    data['LegalAdvisorEmail'] = this.legalAdvisorEmail;
-    data['LegalAdvisorImagepath'] = this.legalAdvisorImagepath;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Clientid'] = clientid;
+    data['ClientCode'] = clientCode;
+    data['ClientName'] = clientName;
+    data['ClientMobile'] = clientMobile;
+    data['ClientEmail'] = clientEmail;
+    data['FinancialAdvisorName'] = financialAdvisorName;
+    data['FinancialAdvisorMobileNo'] = financialAdvisorMobileNo;
+    data['FinancialAdvisorEmail'] = financialAdvisorEmail;
+    data['LegalAdvisorName'] = legalAdvisorName;
+    data['LegalAdvisorMobileNo'] = legalAdvisorMobileNo;
+    data['LegalAdvisorEmail'] = legalAdvisorEmail;
+    data['LegalAdvisorImagepath'] = legalAdvisorImagepath;
     return data;
   }
 }

@@ -7,8 +7,9 @@ import '../../values/fonts/Fonts.dart';
 class PDFScreen extends StatefulWidget {
   String? path;
 
-  PDFScreen({Key? key, this.path}) : super(key: key);
+  PDFScreen({super.key, this.path});
 
+  @override
   _PDFScreenState createState() => _PDFScreenState();
 }
 
@@ -48,9 +49,9 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
             fitPolicy: FitPolicy.BOTH,
             preventLinkNavigation: false,
             // if set to true the link is handled in flutter
-            onRender: (_pages) {
+            onRender: (pages) {
               setState(() {
-                pages = _pages;
+                pages = pages;
                 isReady = true;
               });
             },

@@ -15,7 +15,7 @@ class HomeScreenResponse {
     if (json['ClientsDetails'] != null) {
        clientsDetails = <ClientsDetails>[];
       json['ClientsDetails'].forEach((v) {
-        clientsDetails!.add(ClientsDetails.fromJson(v));
+        clientsDetails.add(ClientsDetails.fromJson(v));
       });
     }
      }catch (e) {
@@ -40,7 +40,7 @@ class HomeScreenResponse {
     if (json['TipsResources'] != null) {
       tipsResources = <TipsResources>[];
       json['TipsResources'].forEach((v) {
-        tipsResources!.add(new TipsResources.fromJson(v));
+        tipsResources!.add(TipsResources.fromJson(v));
       });
     }
 
@@ -50,18 +50,18 @@ class HomeScreenResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.clientsDetails != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (clientsDetails != null) {
       data['ClientsDetails'] =
-          this.clientsDetails!.map((v) => v.toJson()).toList();
+          clientsDetails.map((v) => v.toJson()).toList();
     }
-    if (this.importantContacts != null) {
+    if (importantContacts != null) {
       data['ImportantContacts'] =
-          this.importantContacts!.map((v) => v.toJson()).toList();
+          importantContacts!.map((v) => v.toJson()).toList();
     }
-    if (this.tipsResources != null) {
+    if (tipsResources != null) {
       data['TipsResources'] =
-          this.tipsResources!.map((v) => v.toJson()).toList();
+          tipsResources!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -136,7 +136,7 @@ class ClientsDetails {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['Clientid'] = clientid;
     data['ClientCode'] = clientCode;
     data['ClientName'] = clientName;
@@ -204,10 +204,10 @@ class TipsResources {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Imagepath'] = this.imagepath;
-    data['Title'] = this.title;
-    data['Description'] = this.description;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Imagepath'] = imagepath;
+    data['Title'] = title;
+    data['Description'] = description;
     return data;
   }
 }

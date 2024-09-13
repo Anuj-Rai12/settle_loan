@@ -5,7 +5,7 @@ import 'ApiWrapperResponse.dart';
 class SealedState<T,S> extends Union4Impl<Inital,Loading,Success,Error>{
   static const unions=Quartet<Inital,Loading,Success,Error>();
 
-  SealedState._(Union4<Inital,Loading,Success,Error> union):super(union);
+  SealedState._(super.union);
   factory SealedState.initial()=> SealedState._(unions.first(Inital()));
 
   factory SealedState.loading({required T data})=> SealedState._(unions.second(Loading(data)));

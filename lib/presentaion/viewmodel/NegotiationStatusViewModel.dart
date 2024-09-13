@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loansettle/data/repo/NegotiationStatusRepository.dart';
 import 'package:loansettle/utils/BlocEvent.dart';
-import 'package:loansettle/utils/FilesUtils.dart';
 import 'package:loansettle/utils/SealedState.dart';
 
 import '../../data/datastore/LoanSettleSharedPreference.dart';
