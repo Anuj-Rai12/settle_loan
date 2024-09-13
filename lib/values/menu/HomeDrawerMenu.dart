@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:loansettle/data/datastore/LoanSettleSharedPreference.dart';
 import 'package:loansettle/data/repo/generateCrLinkRepo.dart';
 import 'package:loansettle/domain/model/GoalsAndTraget.dart';
@@ -12,7 +11,6 @@ import 'package:loansettle/utils/SealedState.dart';
 import 'package:sealed_flutter_bloc/sealed_flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../presentaion/ui/dialog/showDialogBox.dart';
 import '../color/Colors.dart';
 import '../fonts/Fonts.dart';
 import '../res/Resources.dart';

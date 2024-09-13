@@ -105,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.only(
                     left: 16, right: 16, top: 24, bottom: 12),
                 child: Text(
-                  "Welcome ${clientDetail?.clientName ?? ""},",
+                  "Welcome ${clientDetail.clientName ?? ""},",
                   style: const TextStyle(
                       fontSize: 20,
                       fontFamily: publicSansBold,
@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.only(
                     left: 16, right: 16, top: 15, bottom: 12),
                 child: Text(
-                  "$Rupess_Symbol ${clientDetail?.loanAmount}",
+                  "$Rupess_Symbol ${clientDetail.loanAmount}",
                   style: const TextStyle(
                       fontSize: 32,
                       fontFamily: publicSansBold,
@@ -158,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: <TextSpan>[
                     const TextSpan(text: "Start Date: "),
                     TextSpan(
-                        text: clientDetail?.startDate ?? "",
+                        text: clientDetail.startDate ?? "",
                         style: const TextStyle(color: Color(editTextColor)))
                   ])),
             ),
@@ -248,7 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
             listOfGoalsAndTargetAdaptor(goal, context),
             Container(
               padding: const EdgeInsets.all(16),
-              child: const Text("Tips & Recourse",
+              child: const Text("Tips & Resourse",
                   style: TextStyle(
                     color: Color(textColor),
                     fontFamily: publicSansBold,

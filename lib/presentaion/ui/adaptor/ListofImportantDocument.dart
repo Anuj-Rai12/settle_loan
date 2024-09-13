@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
 import 'package:loansettle/values/res/Resources.dart';
-import 'package:path_provider/path_provider.dart';
 import '../../../domain/model/importantdocument/ImportantDocument.dart';
 import '../../../values/color/Colors.dart';
 import '../../../values/fonts/Fonts.dart';

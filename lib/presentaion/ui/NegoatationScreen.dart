@@ -201,7 +201,7 @@ class _NegotiationScreenState extends State<NegotiationScreen> {
                                               fontSize: 14)),
                                     ),
                                       ],
-                                    ):SizedBox()
+                                    ):const SizedBox()
                                   ],
                                 ),
                               ),

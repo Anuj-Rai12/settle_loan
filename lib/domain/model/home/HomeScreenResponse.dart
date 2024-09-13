@@ -51,11 +51,9 @@ class HomeScreenResponse {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (clientsDetails != null) {
-      data['ClientsDetails'] =
-          clientsDetails.map((v) => v.toJson()).toList();
-    }
-    if (importantContacts != null) {
+    data['ClientsDetails'] =
+        clientsDetails.map((v) => v.toJson()).toList();
+      if (importantContacts != null) {
       data['ImportantContacts'] =
           importantContacts!.map((v) => v.toJson()).toList();
     }
