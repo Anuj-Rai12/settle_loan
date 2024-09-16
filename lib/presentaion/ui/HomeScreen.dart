@@ -257,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
             listOfGoalsAndTargetAdaptor(goal, context),
             Container(
               padding: const EdgeInsets.all(16),
-              child: const Text("tips & resources",
+              child: const Text("Tips & Resources",
                   style: TextStyle(
                     color: Color(textColor),
                     fontFamily: publicSansBold,
