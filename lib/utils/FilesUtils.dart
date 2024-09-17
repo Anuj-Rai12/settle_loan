@@ -135,6 +135,13 @@ Future<File> createFileOfPdfUrl(String url, BuildContext context) async {
       context.showSnackBar("File saved in: $newString");
       await file.writeAsBytes(bytes, flush: true);
       completer.complete(file);
+    }else if( Platform.isIOS){
+      dir = await getApplicationDocumentsDirectory();
+File file = File("${dir.path}/$filename");
+      String originalString = dir.path.toString(); 
+       context.showSnackBar("File saved in: $originalString");
+       await file.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
     }
   } catch (e) {
     throw Exception('Error parsing asset file!');

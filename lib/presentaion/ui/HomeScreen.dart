@@ -46,17 +46,29 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
         child: SealedBlocBuilder4<HomeScreenViewModel, SealedState, Inital,
                 Loading, Success, Error>(
-            builder: (context, state) => state((initial) {
-                  return loading();
-                }, (load) {
-                  return loading();
-                }, (success) {
-                  return successBody(
-                      (success.data as List<HomeScreenResponse>)[0]);
-                }, (e) {
-                  return error(
-                      isValidString(e.error) ? e.e.toString() : e.error!);
-                })));
+            builder: (context, state) => state(
+                  (initial) {
+                    return loading();
+                  },
+                  (load) {
+                    return loading();
+                  },
+                  (success) {
+                    print("getting data");
+                    print((success.data as List<HomeScreenResponse>)[0]
+                        .clientsDetails[0]
+                        .otherExpenses);
+                    //   print((success.data as List<HomeScreenResponse>)[0].importantContacts);
+                    //   print((success.data as List<HomeScreenResponse>)[0].tipsResources);
+
+                    return successBody(
+                        (success.data as List<HomeScreenResponse>)[0]);
+                  },
+                  (e) {
+                    return error(
+                        isValidString(e.error) ? e.e.toString() : e.error!);
+                  },
+                )));
   }
 
   Widget loading() {
@@ -162,7 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: const TextStyle(color: Color(editTextColor)))
                   ])),
             ),
-         /*   Container(
+            Container(
               padding: const EdgeInsets.all(16),
               child: const Text("Contract Agreement and settllement tenure",
                   style: TextStyle(
@@ -190,14 +202,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     OutlinedButton.icon(
                       onPressed: () async {
-                         context.showSnackBar("No pdf found !!");
-                     
-                        // debugLogs("Download Resource");
-                        // //context.goToNextScreenPopUp("/goTOScreen");
-                        // context.showSnackBar("Loading Pdf");
-                        // var f= await createFileOfPdfUrl(
-                        //     "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf");
-                        // context.goToPdf(f.path);
+                        debugLogs("Download Resource");
+                        //context.goToNextScreenPopUp("/goTOScreen");
+                        context.showSnackBar("Loading Pdf");
+                        var f = await createFileOfPdfUrl(
+                           "${clientDetail.documentUrl}",context);
+                        context.goToPdf(f.path);
                       },
                       style: OutlinedButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -220,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-            ),*/
+            ),
             Visibility(
               visible: data.importantContacts != null &&
                   data.importantContacts!.isNotEmpty,
@@ -245,10 +255,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   )),
             ),
             listOfGoalsAndTargetAdaptor(goal, context),
-            listOfGoalsAndTargetAdaptor(goal, context),
             Container(
               padding: const EdgeInsets.all(16),
-              child: const Text("Tips & Resourse",
+              child: const Text("Tips & Resources",
                   style: TextStyle(
                     color: Color(textColor),
                     fontFamily: publicSansBold,

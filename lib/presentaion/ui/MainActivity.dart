@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:loansettle/domain/model/GoalsAndTraget.dart';
-import 'package:loansettle/domain/model/home/HomeScreenResponse.dart';
 import 'package:loansettle/presentaion/ui/EscalationScreen.dart';
 import 'package:loansettle/presentaion/ui/HelpAndResourcesScreen.dart';
 import 'package:loansettle/presentaion/ui/HomeScreen.dart';
