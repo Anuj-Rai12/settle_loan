@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
+import 'package:downloadsfolder/downloadsfolder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:loansettle/utils/FilesUtils.dart';
@@ -25,10 +27,23 @@ Widget listOfImportantDocument(
             var data = arr[position];
             return InkWell(
                 onTap: () async {
-                   var f = await createFileOfPdfUrl(
-                           "${data.documentPath}",context);
-                  // context.goToDetailScreen(data.title ?? "",
-                  //     data.description ?? "", data.documentPath);
+                  Directory downloadDirectory = await getDownloadDirectory();
+                  String originalString = data.documentPath.toString();
+                  String newString = originalString.replaceAll(
+                      "/storage/emulated/0/Download/https://slcrm.settleloan.in/Sample/",
+                      "");
+                  String savename = newString;
+                  String savePath = downloadDirectory.path + "/$savename";
+                  await Dio().download(data.documentPath.toString(), savePath,
+                      onReceiveProgress: (received, total) {
+                    if (total != -1) {
+                      print((received / total * 100).toStringAsFixed(0) + "%");
+                      //you can build progressbar feature too
+                    }
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("File Downloaded in download folder"),
+                  ));
                 },
                 child: Container(
                   margin: const EdgeInsets.only(

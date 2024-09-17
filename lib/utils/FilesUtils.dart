@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
+import 'package:downloadsfolder/downloadsfolder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +11,8 @@ import 'package:loansettle/presentaion/ui/DetailScreen.dart';
 import 'package:loansettle/presentaion/ui/InCreaseSibleScoreDetailScreen.dart';
 import 'package:loansettle/presentaion/ui/PDFScreen.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 void debugLogs(String msg) {
   if (kDebugMode) {
@@ -45,17 +49,16 @@ extension navigation on BuildContext {
       {required double currentScore,
       required double achiviedScore,
       required double time,
-      required String loanAmount
-      }) {
+      required String loanAmount}) {
     Navigator.push(
       this,
       MaterialPageRoute(
         builder: (context) => IncreaseCibleScoreDetails(
-            achiveCreditScore: achiviedScore,
-            CurrentCridtScore: currentScore,
-            time: time,
-            loanAmount:loanAmount ,
-            ),
+          achiveCreditScore: achiviedScore,
+          CurrentCridtScore: currentScore,
+          time: time,
+          loanAmount: loanAmount,
+        ),
       ),
     );
   }
@@ -119,29 +122,59 @@ Future<void> openMap(double latitude, double longitude) async {
 
 Future<File> createFileOfPdfUrl(String url, BuildContext context) async {
   Completer<File> completer = Completer();
+  Map<Permission, PermissionStatus> status = await [
+    Permission.storage,
+  ].request();
   print("Start download file from internet!");
   try {
-    // "https://berlin2017.droidcon.cod.newthinking.net/sites/global.droidcon.cod.newthinking.net/files/media/documents/Flutter%20-%2060FPS%20UI%20of%20the%20future%20%20-%20DroidconDE%2017.pdf";
-    // final url = "https://pdfkit.org/docs/guide.pdf";
     final filename = url.substring(url.lastIndexOf("/") + 1);
     var request = await HttpClient().getUrl(Uri.parse(url));
     var response = await request.close();
     var bytes = await consolidateHttpClientResponseBytes(response);
     Directory? dir;
 
+
     if (Platform.isAndroid == true) {
-      dir = await getDownloadsDirectory();
 
-      String originalString = dir!.path.toString();
-      String newString = originalString.replaceAll("/storage/emulated/0/", "");
-      File file = File("${dir.path}/$filename");
-
-      context.showSnackBar("File saved in: $newString");
+      //!Read file in app
+      dir = await getDownloadDirectory();
+      File file = File("${dir!.path}/$filename");
       await file.writeAsBytes(bytes, flush: true);
       completer.complete(file);
+
+      
+      //! add data in local storage
+      if (status[Permission.storage]!.isGranted) {
+        if (kIsWeb) {
+          //something
+        } else {
+          Directory downloadDirectory = await getDownloadDirectory();
+          String originalString = url.toString();
+          String newString = originalString.replaceAll(
+              "https://slcrm.settleloan.in/UploadedFiles/", "");
+          String savename = newString;
+          print(savename);
+          String savePath = downloadDirectory.path + "/$savename";
+          print("savePath: ${downloadDirectory.path}");
+          await Dio().download(url, savePath,
+              onReceiveProgress: (received, total) {
+            if (total != -1) {
+              print((received / total * 100).toStringAsFixed(0) + "%");
+              //you can build progressbar feature too
+            }
+          });
+          print("File is saved to download folder: $savePath");
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("File Downloaded in download folder"),
+          ));
+        }
+        //! getting file downlaod
+      } else {
+        print("permission denied");
+      }
     }
   } catch (e) {
-    throw Exception('Error parsing asset file!');
+    throw Exception('Error parsing asset file!: $e');
   }
 
   return completer.future;
