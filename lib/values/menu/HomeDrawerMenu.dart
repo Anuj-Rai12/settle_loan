@@ -4,6 +4,7 @@ import 'package:loansettle/data/datastore/LoanSettleSharedPreference.dart';
 import 'package:loansettle/data/repo/generateCrLinkRepo.dart';
 import 'package:loansettle/domain/model/GoalsAndTraget.dart';
 import 'package:loansettle/domain/model/home/HomeScreenResponse.dart';
+import 'package:loansettle/presentaion/ui/IncreaseCiblScore.dart';
 import 'package:loansettle/presentaion/ui/LoginScreen.dart';
 import 'package:loansettle/presentaion/viewmodel/HomeScreenViewModel.dart';
 import 'package:loansettle/utils/ApiWrapperResponse.dart';
@@ -127,7 +128,7 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
             focusColor: const Color(editTextBg),
             onTap: () {
               Navigator.pop(context);
-              context.goToNextScreen("/ciblScore");
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>IncreaseCIBLScore(clientDetail.loanAmount)));
             },
           ),
           ListTile(
@@ -145,7 +146,7 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
             focusColor: const Color(editTextBg),
             onTap: () {
               Navigator.pop(context);
-              context.goToNextScreen("/intimationDoc");
+              context.goToNextScreen("/intimationDoc",);
             },
           ),
           ListTile(

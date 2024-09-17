@@ -6,7 +6,8 @@ import '../../values/color/Colors.dart';
 import '../../values/fonts/Fonts.dart';
 
 class IncreaseCIBLScore extends StatefulWidget {
-  const IncreaseCIBLScore({super.key});
+  final amount;
+  const IncreaseCIBLScore(this.amount);
 
   @override
   State<IncreaseCIBLScore> createState() => _IncreaseCIBLScoreState();
@@ -34,189 +35,191 @@ class _IncreaseCIBLScoreState extends State<IncreaseCIBLScore> {
                   fontWeight: FontWeight.bold,
                   fontFamily: publicSansBold)),
           centerTitle: true),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(left: 16, right: 16, top: 35, bottom: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text("CiBil Score",
-                    style: TextStyle(
-                        color: Color(textColor),
-                        fontFamily: publicSansReg,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold)),
-                Container(
-                  margin: const EdgeInsets.only(top: 16),
-                  padding: const EdgeInsets.only(left: 16, right: 16),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                          color: const Color(borderTint), width: 1)),
-                  width: MediaQuery.of(context).size.width,
-                  height: 56,
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    autofocus: true,
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontFamily: publicSansReg,
-                        fontSize: 16),
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Enter Your CiBil Score",
-                        hintStyle: TextStyle(
-                            color: Color(borderTint),
-                            fontFamily: publicSansReg,
-                            fontSize: 16)),
-                    onChanged: (value) {
-                      try{
-                        currentScore=double.parse(value);
-                      }catch(e){
-                        currentScore=null;
-                      }
-                    },
-                  ),
-                )
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(left: 16, right: 16, top: 35, bottom: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("CiBil Score",
+                      style: TextStyle(
+                          color: Color(textColor),
+                          fontFamily: publicSansReg,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
+                  Container(
+                    margin: const EdgeInsets.only(top: 16),
+                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                            color: const Color(borderTint), width: 1)),
+                    width: MediaQuery.of(context).size.width,
+                    height: 56,
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      autofocus: true,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontFamily: publicSansReg,
+                          fontSize: 16),
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Enter Your CiBil Score",
+                          hintStyle: TextStyle(
+                              color: Color(borderTint),
+                              fontFamily: publicSansReg,
+                              fontSize: 16)),
+                      onChanged: (value) {
+                        try{
+                          currentScore=double.parse(value);
+                        }catch(e){
+                          currentScore=null;
+                        }
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text("Target Score",
-                    style: TextStyle(
-                        color: Color(textColor),
-                        fontFamily: publicSansReg,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold)),
-                Container(
-                  margin: const EdgeInsets.only(top: 16),
-                  padding: const EdgeInsets.only(left: 16, right: 16),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                          color: const Color(borderTint), width: 1)),
-                  width: MediaQuery.of(context).size.width,
-                  height: 56,
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    autofocus: true,
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontFamily: publicSansReg,
-                        fontSize: 16),
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Enter Your Target Score",
-                        hintStyle: TextStyle(
-                            color: Color(borderTint),
-                            fontFamily: publicSansReg,
-                            fontSize: 16)),
-                    onChanged: (value) {
-                      // get the value
-                      try{
-                        achivedScore=double.parse(value);
-                      }catch(e){
-                        achivedScore=null;
-                      }
-                    },
-                  ),
-                )
-              ],
+            Container(
+              margin: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Target Score",
+                      style: TextStyle(
+                          color: Color(textColor),
+                          fontFamily: publicSansReg,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
+                  Container(
+                    margin: const EdgeInsets.only(top: 16),
+                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                            color: const Color(borderTint), width: 1)),
+                    width: MediaQuery.of(context).size.width,
+                    height: 56,
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      autofocus: true,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontFamily: publicSansReg,
+                          fontSize: 16),
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Enter Your Target Score",
+                          hintStyle: TextStyle(
+                              color: Color(borderTint),
+                              fontFamily: publicSansReg,
+                              fontSize: 16)),
+                      onChanged: (value) {
+                        // get the value
+                        try{
+                          achivedScore=double.parse(value);
+                        }catch(e){
+                          achivedScore=null;
+                        }
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text("Timeframe (Months)",
-                    style: TextStyle(
-                        color: Color(textColor),
-                        fontFamily: publicSansReg,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold)),
-                Container(
-                  margin: const EdgeInsets.only(top: 16),
-                  padding: const EdgeInsets.only(left: 16, right: 16),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                          color: const Color(borderTint), width: 1)),
-                  width: MediaQuery.of(context).size.width,
-                  height: 56,
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    autofocus: true,
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontFamily: publicSansReg,
-                        fontSize: 16),
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Add your Timeframe (Month)",
-                        hintStyle: TextStyle(
-                            color: Color(borderTint),
-                            fontFamily: publicSansReg,
-                            fontSize: 16)),
-                    onChanged: (value) {
-                      try{
-                        time=double.parse(value);
-                      }catch(e){
-                        time=null;
-                      }
-                    },
-                  ),
-                )
-              ],
+            Container(
+              margin: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text("Timeframe (Months)",
+                      style: TextStyle(
+                          color: Color(textColor),
+                          fontFamily: publicSansReg,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
+                  Container(
+                    margin: const EdgeInsets.only(top: 16),
+                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                            color: const Color(borderTint), width: 1)),
+                    width: MediaQuery.of(context).size.width,
+                    height: 56,
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      autofocus: true,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontFamily: publicSansReg,
+                          fontSize: 16),
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Add your Timeframe (Month)",
+                          hintStyle: TextStyle(
+                              color: Color(borderTint),
+                              fontFamily: publicSansReg,
+                              fontSize: 16)),
+                      onChanged: (value) {
+                        try{
+                          time=double.parse(value);
+                        }catch(e){
+                          time=null;
+                        }
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin:
-            const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
-            padding:
-            const EdgeInsets.only(left: 8, right: 16, bottom: 12, top: 12),
-            child: TextButton(
-                onPressed: () {
-                  debugLogs("text button clicked");
-                  if(currentScore==null){
-                    context.showSnackBar("Enter your current Score");
-                    return;
-                  }
-                  if(achivedScore==null){
-                    context.showSnackBar("Enter your Score the you want to achieve");
-                    return;
-                  }
-                  if(time==null){
-                    context.showSnackBar("Enter your Time Frame");
-                    return;
-                  }
-
-                  context.goToCridetBuilderScreen(currentScore: currentScore!, achiviedScore: achivedScore!, time: time!);
-
-                },
-                style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    minimumSize: const Size(double.infinity, 55),
-                    backgroundColor: const Color(buttonColor)),
-                child: const Text(
-                  "Submit",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: publicSansBold,
-                      color: Colors.white),
-                  textAlign: TextAlign.center,
-                )),
-          )
-        ],
+            Container(
+              margin:
+              const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
+              padding:
+              const EdgeInsets.only(left: 8, right: 16, bottom: 12, top: 12),
+              child: TextButton(
+                  onPressed: () {
+                    debugLogs("text button clicked");
+                    if(currentScore==null){
+                      context.showSnackBar("Enter your current Score");
+                      return;
+                    }
+                    if(achivedScore==null){
+                      context.showSnackBar("Enter your Score the you want to achieve");
+                      return;
+                    }
+                    if(time==null){
+                      context.showSnackBar("Enter your Time Frame");
+                      return;
+                    }
+        
+                    context.goToCridetBuilderScreen(currentScore: currentScore!, achiviedScore: achivedScore!, time: time!,loanAmount: widget.amount);
+        
+                  },
+                  style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      minimumSize: const Size(double.infinity, 55),
+                      backgroundColor: const Color(buttonColor)),
+                  child: const Text(
+                    "Submit",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: publicSansBold,
+                        color: Colors.white),
+                    textAlign: TextAlign.center,
+                  )),
+            )
+          ],
+        ),
       ),
     ));
   }

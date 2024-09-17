@@ -54,10 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return loading();
                   },
                   (success) {
-                    print("getting data");
-                    print((success.data as List<HomeScreenResponse>)[0]
-                        .clientsDetails![0]
-                        .otherExpenses);
+                  
                     //   print((success.data as List<HomeScreenResponse>)[0].importantContacts);
                     //   print((success.data as List<HomeScreenResponse>)[0].tipsResources);
 

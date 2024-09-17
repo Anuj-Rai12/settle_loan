@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
                   isNavigateFromNavigationBar: false, 
                 ),
             "/astroSignScreen": (context) => const AstroSignScreen(),
-            "/ciblScore": (context) => const IncreaseCIBLScore(),
+            "/ciblScore": (context) => const IncreaseCIBLScore(0),
             "/anyTimeLawyer": (context) => const AnyTimeLawyer(),
             "/help&Resource": (context) => HelpAndResourcesScreen(
                   isNavigateFromNavigationBar: false,

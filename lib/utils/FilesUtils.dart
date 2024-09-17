@@ -44,14 +44,18 @@ extension navigation on BuildContext {
   void goToCridetBuilderScreen(
       {required double currentScore,
       required double achiviedScore,
-      required double time}) {
+      required double time,
+      required String loanAmount
+      }) {
     Navigator.push(
       this,
       MaterialPageRoute(
         builder: (context) => IncreaseCibleScoreDetails(
             achiveCreditScore: achiviedScore,
             CurrentCridtScore: currentScore,
-            time: time),
+            time: time,
+            loanAmount:loanAmount ,
+            ),
       ),
     );
   }

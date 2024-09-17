@@ -15,12 +15,15 @@ class IncreaseCibleScoreDetails extends StatefulWidget {
   double CurrentCridtScore;
   double achiveCreditScore;
   double time;
+  String loanAmount;
 
-  IncreaseCibleScoreDetails(
-      {super.key,
-      required this.time,
-      required this.achiveCreditScore,
-      required this.CurrentCridtScore});
+  IncreaseCibleScoreDetails({
+    super.key,
+    required this.time,
+    required this.achiveCreditScore,
+    required this.CurrentCridtScore,
+    required this.loanAmount,
+  });
 
   @override
   State<IncreaseCibleScoreDetails> createState() =>
@@ -28,30 +31,60 @@ class IncreaseCibleScoreDetails extends StatefulWidget {
 }
 
 class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
-  
-     List<double> list = [];
+  List<double> list = [];
+  List<double> listFoLoanSpots = [];
   final random = Random();
-@override
+  @override
   void initState() {
     super.initState();
-setState(() {
-    spots();
-});
+    setState(() {
+      spots();
+      spotsForLoan();
+    });
   }
 
- List<double> spots() {
-  int currentScore=  widget.CurrentCridtScore.toInt();
+  List<double> spots() {
+    int currentScore = widget.CurrentCridtScore.toInt();
     list.clear();
     int total = 0;
     int randomNumber = 0;
     for (int i = 0; i < widget.time; i++) {
       randomNumber = random.nextInt(60);
       total = currentScore + randomNumber;
+
+      if (total > widget.achiveCreditScore) {
+        randomNumber = random.nextInt(40);
+        total = currentScore + randomNumber;
+      }
+      print(total);
       list.add(total.toDouble());
-      currentScore = currentScore + 70;
+      currentScore = currentScore + 40;
     }
     print(list);
+    // final newList = list.reversed;
+    // print(newList);
     return list;
+  }
+
+  List<double> spotsForLoan() {
+    int loan = int.parse(widget.loanAmount);
+    listFoLoanSpots.clear();
+    int startValue = loan;
+    int endValue = 0;
+    int stepValue = 100000;
+
+    for (int i = startValue; i >= endValue; i -= stepValue) {
+      if (i < 40000) {
+
+        listFoLoanSpots.add(0);
+      } else {
+        listFoLoanSpots.add(i.toDouble());
+      }
+    }
+    
+    print(listFoLoanSpots);
+
+    return listFoLoanSpots.toList();
   }
 
   @override
@@ -76,10 +109,11 @@ setState(() {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextButton(
-                  onPressed: () {
-                    // spots();
-                  },
-                  child: Text("djbsfbjhds")),
+                child: Text("fdasfads"),
+                onPressed: () {
+                  spotsForLoan();
+                },
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -101,10 +135,18 @@ setState(() {
                     achiveCreditScore: widget.achiveCreditScore.toInt()),
               ),
               makeSpaceVertically(),
-              Container(
+              const SizedBox(height: 10),
+              const Text("Your Credit Score Graph",
+                  style: TextStyle(
+                      fontFamily: publicSansBold,
+                      fontSize: 20,
+                      color: Colors.black),
+                  textAlign: TextAlign.start),
+              SizedBox(height: 20),
+              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.4,
                 width: MediaQuery.of(context).size.width,
-                child: DynamicLineChart(
+                child: lineGraphForCibil(
                   currentScore: widget.CurrentCridtScore,
                   wantedScore: widget.achiveCreditScore,
                   numberOfMonths: widget.time.toInt(),
@@ -112,8 +154,32 @@ setState(() {
                   yValues: list,
                   minYValue: widget.CurrentCridtScore.toInt(),
                   maxYValue: widget.achiveCreditScore.toInt(),
+                  isGraphForLoan: false, loan: 0,
                 ),
               ),
+              const SizedBox(height: 10),
+              const Text("Your Loan Graph",
+                  style: TextStyle(
+                      fontFamily: publicSansBold,
+                      fontSize: 20,
+                      color: Colors.black),
+                  textAlign: TextAlign.start),
+              SizedBox(height: 20),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
+                width: MediaQuery.of(context).size.width,
+                child: lineGraphForCibil(
+                  currentScore: widget.CurrentCridtScore,
+                  wantedScore: widget.achiveCreditScore,
+                  numberOfMonths: widget.time.toInt(),
+                  // This will give spots for graph
+                  yValues: listFoLoanSpots,
+                  minYValue: 0,
+                  maxYValue: int.parse(widget.loanAmount), isGraphForLoan: true,
+                  loan: int.parse(widget.loanAmount),
+                ),
+              ),
+              SizedBox(height: 10),
               const Text("Try This",
                   style: TextStyle(
                       fontFamily: publicSansBold,
@@ -240,92 +306,101 @@ setState(() {
   }
 }
 
-class DynamicLineChart extends StatelessWidget {
+class lineGraphForCibil extends StatelessWidget {
   final List<double> yValues;
   final int minYValue;
   final int maxYValue;
   final numberOfMonths;
   final wantedScore;
   final currentScore;
+  bool isGraphForLoan;
+  int loan;
 
-  DynamicLineChart(
+  lineGraphForCibil(
       {required this.yValues,
       required this.minYValue,
       required this.maxYValue,
       required this.numberOfMonths,
       required this.wantedScore,
-      required this.currentScore});
+      required this.currentScore,
+      required this.isGraphForLoan,
+      required this.loan});
 
   @override
   Widget build(BuildContext context) {
     List<String> months = _generateNextMonths(numberOfMonths);
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: LineChart(
-          LineChartData(
-            borderData: FlBorderData(
-              show: true,
-              border: Border(
-                bottom: BorderSide(color: Colors.grey, width: 1),
-                left: BorderSide(color: Colors.grey, width: 1),
-              ),
+      body: LineChart(
+        LineChartData(
+          borderData: FlBorderData(
+            show: true,
+            border: Border(
+              bottom: BorderSide(color: Colors.grey, width: 1),
+              left: BorderSide(color: Colors.grey, width: 1),
             ),
-            // This is displaying grid between chart.
-            gridData: FlGridData(show: true),
-            // Data is displaying from this widget
-            titlesData: FlTitlesData(
-              //  Button side
-              bottomTitles: AxisTitles(
-                sideTitles: SideTitles(
-                  showTitles: true,
-                  interval: 1,
-                  getTitlesWidget: (value, _) {
-                    int index = value.toInt();
-                    if (index >= 0 && index < months.length) {
-                      return Text(
-                        months[index],
-                        style: TextStyle(fontSize: 12),
-                      );
-                    }
-                    return Text('');
-                  },
-                ),
-              ),
-
-              // left side of data.
-              leftTitles: AxisTitles(
-                sideTitles: SideTitles(
-                  showTitles: true,
-                  interval: 100.0,
-                  getTitlesWidget: (value, _) {
+          ),
+          // This is displaying grid between chart.
+          gridData: FlGridData(show: true),
+          // Data is displaying from this widget
+          titlesData: FlTitlesData(
+            //  Button side
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                interval: 1,
+                getTitlesWidget: (value, _) {
+                  int index = value.toInt();
+                  if (index >= 0 && index < months.length) {
                     return Text(
-                      value.toInt().toString(),
+                      months[index],
                       style: TextStyle(fontSize: 12),
                     );
-                  },
-                ),
+                  }
+                  return Text('');
+                },
               ),
-              topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-              rightTitles:
-                  AxisTitles(sideTitles: SideTitles(showTitles: false)),
             ),
-            lineBarsData: [
-              LineChartBarData(
-                spots: _generateSpots(yValues),
-                isCurved: true,
-                barWidth: 3,
-                color: Color(buttonColor),
-                belowBarData: BarAreaData(show: false),
+
+            // left side of data.
+            leftTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                interval: isGraphForLoan == true
+                    ? loan <= 30000
+                        ? 50000
+                        : 100000
+                    : 100.0,
+                getTitlesWidget: (value, _) {
+                  return isGraphForLoan == false
+                      ? Text(
+                          value.toInt().toString(),
+                          style: TextStyle(fontSize: 12),
+                        )
+                      : Text(
+                          _formatNumber(value),
+                          style: TextStyle(fontSize: 12),
+                        );
+                },
               ),
-            ],
-            minX: 0,
-            maxX: (months.length - 1)
-                .toDouble(), // This will  give  columns for month area
-            minY: minYValue.toDouble(), // This will  give  numbers in x axis
-            maxY: maxYValue.toDouble(),
+            ),
+            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
           ),
+          lineBarsData: [
+            LineChartBarData(
+              spots: _generateSpots(yValues),
+              isCurved: true,
+              barWidth: 3,
+              color: Color(buttonColor),
+              belowBarData: BarAreaData(show: false),
+            ),
+          ],
+          minX: 0,
+          maxX: (months.length - 1)
+              .toDouble(), // This will  give  columns for month area
+          minY: minYValue.toDouble(), // This will  give  numbers in x axis
+          maxY: maxYValue.toDouble(),
         ),
       ),
     );
@@ -347,5 +422,14 @@ class DynamicLineChart extends StatelessWidget {
       spots.add(FlSpot(i.toDouble(), yValues[i]));
     }
     return spots;
+  }
+
+  String _formatNumber(double value) {
+    if (value >= 1000 && value < 1000000) {
+      return '${(value / 1000).toStringAsFixed(0)}k';
+    } else if (value >= 1000000) {
+      return '${(value / 1000000).toStringAsFixed(0)}M';
+    }
+    return value.toStringAsFixed(0);
   }
 }
