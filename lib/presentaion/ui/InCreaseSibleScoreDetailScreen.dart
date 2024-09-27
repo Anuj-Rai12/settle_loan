@@ -51,42 +51,58 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
     for (int i = 0; i < widget.time; i++) {
       randomNumber = random.nextInt(60);
       total = currentScore + randomNumber;
+      list.add(total.toDouble());
 
       if (total > widget.achiveCreditScore) {
         randomNumber = random.nextInt(40);
         total = currentScore + randomNumber;
       }
-      print(total);
-      list.add(total.toDouble());
       currentScore = currentScore + 40;
     }
-    print(list);
+    // print(list);
     // final newList = list.reversed;
     // print(newList);
     return list;
   }
 
   List<double> spotsForLoan() {
-    int loan = int.parse(widget.loanAmount);
     listFoLoanSpots.clear();
-    int startValue = loan;
-    int endValue = 0;
-    int stepValue = 100000;
-
-    for (int i = startValue; i >= endValue; i -= stepValue) {
-      if (i < 40000) {
-
-        listFoLoanSpots.add(0);
-      } else {
-        listFoLoanSpots.add(i.toDouble());
-      }
-    }
+  double loanAmount = double.parse(widget.loanAmount.toString());
+  double loanAmount2 = double.parse(widget.loanAmount.toString());
+  int months =(widget.time.toInt()+1);
+  print(months);
+  double initialPercentage = 15.0;
+  double finalPercentage = 3.0;
+  
+  // Calculate the step value
+  double step = (initialPercentage - finalPercentage) / (months - 1);
+  
+  double totalPercentage = 0.0;
+  List<double> percentages = List.filled(months, 0.0);
+  
+  // Calculate the percentages for each month
+  for (int i = 0; i < months; i++) {
+    percentages[i] = initialPercentage - (i * step);
+    totalPercentage += percentages[i];
+  }
+  
+  double normalizationFactor = 100.0 / totalPercentage;
+  
+  for (int i = 0; i < months; i++) {
+    percentages[i] *= normalizationFactor;
+  }
+  print("Inicial Point -> " + loanAmount2.toString());
+  for (int i = 0; i < months; i++) {
     
-    print(listFoLoanSpots);
+    listFoLoanSpots.add(loanAmount2.roundToDouble()); 
+    double payment = loanAmount * (percentages[i] / 100);
 
+      loanAmount2 = loanAmount2 - payment;
+      // print((i+1).toString() + "Month -> " + loanAmount2.round().toString());
+
+  }
     return listFoLoanSpots.toList();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,6 +117,14 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   fontFamily: publicSansBold)),
+          actions: [
+            IconButton(
+              onPressed: () {
+                spotsForLoan();
+              },
+              icon: Icon(Icons.abc),
+            )
+          ],
           centerTitle: true),
       body: SingleChildScrollView(
         child: Container(
@@ -108,12 +132,6 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextButton(
-                child: Text("fdasfads"),
-                onPressed: () {
-                  spotsForLoan();
-                },
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -168,14 +186,14 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.4,
                 width: MediaQuery.of(context).size.width,
-                child: lineGraphForCibil(
+                child: lineGraphForLoan(
                   currentScore: widget.CurrentCridtScore,
                   wantedScore: widget.achiveCreditScore,
-                  numberOfMonths: widget.time.toInt(),
+                  numberOfMonths: (widget.time.toInt()+1),
                   // This will give spots for graph
                   yValues: listFoLoanSpots,
                   minYValue: 0,
-                  maxYValue: int.parse(widget.loanAmount), isGraphForLoan: true,
+                  maxYValue: int.parse(widget.loanAmount),
                   loan: int.parse(widget.loanAmount),
                 ),
               ),
@@ -367,11 +385,12 @@ class lineGraphForCibil extends StatelessWidget {
               sideTitles: SideTitles(
                 showTitles: true,
                 interval: isGraphForLoan == true
-                    ? loan <= 30000
-                        ? 50000
+                    ? loan <= 500000
+                        ? 30000
                         : 100000
                     : 100.0,
                 getTitlesWidget: (value, _) {
+                  isGraphForLoan == true ? print(value) : null;
                   return isGraphForLoan == false
                       ? Text(
                           value.toInt().toString(),
@@ -419,6 +438,124 @@ class lineGraphForCibil extends StatelessWidget {
   List<FlSpot> _generateSpots(List<double> yValues) {
     List<FlSpot> spots = [];
     for (int i = 0; i < yValues.length; i++) {
+      spots.add(FlSpot(i.toDouble(), yValues[i]));
+    }
+    return spots;
+  }
+
+  String _formatNumber(double value) {
+    if (value >= 1000 && value < 1000000) {
+      return '${(value / 1000).toStringAsFixed(0)}k';
+    } else if (value >= 1000000) {
+      return '${(value / 1000000).toStringAsFixed(0)}M';
+    }
+    return value.toStringAsFixed(0);
+  }
+}
+
+class lineGraphForLoan extends StatelessWidget {
+  final List<double> yValues;
+  final int minYValue;
+  final int maxYValue;
+  final numberOfMonths;
+  final wantedScore;
+  final currentScore;
+  int loan;
+
+  lineGraphForLoan(
+      {required this.yValues,
+      required this.minYValue,
+      required this.maxYValue,
+      required this.numberOfMonths,
+      required this.wantedScore,
+      required this.currentScore,
+      required this.loan});
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> months = _generateNextMonths(numberOfMonths);
+
+    return Scaffold(
+      body: LineChart(
+        LineChartData(
+          borderData: FlBorderData(
+            show: true,
+            border: Border(
+              bottom: BorderSide(color: Colors.grey, width: 1),
+              left: BorderSide(color: Colors.grey, width: 1),
+            ),
+          ),
+          // This is displaying grid between chart.
+          gridData: FlGridData(show: true),
+          // Data is displaying from this widget
+          titlesData: FlTitlesData(
+            //  Button side
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                // interval: 1,
+                getTitlesWidget: (value, _) {
+                  int index = value.toInt();
+                  if (index >= 0 && index < months.length) {
+                    return Text(
+                      months[index],
+                      style: TextStyle(fontSize: 12),
+                    );
+                  }
+                  return Text('');
+                },
+              ),
+            ),
+
+            // left side of data.
+            leftTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                interval: loan > 800000 ? 200000 : 50000,
+                getTitlesWidget: (value, _) {
+                  return Text(
+                    _formatNumber(value),
+                    style: TextStyle(fontSize: 12),
+                  );
+                },
+              ),
+            ),
+            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          ),
+          lineBarsData: [
+            LineChartBarData(
+              spots: _generateSpots(yValues),
+              isCurved: true,
+              barWidth: 3,
+              color: Color(buttonColor),
+              belowBarData: BarAreaData(show: false),
+            ),
+          ],
+          minX: 0,
+          maxX: (months.length - 1)
+              .toDouble(), // This will  give  columns for month area
+          minY: minYValue.toDouble(), // This will  give  numbers in x axis
+          maxY: maxYValue.toDouble(),
+        ),
+      ),
+    );
+  }
+
+  List<String> _generateNextMonths(int count) {
+    DateTime now = DateTime.now();
+    List<String> months = [];
+    for (int i = 0; i < count; i++) {
+      DateTime month = DateTime(now.year, now.month + i, 1);
+      months.add(DateFormat.MMM().format(month));
+    }
+    return months;
+  }
+
+  List<FlSpot> _generateSpots(List<double> yValues) {
+    List<FlSpot> spots = [];
+    for (int i = 0; i < yValues.length; i++) {
+      print("$i and ${yValues[i]}");
       spots.add(FlSpot(i.toDouble(), yValues[i]));
     }
     return spots;
