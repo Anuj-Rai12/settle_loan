@@ -177,8 +177,8 @@ class _AnyTimeLawyerState extends State<AnyTimeLawyer> {
                 const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
             child: TextButton(
                 onPressed: () {
-                  debugLogs("text button clicked");
-                  context.openNewTab(loanSettlementApp);
+                  // debugLogs("text button clicked");
+                  // context.openNewTab(loanSettlementApp);
                 },
                 style: TextButton.styleFrom(
                     shape: RoundedRectangleBorder(

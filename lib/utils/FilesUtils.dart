@@ -6,7 +6,7 @@ import 'package:downloadsfolder/downloadsfolder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
+// import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:loansettle/presentaion/ui/DetailScreen.dart';
 import 'package:loansettle/presentaion/ui/InCreaseSibleScoreDetailScreen.dart';
 import 'package:loansettle/presentaion/ui/PDFScreen.dart';
@@ -114,11 +114,11 @@ class ApiUrl {
   static const String generateCrLinkEndPoint = "api/details/GenerateCRlink/";
 }
 
-Future<void> openMap(double latitude, double longitude) async {
-  String googleUrl =
-      'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
-  FlutterWebBrowser.openWebPage(url: googleUrl);
-}
+// Future<void> openMap(double latitude, double longitude) async {
+//   String googleUrl =
+//       'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+//   FlutterWebBrowser.openWebPage(url: googleUrl);
+// }
 
 Future<File> createFileOfPdfUrl(String url, BuildContext context) async {
   Completer<File> completer = Completer();

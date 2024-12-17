@@ -82,7 +82,7 @@ Widget complaintHelpAgainstData(
                       debugLogs("${content.data.url} and ${content.data.img}");
                       return InkWell(
                           onTap: () {
-                            con.openNewTab(content.data.url);
+                          //  con.openNewTab(content.data.url);
                           },
                           child: Container(
                             margin: const EdgeInsets.only(

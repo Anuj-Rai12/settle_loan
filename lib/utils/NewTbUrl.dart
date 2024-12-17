@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_browser/flutter_web_browser.dart';
+// import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 class ItemInfo {
   String url;
@@ -27,9 +27,9 @@ class HelplineDataURl {
 
 extension newWindow on BuildContext {
 
-  Future<void> openNewTab(String url) async {
-    await FlutterWebBrowser.openWebPage(url: url);
+  // Future<void> openNewTab(String url) async {
+  //   await FlutterWebBrowser.openWebPage(url: url);
 
-  }
+  // }
 
 }

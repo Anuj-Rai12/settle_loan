@@ -58,8 +58,8 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
   Widget drawer(HomeScreenResponse data) {
     var clientDetail = data.clientsDetails[0];
     var goal = GoalsAndTarget.createGoal(
-        date: clientDetail?.startDate,
-        emi1: clientDetail?.homeLoanEMI ?? "",
+        date: clientDetail.startDate,
+        emi1: clientDetail.homeLoanEMI ?? "",
         emi2: clientDetail?.otherExpenses ?? "",
         amount: clientDetail?.loanAmount,
         loanType1: "Monthly Home Loan Amount",
@@ -92,17 +92,17 @@ class _HomedrawerMenuState extends State<HomedrawerMenu> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(clientDetail?.clientName ?? "",
+                        Text(clientDetail.clientName ?? "",
                             style: const TextStyle(
                                 fontFamily: publicSansBold,
                                 color: Color(textColor),
                                 fontSize: 16)),
-                        Text(clientDetail?.city ?? "",
+                        Text(clientDetail.city ?? "",
                             style: const TextStyle(
                                 fontFamily: publicSansReg,
                                 color: Color(editTextColor),
                                 fontSize: 14)),
-                        Text(clientDetail?.mobile ?? "",
+                        Text(clientDetail.mobile ?? "",
                             style: const TextStyle(
                                 fontFamily: publicSansReg,
                                 color: Color(editTextColor),

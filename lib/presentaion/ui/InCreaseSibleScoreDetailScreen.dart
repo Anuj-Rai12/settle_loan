@@ -44,65 +44,105 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
   }
 
   List<double> spots() {
-    int currentScore = widget.CurrentCridtScore.toInt();
-    list.clear();
-    int total = 0;
-    int randomNumber = 0;
-    for (int i = 0; i < widget.time; i++) {
-      randomNumber = random.nextInt(60);
-      total = currentScore + randomNumber;
-      list.add(total.toDouble());
+    // int currentScore = widget.CurrentCridtScore.toInt();
+    // list.clear();
+    // int total = 0;
+    // int randomNumber = 0;
+    // for (int i = 0; i < widget.time; i++) {
+    //   randomNumber = random.nextInt(60);
+    //   total = currentScore + randomNumber;
+    //   list.add(total.toDouble());
 
-      if (total > widget.achiveCreditScore) {
-        randomNumber = random.nextInt(40);
-        total = currentScore + randomNumber;
-      }
-      currentScore = currentScore + 40;
+    //   if (total > widget.achiveCreditScore) {
+    //     randomNumber = random.nextInt(40);
+    //     total = currentScore + randomNumber;
+    //   }
+    //   currentScore = currentScore + 40;
+    // }
+    // // print(list);
+    // // final newList = list.reversed;
+    // // print(newList);
+    // return list;
+
+    listFoLoanSpots.clear();
+    double wantedCreditScore =
+        widget.achiveCreditScore.toDouble() - widget.CurrentCridtScore.toInt();
+    double wantedCreditScore2 =
+        widget.achiveCreditScore.toDouble() - widget.CurrentCridtScore.toInt();
+    int months = (widget.time.toInt() + 1);
+    // print(months);
+    double initialPercentage = 15.0;
+    double finalPercentage = 3.0;
+
+    // Calculate the step value
+    double step = (initialPercentage - finalPercentage) / (months - 1);
+
+    double totalPercentage = 0.0;
+    List<double> percentages = List.filled(months, 0.0);
+
+    // Calculate the percentages for each month
+    for (int i = 0; i < months; i++) {
+      percentages[i] = initialPercentage - (i * step);
+      totalPercentage += percentages[i];
     }
-    // print(list);
-    // final newList = list.reversed;
-    // print(newList);
-    return list;
+
+    double normalizationFactor = 100.0 / totalPercentage;
+
+    for (int i = 0; i < months-1; i++) {
+      percentages[i] *= normalizationFactor;
+    }
+    // print("Inicial Point -> " + wantedCreditScore2.toString());
+    for (int i = 0; i < months-1; i++) {
+      list.add((wantedCreditScore2 + widget.CurrentCridtScore.toInt())
+          .roundToDouble());
+      double payment = wantedCreditScore * (percentages[i] / 100);
+
+      wantedCreditScore2 = wantedCreditScore2 - payment;
+    }
+
+    List<double> reversedNumbers = list.reversed.toList();
+
+    return reversedNumbers.toList();
   }
 
   List<double> spotsForLoan() {
     listFoLoanSpots.clear();
-  double loanAmount = double.parse(widget.loanAmount.toString());
-  double loanAmount2 = double.parse(widget.loanAmount.toString());
-  int months =(widget.time.toInt()+1);
-  print(months);
-  double initialPercentage = 15.0;
-  double finalPercentage = 3.0;
-  
-  // Calculate the step value
-  double step = (initialPercentage - finalPercentage) / (months - 1);
-  
-  double totalPercentage = 0.0;
-  List<double> percentages = List.filled(months, 0.0);
-  
-  // Calculate the percentages for each month
-  for (int i = 0; i < months; i++) {
-    percentages[i] = initialPercentage - (i * step);
-    totalPercentage += percentages[i];
-  }
-  
-  double normalizationFactor = 100.0 / totalPercentage;
-  
-  for (int i = 0; i < months; i++) {
-    percentages[i] *= normalizationFactor;
-  }
-  print("Inicial Point -> " + loanAmount2.toString());
-  for (int i = 0; i < months; i++) {
-    
-    listFoLoanSpots.add(loanAmount2.roundToDouble()); 
-    double payment = loanAmount * (percentages[i] / 100);
+    double loanAmount = double.parse(widget.loanAmount.toString());
+    double loanAmount2 = double.parse(widget.loanAmount.toString());
+    int months = (widget.time.toInt() + 1);
+    // print(months);
+    double initialPercentage = 15.0;
+    double finalPercentage = 3.0;
+
+    // Calculate the step value
+    double step = (initialPercentage - finalPercentage) / (months - 1);
+
+    double totalPercentage = 0.0;
+    List<double> percentages = List.filled(months, 0.0);
+
+    // Calculate the percentages for each month
+    for (int i = 0; i < months; i++) {
+      percentages[i] = initialPercentage - (i * step);
+      totalPercentage += percentages[i];
+    }
+
+    double normalizationFactor = 100.0 / totalPercentage;
+
+    for (int i = 0; i < months; i++) {
+      percentages[i] *= normalizationFactor;
+    }
+    //print("Inicial Point -> " + loanAmount2.toString());
+    for (int i = 0; i < months; i++) {
+      listFoLoanSpots.add(loanAmount2.roundToDouble());
+      double payment = loanAmount * (percentages[i] / 100);
 
       loanAmount2 = loanAmount2 - payment;
       // print((i+1).toString() + "Month -> " + loanAmount2.round().toString());
+    }
 
-  }
     return listFoLoanSpots.toList();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,14 +157,14 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   fontFamily: publicSansBold)),
-          actions: [
-            IconButton(
-              onPressed: () {
-                spotsForLoan();
-              },
-              icon: Icon(Icons.abc),
-            )
-          ],
+          // actions: [
+          //   IconButton(
+          //     onPressed: () {
+          //       spotsForLoan();
+          //     },
+          //     icon: Icon(Icons.abc),
+          //   )
+          // ],
           centerTitle: true),
       body: SingleChildScrollView(
         child: Container(
@@ -160,7 +200,7 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
                       fontSize: 20,
                       color: Colors.black),
                   textAlign: TextAlign.start),
-              SizedBox(height: 20),
+            const   SizedBox(height: 20),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.4,
                 width: MediaQuery.of(context).size.width,
@@ -172,7 +212,8 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
                   yValues: list,
                   minYValue: widget.CurrentCridtScore.toInt(),
                   maxYValue: widget.achiveCreditScore.toInt(),
-                  isGraphForLoan: false, loan: 0,
+                  isGraphForLoan: false,
+                  loan: 0,
                 ),
               ),
               const SizedBox(height: 10),
@@ -189,7 +230,7 @@ class _IncreaseCibleScoreDetailsState extends State<IncreaseCibleScoreDetails> {
                 child: lineGraphForLoan(
                   currentScore: widget.CurrentCridtScore,
                   wantedScore: widget.achiveCreditScore,
-                  numberOfMonths: (widget.time.toInt()+1),
+                  numberOfMonths: (widget.time.toInt() + 1),
                   // This will give spots for graph
                   yValues: listFoLoanSpots,
                   minYValue: 0,
@@ -347,6 +388,7 @@ class lineGraphForCibil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> months = _generateNextMonths(numberOfMonths);
+    print("wanted and curr: ${wantedScore - currentScore}");
 
     return Scaffold(
       body: LineChart(
@@ -388,7 +430,7 @@ class lineGraphForCibil extends StatelessWidget {
                     ? loan <= 500000
                         ? 30000
                         : 100000
-                    : 100.0,
+                    : (wantedScore-currentScore) <=70?10:50,
                 getTitlesWidget: (value, _) {
                   isGraphForLoan == true ? print(value) : null;
                   return isGraphForLoan == false
@@ -437,9 +479,12 @@ class lineGraphForCibil extends StatelessWidget {
 
   List<FlSpot> _generateSpots(List<double> yValues) {
     List<FlSpot> spots = [];
-    for (int i = 0; i < yValues.length; i++) {
-      spots.add(FlSpot(i.toDouble(), yValues[i]));
+    List<double> Rspots = yValues.reversed.toList();
+    print("y value from this function: $yValues");
+    for (int i = 0; i < Rspots.length; i++) {
+      spots.add(FlSpot(i.toDouble(), Rspots[i]));
     }
+    print("spots: $spots");
     return spots;
   }
 
